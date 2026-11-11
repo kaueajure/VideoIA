@@ -33,6 +33,9 @@ Todo vídeo tem um **estilo** (a aparência; `npm run estilos`) e um **objetivo*
 Primeira vez: `comece`. Trocar nome, @ ou cor: `marca`.
 `pauta` -> `roteiro` -> `video` (que usa `cena` e `critico`) -> `publicar` (que usa `youtube` para o pacote). Para carrossel: `pauta` -> `carrossel` -> `publicar`. Para imitar o jeito de um conteúdo que deu certo: `referencia`.
 
+## Skills sociais
+Leia `docs/skills-sociais.md` na etapa pertinente: `viral-short-form` revisa roteiro antes da voz; `social-captions` e `viral-captions-and-ctas` apoiam `publicar` e `youtube`, com tags separadas de hashtags. `social-content` (Corey Haines) entra quando o pedido incluir planejamento ou reaproveitamento. O idioma, os fatos e as regras da página prevalecem sobre as referências. Preparar textos não autoriza envio ou agendamento.
+
 ## Leituras por etapa
 Abra a skill da etapa atual e consulte as referências que ela indicar para o trabalho em curso.
 - Na pauta e no roteiro, use o objetivo do vídeo e as seções pertinentes de `docs/identidade-e-voz.md`, `docs/formatos.md`, `docs/ganchos.md` e `docs/padroes-virais.md`.
@@ -99,7 +102,11 @@ As skills são as mesmas do Claude Code, copiadas para `.agents/skills/` (a font
 | `publicar` | `$publicar` | Escreve a legenda, os marcadores e a descrição por plataforma para um vídeo ou carrossel do Estudio de videos já gerado. |
 | `referencia` | `$referencia` | Dissecar um vídeo ou carrossel de referência para extrair o padrão transferível (mecanismo, estrutura, ritmo), nunca o conteúdo nem a identidade. |
 | `roteiro` | `$roteiro` | Escolhe o formato e o gatilho de gancho e escreve o roteiro narrado de um vídeo curto do Estudio de videos, na faixa de palavras do objetivo do vídeo (padrão 150 a 230). |
+| `social-captions` | `$social-captions` | Transforma o roteiro final em legendas por plataforma no Metodo-Video, com hashtags e pacote YouTube incluindo tags. |
+| `social-content` | `$social-content` | Planeja formatos, reaproveitamento e calendário de conteúdo para a página do Metodo-Video com o método Social Content de Corey Haines. |
 | `video` | `$video` | Produz o vídeo do Estudio de videos de ponta a ponta, sem paradas de aprovação, a partir de um roteiro.md. |
+| `viral-captions-and-ctas` | `$viral-captions-and-ctas` | Refina legendas, chamadas para ação, comentários fixados e propostas de texto na tela por rede no Metodo-Video. |
+| `viral-short-form` | `$viral-short-form` | Revisa gancho, desenvolvimento e conclusão de roteiros curtos do Metodo-Video antes da voz. |
 | `youtube` | `$youtube` | Monta o pacote YouTube de um vídeo do Estudio de videos (3 títulos, 3 descrições, tags e hashtags) a partir do roteiro.md, e grava youtube.json para a aba Meus vídeos. |
 <!-- skills:fim -->
 

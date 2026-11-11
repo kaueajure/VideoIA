@@ -7,6 +7,10 @@ description: Escolhe o formato e o gatilho de gancho e escreve o roteiro narrado
 
 # Roteiro
 
+## Skills sociais integradas
+Antes de liberar o roteiro definitivo para a voz, aplique `viral-short-form` para revisar gancho, desenvolvimento e conclusão. Consulte `docs/skills-sociais.md`, preserve as três opções no formato GANCHOS e registre o diagnóstico em `revisao-roteiro.md`, fora da fala. Fatos, ressalvas, frases fixadas e faixas do objetivo prevalecem sobre fórmulas de retenção.
+
+
 Use a ficha do objetivo, a seção do formato escolhido em `docs/formatos.md` e a rubrica de `docs/ganchos.md`. Para `curiosidade`, o padrão é 150 a 230 palavras e cerca de 55 a 80 segundos. A faixa é uma sugestão. O linter exige nota mínima 70.
 
 ## 0. O objetivo manda nos números
@@ -83,6 +87,9 @@ Contagem de palavras, fatos contra `fontes.md`, checklist de `docs/formatos.md`.
 ## Navegador: nunca
 Você NUNCA abre, controla nem tira print do navegador da pessoa (nem o Chrome, nem o Safari, nem o Edge, nem o controle de navegador do aplicativo), para "mostrar o roteiro no estúdio" ou para qualquer outra coisa. O estúdio web se atualiza sozinho: ele vigia a pasta e começa o vídeo quando o roteiro chega. Já aconteceu de o assistente tentar controlar o Chrome, a janela da frente ser outro site e as tentativas só se repetirem. Para saber o estado, rode comando, nunca olhe a tela: `npm run status` (projetos e o próximo passo) ou `npm run comece -- --situacao --json` (que também diz a pasta exata do estúdio em uso, para conferir que é a mesma aberta no aplicativo). Se o estúdio parecer parado, confira se o `roteiro.md` está em `<pasta do estúdio>/projetos/<nome>/` e peça à pessoa o botão "Não está andando? Copiar diagnóstico do primeiro vídeo". Pediu "tenta de novo" e nada mudou: não repita; rode o comando de estado.
 
+## Cobertura factual
+Depois de finalizar o texto, atualize os trechos de `fontes.json` conforme `docs/fontes-factuais.md`. Toda fala precisa de classificação factual com ids de afirmações, ou editorial com justificativa. Mudou uma negação, um número ou uma ressalva: reavalie a evidência. Rode `npm run fontes -- <projeto> --exportar`; não altere a classificação para contornar pendências.
 
 
-
+## Edição localizada e pesquisa assistida
+Consulte `docs/edicao-e-direcao.md` ao corrigir uma cena: use o editor com a revisão atual, preserve voz e trechos válidos, confira também a vizinha se mover um corte e gere entrega nova após revisar a prévia. Para investigar fatos, siga `docs/pesquisa-assistida.md`: buscas por afirmação e evidência contrária, coleta textual, citações exatas e revisão vinculada à versão consultada. Não trate coleta ou registro estrutural como prova semântica.

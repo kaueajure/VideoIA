@@ -1,3 +1,4 @@
+import { resumoEdicao } from '../../video/editar-cena.mjs';
 /* Estudio de videos: APIs de Configurar IA e chat embutido. */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -25,11 +26,18 @@ function getIa(ctx, { res }) {
 
 function contextoDoVideo(raiz, contexto) {
   const { projeto, alvo } = contexto;
-  if (typeof projeto !== 'string' || !NOME.test(projeto) || !['video', 'youtube'].includes(alvo)) return null;
+  if (typeof projeto !== 'string' || !NOME.test(projeto) || !['video', 'youtube', 'pesquisa', 'cena'].includes(alvo)) return null;
   try {
     const projetos = fs.realpathSync(path.join(raiz, 'projetos'));
     const pasta = fs.realpathSync(path.join(projetos, projeto));
     if (path.relative(projetos, pasta) !== projeto || !fs.statSync(pasta).isDirectory()) return null;
+    if (alvo === 'cena') {
+      if (typeof contexto.cena !== 'string' || !contexto.cena.trim() || contexto.cena.length > 100
+          || !/^[a-f0-9]{64}$/.test(contexto.revisao || '')) return null;
+      const { revisao, cenas } = resumoEdicao(pasta);
+      if (revisao !== contexto.revisao || !cenas.some(c => c.id === contexto.cena)) return null;
+      return { projeto, alvo, cena: contexto.cena, revisao };
+    }
     return { projeto, alvo };
   } catch {
     return null;

@@ -197,3 +197,33 @@ export function imagensNoPlano(spec, imagens) {
     return { ...imagem, presenteNoPlano: beatsNoPlano.length > 0, noBeatPrevisto: beatsNoPlano.includes(imagem.beat), beatsNoPlano };
   });
 }
+
+import { compilar } from './plano.mjs';
+
+// Propostas limitadas à organização e ao tempo dos conteúdos já escritos.
+// Não inventa números, relações causais, títulos, imagens ou evidências.
+export function planejarDirecao(cena, falado) {
+  const spec = compilar(structuredClone(cena), falado);
+  return { versao: 1, limite: 'Sugestões de ritmo e composição; a equivalência entre fala, imagem e evidência exige revisão.',
+    cenas: cena.beats.map(b => {
+      const s = spec.beats.find(p => p.id === b.id), el = b.elementos?.find(e => e.tipo === 'recurso');
+      const proposta = {}, motivos = [];
+      if (!s || !el) return { id: b.id, proposta: null, motivos: ['Composição autoral preservada; revisar câmera, estados e relação com a fala.'] };
+      const duracao = s.ate - s.de;
+      if (el.forma === 'documento' && !el.arquivo && el.linhas?.length > 1) {
+        proposta.revelarLinhas = el.revelarLinhas || el.linhas.map((_, i) => +(i * Math.max(0, duracao - 1.2) / (el.linhas.length - 1)).toFixed(3));
+        proposta.dur = .65;
+        motivos.push('Revelar cada linha durante a explicação, deixando tempo para ler o último estado.');
+      }
+      if (['causa-efeito', 'linha-do-tempo', 'comparacao'].includes(el.forma) && el.itens?.length >= 2) {
+        proposta.itens = el.itens.map((item, i) => ({ ...item,
+          entra: typeof item.entra === 'string' ? item.entra : +(i * Math.max(0, duracao - 1.2) / (el.itens.length - 1)).toFixed(3) }));
+        if (['causa-efeito','linha-do-tempo'].includes(el.forma)) proposta.layout = 'horizontal';
+        motivos.push('Distribuir os passos ao longo da fala, mantendo rótulos, valores e relações.');
+      }
+      const eventos = el.revelarLinhas || el.itens?.map(i => i.entra) || [el.entra ?? 0];
+      const numericos = eventos.filter(Number.isFinite).sort((a,b) => a-b);
+      const maiorEspera = numericos.length === eventos.length ? Math.max(...numericos.slice(1).map((t,i) => t-numericos[i]), duracao - (numericos.at(-1) || 0)) : null;
+      return { id: b.id, duracao, maiorEspera, proposta: Object.keys(proposta).length ? { recurso: proposta } : null, motivos };
+    }) };
+}

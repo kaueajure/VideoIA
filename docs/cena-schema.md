@@ -37,6 +37,7 @@ Leia este índice e **só o arquivo do estilo da vez** (sem `estilo` na cena, va
 | `smooth` e irmãos · `moderno` · `quadro-antigo` · `stop-motion` · `alternativo` | `docs/cena/estilo-smooth.md` · `docs/cena/estilo-moderno.md` · `docs/cena/estilo-quadro-antigo.md` · `docs/cena/estilo-stop-motion.md` · `docs/cena/estilo-alternativo.md` |
 | continuidade, queda, física, luz, virada limpa (`efeitos` das cenas novas) | `docs/cena/efeitos-3d.md` |
 | formato horizontal, @ e legenda · sujeito e storyboard | `docs/cena/formato.md` · `docs/cena/sujeito.md` |
+| comparação proporcional, linha do tempo, causa e efeito, destaque em documento e acompanhamento de imagem | `docs/cena/recursos-visuais.md` |
 | cenários 3D · peças do dia a dia, de mundo e GLB · lista de formas | `docs/cena/cenarios.md` · `docs/cena/pecas.md` · `docs/cena/repertorio.md` |
 | logos e bandeiras · som e trilha | `docs/cena/logos-e-bandeiras.md` · `docs/cena/som-e-trilha.md` |
 
@@ -49,6 +50,8 @@ Em qualquer estilo, `destaque` na cena (`"#RRGGBB"`, 0.6.44) é a cor de destaqu
 
 ## Elementos
 Todos aceitam `entra`: número (segundos depois do início do beat) **ou uma palavra da narração** (`"tampa"`): o elemento aparece no instante em que ela é dita. Prefira a palavra.
+
+Para explicar proporção, sequência, mecanismo ou evidência, consulte os recursos visuais acima antes de escolher uma peça decorativa. Eles funcionam nos estilos base e nos dois formatos. Um elemento com `"essencial": true` é protegido contra remoção ou mudança de conteúdo pelo QA; dê um `id` estável para facilitar o diagnóstico. O QA preserva a autoria de cenas sem `automatica: true` e salva ajustes de encaixe separadamente.
 
 | tipo | campos |
 |---|---|

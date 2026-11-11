@@ -23,10 +23,8 @@ node_modules/
 /biblioteca/pecas/
 /saida/
 
-# Testes locais e relatórios gerados
-/test/**/*.local.test.mjs
-/test/.tmp/
-/test/saida/
+# Testes
+/test/
 /coverage/
 /.nyc_output/
 /test-results/

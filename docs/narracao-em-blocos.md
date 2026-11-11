@@ -1,0 +1,13 @@
+# Narração por frases
+
+ElevenLabs e Fish Audio passam pelo coordenador `src/video/narracao/blocos.mjs`. A divisão segue frases (`Intl.Segmenter` no idioma da narração), com limite padrão de 900 caracteres e máximo de 200 blocos. Frases maiores são divididas em espaços. Tags do ElevenLabs são preservadas; se não puderem ser divididas sem alterar a fala, a produção para com instrução de usar `narracao.blocos: false` no config.
+
+O cache é local ao projeto: `cache/narracao-blocos/`. A chave inclui texto falado, tags, idioma, provedor, identidade/modelo da voz e parâmetros de síntese. Corrigir uma frase gera apenas o bloco novo; inserir uma frase não muda a chave das demais. Mudar voz, modelo ou velocidade invalida a síntese correspondente. Pronúncia entra no texto preparado da chave. O contexto anterior/seguinte é enviado ao ElevenLabs na primeira síntese, mas fica preservado quando o bloco é reutilizado: não se promete continuidade expressiva idêntica à de uma leitura integral. Escute as junções.
+
+Cada resposta é normalizada para PCM mono a 44.100 Hz. O coordenador conta amostras reais, aplica fades de 6 ms nas bordas, alinha cada bloco e soma os tempos pelo total de amostras, sem sobrepor a fala. Só codifica MP3 uma vez após juntar o PCM. Hashes verificam a integridade dos blocos reutilizados. Se síntese ou alinhamento falhar, o MP3 final anterior permanece; blocos concluídos e áudio ainda sem alinhamento podem ser recuperados na tentativa seguinte.
+
+ElevenLabs conserva os tempos por caractere quando válidos. Fish e respostas sem tempos passam pelo alinhador configurado, por bloco. Trocar o alinhador realinha o PCM sem chamar a síntese. A compactação de pausas e a conversão de pronúncias para as palavras originais continuam depois da montagem. Portanto, **os tempos de edição são os de palavras.json**. `narracao-blocos.json` registra a montagem PCM anterior à compactação e serve para auditoria/reutilização, não como timeline final.
+
+O log informa blocos gerados e reaproveitados. O cache integral existente continua prioritário: um áudio antigo válido é reutilizado sem cobranças. Ele só passa a ter cache por frases ao precisar de uma síntese nova; não se tenta recortar a voz antiga automaticamente. `--refazer-voz --pagar-de-novo` pode refazer toda a narração conforme a proteção de créditos existente. A voz da página e suas credenciais não mudam.
+
+Voz `arquivo` e `mock` continuam com seus fluxos anteriores. Não há garantia de melhoria de interpretação ou prosódia. A validação automatizada usa PCM local e um provedor HTTP simulado, sem medir a qualidade das vozes comerciais.

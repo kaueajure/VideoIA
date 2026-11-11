@@ -32,7 +32,10 @@
     "estilos": "node scripts/estilos.mjs",
     "objetivos": "node scripts/objetivos.mjs",
     "modelos": "node scripts/modelos.mjs",
-    "broll": "node scripts/buscar-broll.mjs"
+    "broll": "node scripts/buscar-broll.mjs",
+    "fontes": "node scripts/fontes-lint.mjs",
+    "cena": "node scripts/editar-cena.mjs",
+    "pesquisar": "node scripts/pesquisar.mjs"
   },
   "dependencies": {
     "playwright": "1.56.1",

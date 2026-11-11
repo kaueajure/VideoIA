@@ -1,0 +1,97 @@
+{
+  "versao": 1,
+  "fontes": [
+    {
+      "id": "s-nasa",
+      "titulo": "Moon Phases",
+      "url": "https://science.nasa.gov/moon/moon-phases/",
+      "publicador": "NASA",
+      "consultadaEm": "2026-11-11"
+    },
+    {
+      "id": "s-harvard",
+      "titulo": "Phases of the Moon — Everyday Classroom Tools",
+      "url": "https://hea-www.harvard.edu/ECT/pdf/phases.pdf",
+      "publicador": "Harvard-Smithsonian Center for Astrophysics",
+      "consultadaEm": "2026-11-11"
+    }
+  ],
+  "afirmacoes": [
+    {
+      "id": "f-fases",
+      "texto": "As fases da Lua não são causadas pela sombra da Terra.",
+      "estado": "verificada",
+      "verificadaEm": "2026-11-11",
+      "evidencias": [
+        {
+          "fonte": "s-harvard",
+          "trecho": "not caused by the Earth’s shadow",
+          "localizacao": "Página 1, primeiro parágrafo"
+        }
+      ],
+      "ressalvas": [
+        "Eclipses lunares são fenômenos diferentes das fases."
+      ]
+    },
+    {
+      "id": "f-luz",
+      "texto": "A luz lunar visível aqui descrita é luz solar refletida.",
+      "estado": "verificada",
+      "verificadaEm": "2026-11-11",
+      "evidencias": [
+        {
+          "fonte": "s-nasa",
+          "trecho": "\"Moonlight\" is actually reflected sunlight.",
+          "localizacao": "3 Quick Facts, segundo fato"
+        }
+      ],
+      "ressalvas": []
+    },
+    {
+      "id": "f-perspectiva",
+      "texto": "A porção iluminada visível muda com a perspectiva durante a órbita da Lua.",
+      "estado": "verificada",
+      "verificadaEm": "2026-11-11",
+      "evidencias": [
+        {
+          "fonte": "s-harvard",
+          "trecho": "a change in our viewing perspective",
+          "localizacao": "Página 1, primeiro parágrafo"
+        }
+      ],
+      "ressalvas": []
+    }
+  ],
+  "trechos": [
+    {
+      "id": "t-1",
+      "texto": "Não é a sombra da Terra que cria as fases da Lua.",
+      "tipo": "factual",
+      "afirmacoes": [
+        "f-fases"
+      ]
+    },
+    {
+      "id": "t-2",
+      "texto": "A luz que vemos na Lua vem do Sol, refletida na superfície.",
+      "tipo": "factual",
+      "afirmacoes": [
+        "f-luz"
+      ]
+    },
+    {
+      "id": "t-3",
+      "texto": "Ao orbitar a Terra, a Lua nos mostra porções diferentes da parte iluminada.",
+      "tipo": "factual",
+      "afirmacoes": [
+        "f-perspectiva"
+      ]
+    },
+    {
+      "id": "t-convite",
+      "texto": "Qual fase você costuma observar no céu?",
+      "tipo": "editorial",
+      "justificativa": "Pergunta sobre observação pessoal, sem nova alegação factual."
+    }
+  ]
+}

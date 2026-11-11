@@ -1,0 +1,125 @@
+{
+  "tema": "FASES DA LUA",
+  "estilo": "minimalista",
+  "efeitos": {
+    "abertura": false,
+    "cauda": false,
+    "grao": 0,
+    "mblur": 0
+  },
+  "beats": [
+    {
+      "id": "fases",
+      "frases": [
+        0,
+        0
+      ],
+      "afirmacoes": [
+        "f-fases"
+      ],
+      "elementos": [
+        {
+          "tipo": "recurso",
+          "forma": "documento",
+          "entra": 0,
+          "fonte": "Síntese: Harvard-Smithsonian",
+          "linhas": [
+            "FASES DA LUA",
+            "Não são a sombra da Terra."
+          ],
+          "marcar": [
+            1
+          ],
+          "dur": 3
+        }
+      ],
+      "titulo": {
+        "texto": "FASES NÃO SÃO SOMBRA",
+        "entra": 0
+      }
+    },
+    {
+      "id": "luz",
+      "frases": [
+        1,
+        1
+      ],
+      "afirmacoes": [
+        "f-luz"
+      ],
+      "elementos": [
+        {
+          "tipo": "recurso",
+          "forma": "causa-efeito",
+          "entra": 0,
+          "itens": [
+            {
+              "rotulo": "Sol",
+              "entra": 0
+            },
+            {
+              "rotulo": "Lua reflete",
+              "entra": "Lua"
+            },
+            {
+              "rotulo": "Vemos a luz",
+              "entra": "superfície"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "perspectiva",
+      "frases": [
+        2,
+        2
+      ],
+      "afirmacoes": [
+        "f-perspectiva"
+      ],
+      "elementos": [
+        {
+          "tipo": "recurso",
+          "forma": "documento",
+          "entra": 0,
+          "fonte": "Síntese: NASA e Harvard",
+          "linhas": [
+            "A LUA ORBITA",
+            "A perspectiva muda.",
+            "A parte visível muda."
+          ],
+          "marcar": [
+            1,
+            2
+          ],
+          "dur": 4.8
+        }
+      ]
+    },
+    {
+      "id": "convite",
+      "frases": [
+        3,
+        3
+      ],
+      "afirmacoes": [],
+      "elementos": [
+        {
+          "tipo": "recurso",
+          "forma": "documento",
+          "entra": 0,
+          "fonte": "Convite à observação",
+          "linhas": [
+            "OLHE PARA O CÉU",
+            "Que fase você viu?"
+          ],
+          "marcar": [
+            1
+          ],
+          "dur": 2.8
+        }
+      ]
+    }
+  ]
+}

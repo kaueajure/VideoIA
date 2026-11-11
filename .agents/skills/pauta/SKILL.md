@@ -7,6 +7,10 @@ description: Escolhe o ângulo de um tema e confere os fatos antes de escrever q
 
 # Pauta e fatos
 
+## Skills sociais integradas
+Se o pedido incluir calendário, formatos ou reaproveitamento, use `social-content` de Corey Haines conforme `docs/skills-sociais.md`. Use o material real da página e registre hipóteses sem inventar métricas. Em um pedido de vídeo único, siga diretamente a pauta; não imponha planejamento adicional.
+
+
 Nada se escreve de cabeça. Um número errado circula em print por anos.
 
 ## 0. Estilo e objetivo
@@ -50,6 +54,9 @@ Escreva `fontes.md` e siga direto para a skill `roteiro` (vídeo) ou `carrossel`
 ## Navegador: nunca
 Você NUNCA abre, controla nem tira print do navegador da pessoa (nem o Chrome, nem o Safari, nem o Edge, nem o controle de navegador do aplicativo), para "mostrar o roteiro no estúdio" ou para qualquer outra coisa. O estúdio web se atualiza sozinho: ele vigia a pasta e começa o vídeo quando o roteiro chega. Já aconteceu de o assistente tentar controlar o Chrome, a janela da frente ser outro site e as tentativas só se repetirem. Para saber o estado, rode comando, nunca olhe a tela: `npm run status` (projetos e o próximo passo) ou `npm run comece -- --situacao --json` (que também diz a pasta exata do estúdio em uso, para conferir que é a mesma aberta no aplicativo). Se o estúdio parecer parado, confira se o `roteiro.md` está em `<pasta do estúdio>/projetos/<nome>/` e peça à pessoa o botão "Não está andando? Copiar diagnóstico do primeiro vídeo". Pediu "tenta de novo" e nada mudou: não repita; rode o comando de estado.
 
+## Registro factual do vídeo
+Para vídeos, siga `docs/fontes-factuais.md`: a pesquisa alimenta `fontes.json`, com afirmações, evidências realmente consultadas, datas e ressalvas. Preserve `fontes.md` para notas e créditos. Depois do roteiro definitivo, vincule cada fala aos ids e rode `npm run fontes -- <projeto> --exportar`. Nunca marque como verificado só porque encontrou uma URL.
 
 
-
+## Edição localizada e pesquisa assistida
+Consulte `docs/edicao-e-direcao.md` ao corrigir uma cena: use o editor com a revisão atual, preserve voz e trechos válidos, confira também a vizinha se mover um corte e gere entrega nova após revisar a prévia. Para investigar fatos, siga `docs/pesquisa-assistida.md`: buscas por afirmação e evidência contrária, coleta textual, citações exatas e revisão vinculada à versão consultada. Não trate coleta ou registro estrutural como prova semântica.

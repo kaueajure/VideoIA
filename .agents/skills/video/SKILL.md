@@ -52,6 +52,12 @@ Garanta que o primeiro elemento apareça em até 0,9 s em cada beat. Consulte [A
 ## Navegador: nunca
 Você NUNCA abre, controla nem tira print do navegador da pessoa (nem o Chrome, nem o Safari, nem o Edge, nem o controle de navegador do aplicativo), para "mostrar o roteiro no estúdio" ou para qualquer outra coisa. O estúdio web se atualiza sozinho: ele vigia a pasta e começa o vídeo quando o roteiro chega. Já aconteceu de o assistente tentar controlar o Chrome, a janela da frente ser outro site e as tentativas só se repetirem. Para saber o estado, rode comando, nunca olhe a tela: `npm run status` (projetos e o próximo passo) ou `npm run comece -- --situacao --json` (que também diz a pasta exata do estúdio em uso, para conferir que é a mesma aberta no aplicativo). Se o estúdio parecer parado, confira se o `roteiro.md` está em `<pasta do estúdio>/projetos/<nome>/` e peça à pessoa o botão "Não está andando? Copiar diagnóstico do primeiro vídeo". Pediu "tenta de novo" e nada mudou: não repita; rode o comando de estado.
 
+## Liberação factual
+Siga `docs/fontes-factuais.md`. Antes da voz final, confira o registro do roteiro; depois da cena, rode `npm run fontes -- <projeto> --video --exportar`. A prévia continua disponível com pendências. A entrega só é publicável com `fontes.json` completo e vinculado ao roteiro, à voz e às cenas atuais, além das condições existentes. Projetos antigos precisam migrar as fontes; não dispense o registro para publicar.
 
 
+## Edição localizada e pesquisa assistida
+Consulte `docs/edicao-e-direcao.md` ao corrigir uma cena: use o editor com a revisão atual, preserve voz e trechos válidos, confira também a vizinha se mover um corte e gere entrega nova após revisar a prévia. Para investigar fatos, siga `docs/pesquisa-assistida.md`: buscas por afirmação e evidência contrária, coleta textual, citações exatas e revisão vinculada à versão consultada. Não trate coleta ou registro estrutural como prova semântica.
 
+## Mecanismos, narração e versões
+Ao corrigir vídeos, consulte `docs/narracao-em-blocos.md` e `docs/comparacao-de-versoes.md`. Preserve blocos de voz válidos; não use refazer integral para uma correção local. Confira palavras.json e cortes após mudar a fala. Para mecanismos específicos, consulte `docs/cena/recursos-visuais.md`: os modelos da Lua são esquemas fora de escala, sem eclipses, e não substituem direção específica de outros assuntos. Compare a nova entrega com a anterior; menos avisos não comprova melhoria artística ou factual.

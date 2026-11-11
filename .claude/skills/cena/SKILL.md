@@ -79,6 +79,12 @@ Escreva o arquivo e rode o QA. Não peça aprovação do roteiro visual, **excet
 - Logo ou bandeira conhecidos (apps, IA, partidos, STF, bancos, clubes, países, estados): elemento `logo` ou `bandeira` pelo id da biblioteca (`node scripts/marcas.mjs <termo>`, `docs/marcas.md`), já com acabamento e crédito automático no fontes.md. Uso editorial, sem sugerir parceria; nada de marca de terceiro em anúncio pago.
 - Foto ou logo real: elemento `imagem` (veja `docs/cena/estilo-padrao.md`, Notas), com crédito e licença em fontes.md. Para achar e registrar: `node scripts/buscar-imagem.mjs <projeto> "<termo>" --listar`, depois `--escolha=N` (ou `--logo`).
 
+## Afirmações nas cenas
+Consulte `docs/fontes-factuais.md`. O motor relaciona os intervalos de palavras aos ids do registro. Para dados adicionais em títulos, contadores, gráficos ou documentos, declare `afirmacoes: ["f-id"]` no beat ou elemento e confira suas evidências. Depois de voz e cenas prontas, rode `npm run fontes -- <projeto> --video --exportar`. O vínculo temporal não comprova equivalência visual.
 
 
+## Edição localizada e pesquisa assistida
+Consulte `docs/edicao-e-direcao.md` ao corrigir uma cena: use o editor com a revisão atual, preserve voz e trechos válidos, confira também a vizinha se mover um corte e gere entrega nova após revisar a prévia. Para investigar fatos, siga `docs/pesquisa-assistida.md`: buscas por afirmação e evidência contrária, coleta textual, citações exatas e revisão vinculada à versão consultada. Não trate coleta ou registro estrutural como prova semântica.
 
+## Mecanismos, narração e versões
+Ao corrigir vídeos, consulte `docs/narracao-em-blocos.md` e `docs/comparacao-de-versoes.md`. Preserve blocos de voz válidos; não use refazer integral para uma correção local. Confira palavras.json e cortes após mudar a fala. Para mecanismos específicos, consulte `docs/cena/recursos-visuais.md`: os modelos da Lua são esquemas fora de escala, sem eclipses, e não substituem direção específica de outros assuntos. Compare a nova entrega com a anterior; menos avisos não comprova melhoria artística ou factual.

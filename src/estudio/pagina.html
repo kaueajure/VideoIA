@@ -120,7 +120,7 @@ nav.abas-topo button .ic{margin-right:7px;vertical-align:-.22em}
 .acoes{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:18px}
 label.campo{display:block;margin-top:16px}
 label.campo span{display:block;font-size:13px;color:var(--suave);font-weight:600;margin-bottom:6px}
-input[type=text],input[type=email],input[type=password],select,textarea{width:100%;background:var(--fundo);border:1px solid var(--linha);border-radius:10px;padding:11px 14px;color:var(--texto)}
+input[type=text],input[type=email],input[type=password],input[type=number],select,textarea{width:100%;background:var(--fundo);border:1px solid var(--linha);border-radius:10px;padding:11px 14px;color:var(--texto)}
 input::placeholder{color:var(--fraco)}
 .dica{font-size:13px;color:var(--fraco);margin-top:6px}
 .cartao{background:var(--sup);border:1px solid var(--linha);border-radius:16px;padding:22px}
@@ -289,7 +289,7 @@ li,p,b,span,.caixa-ok,.caixa-erro,.caixa-nota{overflow-wrap:anywhere}
 /* meus vídeos */
 .videos{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:12px}
 .vid{background:var(--sup);border:1px solid var(--linha);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
-.vid .capa{aspect-ratio:9/16;background:var(--midia) center/cover no-repeat;position:relative;cursor:pointer;border:0;width:100%}
+.vid .capa{flex:none;display:block;aspect-ratio:9/16;background:var(--midia) center/cover no-repeat;position:relative;cursor:pointer;border:0;width:100%}
 .vid .capa::after{content:"";position:absolute;inset:auto auto 10px 10px;width:36px;height:36px;border-radius:50%;background:#000000a0 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='white'/%3E%3C/svg%3E") center/18px no-repeat}
 .vid .corpo-v{padding:10px;display:grid;gap:4px;min-width:0}
 .vid b{font-size:13.5px;line-height:1.25;overflow-wrap:anywhere}
@@ -439,7 +439,7 @@ dialog textarea{min-height:300px;margin-top:12px;font-size:14px;line-height:1.5}
 #v-configuracoes .passos small{font-size:10.5px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 #v-configuracoes #painelPasso{flex:1;min-height:0;height:auto;overflow:auto;padding:16px}
 #v-configuracoes .cfg-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
-#v-videos .videos{flex:1;min-height:0;overflow:auto;align-content:start;margin-top:10px}
+#v-videos .videos{flex:1;min-height:0;overflow:auto;align-content:start;grid-auto-rows:max-content;align-items:start;margin-top:10px}
 .cartao{padding:16px;border-radius:14px}
 .grade-estilos{gap:12px;margin-top:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
 .lista-car{gap:12px;margin-top:12px}
@@ -575,7 +575,7 @@ img,video{max-width:100%}
   .cores button,.cores input[type=color]{width:44px;height:44px}
   .opcao,.item,.passos button{min-height:48px}
   nav.abas-topo button{min-height:44px}
-  input[type=text],input[type=email],input[type=password],input[type=search],select,textarea{font-size:16px;min-height:44px}
+  input[type=text],input[type=email],input[type=password],input[type=search],input[type=number],select,textarea{font-size:16px;min-height:44px}
   input[type=checkbox]{width:22px;height:22px}
 }
 @media (max-width:900px){
@@ -611,6 +611,20 @@ img,video{max-width:100%}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @media (max-width:720px){.modelos.com-previa{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.opcao.tem-previa .tx{padding:10px 12px 12px}.opcao.tem-previa b{font-size:14.5px}.opcao.tem-previa .tx span{font-size:12.5px}.opcao.com-ic{grid-template-columns:36px minmax(0,1fr);gap:12px}.ic-box{width:36px;height:36px}}
+/* Publicação manual: mesmos tokens e controles do estúdio. */
+.yt-envio .yt-campo{display:grid;gap:6px;align-items:start;color:var(--texto)}
+.yt-envio fieldset{min-width:0;border:1px solid var(--linha);border-radius:12px;padding:14px;margin:16px 0}
+.yt-envio legend{padding:0 6px;font-weight:600}
+.yt-envio input:not([type=checkbox]),.yt-envio textarea,.yt-envio select{width:100%;min-width:0;box-sizing:border-box}
+.yt-envio textarea{resize:vertical;min-height:132px}
+.yt-envio progress{width:100%;accent-color:var(--d)}
+.yt-envio video{width:100%;max-height:300px;object-fit:contain;margin-top:14px}
+.yt-envio .yt-config{margin:12px 0;color:var(--suave)}
+.yt-envio .yt-config summary{cursor:pointer;padding:8px 0}
+.yt-envio ol{padding-left:24px;line-height:1.6}
+.yt-envio #ytEnvErro:not(:empty){margin-top:12px;color:var(--erro);overflow-wrap:anywhere}
+.tk-envio .tk-erro:not(:empty){margin-top:12px;color:var(--erro);overflow-wrap:anywhere}
+.tk-envio #tkMarcas{padding-left:16px}
 </style>
 </head>
 <body>
@@ -1587,7 +1601,7 @@ function atualizarAbaChat() {
 }
 function definirContextoChat(contexto, sugestao = '') {
   const entrada = $('#chatMsg');
-  const chave = c => c ? c.projeto + ':' + c.alvo : '';
+  const chave = c => c ? c.projeto + ':' + c.alvo + ':' + (c.cena || '') : '';
   const anterior = chave(chatEstado.contexto);
   const proxima = chave(contexto);
   if (anterior !== proxima) {
@@ -1604,8 +1618,8 @@ function definirContextoChat(contexto, sugestao = '') {
   entrada.focus();
 }
 function rotuloContextoChat(contexto) {
-  const alvo = contexto.alvo === 'youtube' ? 'Pacote YouTube' : 'Vídeo';
-  return `${alvo}: ${contexto.titulo}`;
+  const alvo = contexto.alvo === 'youtube' ? 'Pacote YouTube' : contexto.alvo === 'pesquisa' ? 'Pesquisa factual' : contexto.alvo === 'cena' ? 'Cena ' + contexto.cena : 'Vídeo';
+  return `${alvo}: ${contexto.titulo || contexto.projeto.replace(/-/g, ' ')}`;
 }
 function prepararChat() {
   const nome = conf?.ia?.nome || 'IA';
@@ -1652,7 +1666,7 @@ async function enviarChat(mensagem, { ir = true, contexto = null } = {}) {
   if (ir) mostrar('chat');
   $('#chatEnviar').disabled = true;
   const corpo = { mensagem: msg };
-  if (contexto) corpo.contexto = { projeto: contexto.projeto, alvo: contexto.alvo };
+  if (contexto) corpo.contexto = { projeto: contexto.projeto, alvo: contexto.alvo, ...(contexto.cena ? { cena: contexto.cena, revisao: contexto.revisao } : {}) };
   const r = await post('/api/ia/chat', corpo).catch(() => ({ erro: NAO_RESPONDE }));
   if (!r?.id || r.erro) {
     const erro = r?.erro || RESPOSTA_ESTRANHA;
@@ -1680,7 +1694,7 @@ ${msg}` : msg);
     const enviado = await enviarChat(mensagem, { contexto });
     if (!enviado) return;
     if (chatEstado.contexto === contexto && entrada.value === mensagem) entrada.value = '';
-    const chave = contexto ? contexto.projeto + ':' + contexto.alvo : '';
+    const chave = contexto ? contexto.projeto + ':' + contexto.alvo + ':' + (contexto.cena || '') : '';
     if (chatEstado.rascunhos.get(chave) === mensagem) chatEstado.rascunhos.delete(chave);
   });
   $('#chatContextoRemover').onclick = () => definirContextoChat(null);
@@ -2091,12 +2105,15 @@ async function carregarVideos() {
     <button class="capa" data-ver="${v.nome}" aria-label="Assistir ${esc(v.titulo)}" style="${v.capa ? `background-image:url(/midia/${v.nome}/capa.jpg)` : ''}"></button>
     <div class="corpo-v"><b>${esc(v.titulo)}</b><small>${new Date(v.data).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })} · ${v.mb} MB</small>
       <div class="marcas">${v.teste ? `<span class="etq aviso">${I('aviso')} sem voz (teste)</span>` : v.aprovado ? `<span class="etq ok">${I('ok')} conferido</span>` : `<span class="etq aviso">${I('aviso')} rever qualidade</span>`}${v.rapido ? '<span class="etq">prévia rápida</span>' : ''}</div></div>
-    <div class="bts"><a class="btn sec" href="/baixar/${v.nome}" download>Baixar</a><button class="btn sec" data-pasta="${v.nome}">Mostrar na pasta</button>
+    <div class="bts"><button class="btn sec" type="button" data-cenas-editar="${esc(v.nome)}">Corrigir cenas</button><a class="btn sec" href="/baixar/${v.nome}" download>Baixar</a><button class="btn sec" data-pasta="${v.nome}">Mostrar na pasta</button>
       <button class="btn sec" data-leg="${v.nome}" ${v.legenda ? '' : 'title="Peça ao assistente (Claude Code ou Codex): escreva a legenda deste vídeo"'}>${v.legenda ? 'Copiar legenda' : 'Pedir a legenda'}</button>
-      <button class="btn sec" data-yt="${v.nome}" ${v.youtube ? '' : 'title="Peça ao assistente (Claude Code ou Codex): escreva o pacote YouTube deste vídeo"'}>${v.youtube ? 'YouTube' : 'Pedir YouTube'}</button>
+      <button class="btn sec" type="button" data-yt-enviar="${v.nome}">Enviar ao YouTube</button>
+      <button class="btn sec" type="button" data-tk-enviar="${v.nome}">Enviar ao TikTok</button>
+      <button class="btn sec" data-yt="${v.nome}" ${v.youtube ? '' : 'title="Peça ao assistente (Claude Code ou Codex): escreva o pacote YouTube deste vídeo"'}>${v.youtube ? 'Textos YouTube' : 'Pedir textos YouTube'}</button>
       ${chatConectado ? `<button class="btn sec" type="button" data-ajustar-video="${esc(v.nome)}">Pedir ajuste</button>` : ''}</div>
   </article>`).join('');
   ligaNovo();
+  $$('#videos [data-cenas-editar]').forEach(b => { b.onclick = async () => { aba = 'cenas'; mostrar('projetos'); await abre(b.dataset.cenasEditar); }; });
   $$('#videos [data-ajustar-video]').forEach(b => {
     b.onclick = () => ajustar(b.dataset.ajustarVideo, 'video');
   });
@@ -2108,6 +2125,8 @@ async function carregarVideos() {
     abrirDlg(`<h2>Legenda</h2><p class="dica">Confira antes de postar. Dá para editar aqui antes de copiar.</p><textarea id="legTxt">${esc(r.texto)}</textarea><div class="acoes"><button class="btn" id="legCopiar">Copiar</button><span id="legOk" class="ok-txt"></span></div>`);
     $('#legCopiar').onclick = async () => { const t = $('#legTxt'); try { await navigator.clipboard.writeText(t.value); } catch { t.select(); document.execCommand('copy'); } $('#legOk').textContent = 'Copiada.'; };
   }));
+  $$('#videos [data-tk-enviar]').forEach(b => { b.onclick = () => abrirEnvioTiktok(b.dataset.tkEnviar); });
+  $$('#videos [data-yt-enviar]').forEach(b => { b.onclick = () => abrirEnvioYoutube(b.dataset.ytEnviar); });
   $$('[data-yt]').forEach((b) => (b.onclick = async () => {
     const nome = b.dataset.yt;
     const r = await api('/api/youtube/' + encodeURIComponent(nome)).catch(() => ({ erro: NAO_RESPONDE }));
@@ -2370,7 +2389,7 @@ async function abre(nome) {
   <div class="corpo">
     <div class="midia">${d.video ? `<video controls playsinline preload="metadata" poster="${d.capa ? `/midia/${nome}/capa.jpg` : ''}" src="/midia/${nome}/video?t=${Date.now()}"></video>` : '<div class="nada">O vídeo aparece aqui depois de produzido.</div>'}</div>
     <div>
-      <div class="abas" role="tablist">${['roteiro', 'fontes', 'qa', 'carrossel'].map((a) => `<button class="aba" role="tab" data-aba="${a}" aria-selected="${a === aba}">${{ roteiro: 'Roteiro', fontes: 'Fontes e pendências', qa: 'Controle de qualidade', carrossel: 'Carrossel' }[a]}</button>`).join('')}</div>
+      <div class="abas" role="tablist">${['roteiro', 'cenas', 'versoes', 'fontes', 'qa', 'carrossel'].map((a) => `<button class="aba" role="tab" data-aba="${a}" aria-selected="${a === aba}">${{ roteiro: 'Roteiro', cenas: 'Corrigir cenas', versoes: 'Comparar versões', fontes: 'Fontes e pendências', qa: 'Controle de qualidade', carrossel: 'Carrossel' }[a]}</button>`).join('')}</div>
       <div id="painel"></div>
     </div>
   </div>`;
@@ -2381,11 +2400,54 @@ async function abre(nome) {
   raiz.querySelectorAll('.aba').forEach((b) => (b.onclick = () => { aba = b.dataset.aba; raiz.querySelectorAll('.aba').forEach((x) => x.setAttribute('aria-selected', x === b)); painel(d); }));
   painel(d);
 }
+function htmlRelevancia(r) {
+  if (!r?.beats?.length) return '';
+  const pendentes = r.beats.filter(b => b.naoAvaliado || !Number.isFinite(b.nota)).length;
+  const notas = ['sem relação', 'apoio do assunto', 'casa com a fala', 'mostra o que a fala diz'];
+  const resumo = [];
+  if (Number.isFinite(r.media)) resumo.push(`Nota média ${esc(String(r.media))} de 3 nos trechos avaliados.`);
+  if (r.semRelacao) resumo.push(`<b>${esc(String(r.semRelacao))} trecho(s) sem relação</b>: peça ao assistente para trocar o objeto desses trechos.`);
+  else if (!pendentes) resumo.push('A análise encontrou relação nos trechos avaliados.');
+  if (pendentes) resumo.push(`<b>${pendentes} trecho(s) com revisão semântica pendente</b>: confira se a imagem e os dados representam a fala.`);
+  return `<div class="bloco"><h3>Fala x imagem</h3><p>${resumo.join(' ')}</p><ul class="pend">${r.beats.map(b => {
+    const pendente = b.naoAvaliado || !Number.isFinite(b.nota);
+    const nota = pendente ? 'revisão semântica pendente' : `${b.nota}: ${notas[b.nota] || ''}`;
+    return `<li${b.nota === 0 && !pendente ? ' style="color:var(--erro,#c0392b)"' : ''}><b>${esc(b.beat)}</b> "${esc(String(b.fala).slice(0, 90))}" → ${esc(b.mostra)} <i>(${esc(nota)})</i></li>`;
+  }).join('')}</ul></div>`;
+}
+function htmlFactual(r) {
+  if (!r) return '<div class="bloco"><h3>Evidências por afirmação</h3><p>Checagem factual ainda não disponível.</p></div>';
+  const pendencias = Array.isArray(r.pendencias) ? r.pendencias : [];
+  const resumo = r.aprovado ? 'Registros e vínculos completos. A conferência do conteúdo das fontes continua sendo necessária.'
+    : 'Publicação bloqueada por pendências factuais. A prévia continua disponível.';
+  return `<div class="bloco"><h3>Evidências por afirmação</h3><p>${esc(resumo)}</p>
+    ${pendencias.length ? `<ul class="pend">${pendencias.map(p => `<li><b>${esc(p.afirmacao || p.trecho || '')}</b> ${esc(p.msg)}${p.beats?.length ? ` <small>Beat(s): ${esc(p.beats.join(', '))}</small>` : ''}</li>`).join('')}</ul>` : ''}
+    ${(r.afirmacoes || []).length ? `<ul>${r.afirmacoes.map(f => `<li><b>${esc(f.id)}</b>: ${esc(f.texto)} <small>(${esc(f.estado)})</small>
+      <p>Beat(s): ${esc((f.beats || []).join(', ') || 'ainda sem cena')}.</p>
+      ${(f.fontes || []).map(fonte => `<p>${esc(fonte.publicador)}: ${esc(fonte.titulo)}<br>${esc(fonte.url)}<br><small>Consulta: ${esc(fonte.consultadaEm)}</small></p>`).join('')}
+      ${f.ressalvas?.length ? `<p>Ressalvas: ${esc(f.ressalvas.join(' '))}</p>` : ''}</li>`).join('')}</ul>` : ''}
+    <p class="dica">A checagem confere registros, cobertura e vínculos. Ela não comprova que uma fonte sustenta a afirmação.</p>${htmlPesquisa(r.pesquisa)}</div>`;
+}
+function htmlPesquisa(r) {
+  if (!r?.ativo) return '';
+  const lista = v => Array.isArray(v) ? v : [];
+  return `<section aria-labelledby="pesquisaTitulo"><h3 id="pesquisaTitulo">Revisão da pesquisa</h3>
+    <p>${r.aprovado ? 'Revisão registrada e citações localizadas nas páginas coletadas.' : 'Pesquisa com pendências; confira as conclusões e as citações.'}</p>
+    ${lista(r.afirmacoes).map(a => `<article><h4>${esc(a.id)}: ${esc(a.resultado)}</h4><p>${esc(a.justificativa)}</p>
+      <p><b>Independência declarada:</b> ${esc(a.independencia || 'Ainda não avaliada.')}</p>
+      ${lista(a.citacoes).map(c => `<blockquote>${esc(c.trecho)}<br><small>Fonte: ${esc(c.fonte)}</small></blockquote>`).join('')}
+      ${lista(a.ressalvas).length ? `<p><b>Ressalvas:</b> ${esc(a.ressalvas.join(' '))}</p>` : ''}
+      ${lista(a.contradicoes).length ? `<p class="pend"><b>Evidências contrárias:</b> ${esc(a.contradicoes.join(' '))}</p>` : ''}</article>`).join('')}
+    <p class="dica">Conclusões semânticas e independência são avaliações declaradas pelo pesquisador.</p></section>`;
+}
 function painel(d) {
   const p = $('#painel');
+  p.onclick = e => { if (e.target.closest('#pesquisarFontes')) { const contexto = { projeto: d.nome, titulo: d.nome.replace(/-/g, ' '), alvo: 'pesquisa' }; definirContextoChat(contexto); enviarChat('Pesquise e revise as afirmações deste vídeo, procure evidências contrárias e conclua a checagem conforme o fluxo de pesquisa assistida.', { contexto }); } };
+  if (aba === 'versoes') { montarComparacaoVersoes(p, d.nome); return; }
+  if (aba === 'cenas') { montarEditorCenas(p, d.nome); return; }
   if (aba === 'roteiro') p.innerHTML = `<div class="bloco"><h3>Texto narrado</h3><pre>${esc((d.roteiro || '').split('\n').filter((l) => !/^(STATUS|GANCHOS):/i.test(l)).join('\n').trim())}</pre></div>`;
   if (aba === 'fontes') {
-    p.innerHTML = `<div class="bloco"><h3>Pendências antes de publicar</h3>${d.pendencias.length ? `<ul class="pend">${d.pendencias.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : '<p class="ok-txt">Nenhuma pendência.</p>'}</div><div class="bloco refs-bloco"><h3>Imagens de referência</h3>
+    p.innerHTML = `<div class="bloco"><h3>Pesquisar e revisar evidências</h3><p>O assistente busca fontes, confere citações e registra conclusões, ressalvas e contradições.</p><button class="btn sec" type="button" id="pesquisarFontes">Pesquisar afirmações com o assistente</button><p class="dica">A tarefa usa o assistente conectado. Consultas podem consumir o plano desse assistente.</p></div>` + htmlFactual(d.factual) + `<div class="bloco"><h3>Pendências antes de publicar</h3>${d.pendencias.length ? `<ul class="pend">${d.pendencias.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : '<p class="ok-txt">Nenhuma pendência.</p>'}</div><div class="bloco refs-bloco"><h3>Imagens de referência</h3>
     <p class="dica">A IA lê essas fotos e encaixa cada uma no trecho certo do roteiro (sem repetir, a não ser que precise).</p>
     <div class="refs-lista" id="projRefsLista">${(d.referencias || []).map((x) => `<div class="ref-chip"><img alt="" src="/api/projeto/${esc(d.nome)}/referencia/${esc(x.arquivo)}?t=${Date.now()}"><span>${esc(x.arquivo)}</span></div>`).join('') || '<span class="dica">Nenhuma ainda.</span>'}</div>
     <div class="acoes" style="margin-top:10px"><label class="btn sec pequeno" for="projRefs" style="cursor:pointer">Adicionar imagens</label><input type="file" id="projRefs" accept="image/jpeg,image/png,image/webp,image/gif,.jpg,.jpeg,.png,.webp,.gif" multiple hidden></div>
@@ -2404,12 +2466,11 @@ function painel(d) {
     };
   }
   // 0.6.12: fala x imagem, beat a beat (nota 0 = o que aparece não tem relação com a fala), e foto que não veio, em destaque
-  const NOTA = ['sem relação', 'apoio do assunto', 'casa com a fala', 'mostra o que a fala diz'];
   const fotosFalhas = (d.relatorio?.avisos || []).filter((a) => a.tipo === 'foto-nao-encontrada');
   // 0.6.30: faltou a foto de quem a fala cita pelo nome: um aviso só, claro, no lugar da lista técnica por trecho
   const fotoNome = (d.relatorio?.avisos || []).find((a) => a.tipo === 'foto-de-nome');
-  const blocoRel = (r) => (fotoNome ? `<div class="caixa-nota"><b>O vídeo saiu, mas faltou a foto de quem foi citado</b>${esc(fotoNome.msg)}</div>` : fotosFalhas.length ? `<div class="caixa-nota"><b>O vídeo saiu, mas uma foto ficou de fora</b>${fotosFalhas.map((a) => esc(a.msg.replace(/^foto: /, ''))).join('<br>')}</div>` : '') + (r?.beats?.length ? `<div class="bloco"><h3>Fala x imagem</h3><p>Nota média ${esc(String(r.media))} de 3${r.semRelacao ? `; <b>${r.semRelacao} trecho(s) sem relação</b>: peça ao assistente (Claude Code ou Codex) para trocar o objeto desses trechos` : '; todos os trechos com relação'}.</p><ul class="pend">${r.beats.map((b) => `<li${b.nota === 0 ? ' style="color:var(--erro,#c0392b)"' : ''}><b>${esc(b.beat)}</b> "${esc(String(b.fala).slice(0, 90))}" → ${esc(b.mostra)} <i>(${b.nota}: ${NOTA[b.nota] || ''})</i></li>`).join('')}</ul></div>` : '');
-  if (aba === 'qa') { const j = d.relatorio; p.innerHTML = j ? blocoRel(d.relevancia) + `<div class="bloco"><h3>Falhas</h3>${j.falhas.length ? `<ul class="pend">${j.falhas.map((f) => `<li>${esc(f.beat || '')} ${esc(f.msg)}</li>`).join('')}</ul>` : '<p class="ok-txt">Nenhuma falha.</p>'}</div><div class="bloco"><h3>Avisos</h3>${j.avisos.length ? `<ul class="pend">${j.avisos.map((f) => `<li>${esc(f.beat || '')} ${esc(f.msg)}</li>`).join('')}</ul>` : '<p>Nenhum aviso.</p>'}</div>${d.folha ? `<div class="bloco"><h3>Folha de contato</h3><img src="/midia/${d.nome}/folha.jpg" style="width:100%;max-width:720px;border-radius:12px"></div>` : ''}${d.capaGrid ? `<div class="bloco"><h3>Capa no grid do perfil (3:4)</h3><img src="/midia/${d.nome}/capa-grid.jpg" style="width:240px;border-radius:12px"></div>` : ''}` : '<p>Produza o vídeo para gerar o relatório.</p>'; }
+  const blocoRel = (r) => (fotoNome ? `<div class="caixa-nota"><b>O vídeo saiu, mas faltou a foto de quem foi citado</b>${esc(fotoNome.msg)}</div>` : fotosFalhas.length ? `<div class="caixa-nota"><b>O vídeo saiu, mas uma foto ficou de fora</b>${fotosFalhas.map((a) => esc(a.msg.replace(/^foto: /, ''))).join('<br>')}</div>` : '') + htmlRelevancia(r);
+  if (aba === 'qa') { const j = d.relatorio; p.innerHTML = j ? htmlFactual(d.factual) + blocoRel(d.relevancia) + `<div class="bloco"><h3>Falhas</h3>${j.falhas.length ? `<ul class="pend">${j.falhas.map((f) => `<li>${esc(f.beat || '')} ${esc(f.msg)}</li>`).join('')}</ul>` : '<p class="ok-txt">Nenhuma falha.</p>'}</div><div class="bloco"><h3>Avisos</h3>${j.avisos.length ? `<ul class="pend">${j.avisos.map((f) => `<li>${esc(f.beat || '')} ${esc(f.msg)}</li>`).join('')}</ul>` : '<p>Nenhum aviso.</p>'}</div>${d.folha ? `<div class="bloco"><h3>Folha de contato</h3><img src="/midia/${d.nome}/folha.jpg" style="width:100%;max-width:720px;border-radius:12px"></div>` : ''}${d.capaGrid ? `<div class="bloco"><h3>Capa no grid do perfil (3:4)</h3><img src="/midia/${d.nome}/capa-grid.jpg" style="width:240px;border-radius:12px"></div>` : ''}` : '<p>Produza o vídeo para gerar o relatório.</p>'; }
   if (aba === 'carrossel') p.innerHTML = d.slides.length ? `<div class="bloco"><h3>${d.slides.length} slides</h3><div class="slides">${d.slides.map((s) => `<img loading="lazy" src="/carrossel/${d.nome}/${s}">`).join('')}</div></div>` : '<p>Este tema ainda não tem carrossel. Peça ao assistente (Claude Code ou Codex): "Gere o carrossel de ' + esc(d.nome) + '".</p>';
 }
 $('#busca').oninput = desenhaLista;
@@ -2511,5 +2572,9 @@ window.addEventListener('error', (ev) => { if (ev && ev.target && ev.target !== 
   retomarPrimeiro();
 })();
 </script>
+<script src="/cenas-ui.js"></script>
+<script src="/versoes-ui.js"></script>
+<script src="/youtube-ui.js"></script>
+<script src="/tiktok-ui.js"></script>
 </body>
 </html>

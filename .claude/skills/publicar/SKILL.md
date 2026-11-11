@@ -7,7 +7,11 @@ description: Escreve a legenda, os marcadores e a descrição por plataforma par
 
 # Legenda e publicação
 
-**Antes de tudo:** leia `projetos/<nome>/saida/entrega.json`. Se estiver ausente, confira o estado do projeto com `npm run status`. Só publique quando `publicavel` for `true`: voz real, QA aprovado e nenhuma linha `PENDENTE` em `fontes.md`. Se houver pendência, feche-a (confirme a fonte ou reduza a afirmação no roteiro) e renderize de novo.
+## Skills sociais integradas
+Use `social-captions` para redigir as plataformas pedidas e `viral-captions-and-ctas` para revisar CTA, hashtags e comentário sugerido. Leia `docs/skills-sociais.md`; idioma do roteiro e regras locais prevalecem. Para YouTube, mantenha `youtube.json` como fonte única com títulos, descrições, tags e hashtags. Preserve as checagens abaixo; preparar textos não executa publicação.
+
+
+**Antes de tudo:** leia `projetos/<nome>/saida/entrega.json`. Se estiver ausente, confira o estado do projeto com `npm run status`. Só publique quando `publicavel` for `true`: voz real, QA aprovado e nenhuma linha `PENDENTE` em `fontes.md`. Se houver pendência, identifique-a nos textos como rascunho. Para liberar a publicação, será preciso resolver a fonte ou a afirmação e gerar uma entrega nova. Um pedido só de textos não autoriza alterar roteiro, sintetizar voz ou renderizar: nessa tarefa, preserve o vídeo e relate o que impede a liberação.
 
 **Objetivo do vídeo** (`objetivo` em `entrega.json`; em vídeo antigo, `modelo`; detalhes em `npm run objetivos -- --ver <id>`, ou `npm run estilos -- --ver <id>` quando só houver estilo): siga `publicar.legenda` (o jeito da legenda), use `publicar.hashtags` como base, ponha as fontes na legenda quando `fontesNaLegenda` for true e inclua o `cuidados.avisoLegenda` (ou `publicar.aviso`) quando houver. Com `cuidados.revisaoHumana`, o `entrega.json` sai com `publicavel: false` até a pessoa revisar: diga isso e não publique.
 
@@ -51,6 +55,5 @@ As três opções e as tags do Studio ficam em `youtube.json`. Para um pedido ex
 ## Crédito de fotos
 Se o vídeo ou carrossel usa elemento `imagem` com foto de terceiro, a legenda termina com uma linha "Fotos: <autor/agência> (<licença>)", tirada de `fontes.md`. Se usa elemento `video` (b-roll), acrescente "Vídeos: <crédito>" com o texto de "Crédito para a legenda do post" da seção Vídeos de `fontes.md` (Pexels e Pixabay pedem o nome do autor e da plataforma; NASA, "NASA"). O crédito não aparece na tela.
 
-
-
-
+## Revalidar evidências
+Antes de preparar uma publicação, rode `npm run fontes -- <projeto> --video --exportar` e confira `saida/entrega.json`. Qualquer mudança em roteiro, fontes, palavras ou cenas invalida o vínculo com a entrega antiga: gere a entrega novamente. Não confunda registros completos com verdade factual; confira se a fala e suas ressalvas são sustentadas pela pesquisa.

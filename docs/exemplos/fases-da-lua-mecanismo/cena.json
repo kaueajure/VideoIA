@@ -1,0 +1,94 @@
+{
+  "tema": "FASES DA LUA",
+  "estilo": "minimalista",
+  "efeitos": {
+    "abertura": false,
+    "cauda": false,
+    "grao": 0,
+    "mblur": 0
+  },
+  "beats": [
+    {
+      "id": "fases",
+      "frases": [
+        0,
+        0
+      ],
+      "afirmacoes": [
+        "f-fases"
+      ],
+      "elementos": [
+        {
+          "tipo": "recurso",
+          "forma": "mecanismo",
+          "mecanismo": "fases-lua",
+          "entra": 0
+        }
+      ],
+      "titulo": {
+        "texto": "FASES NÃO SÃO SOMBRA",
+        "entra": 0
+      }
+    },
+    {
+      "id": "luz",
+      "frases": [
+        1,
+        1
+      ],
+      "afirmacoes": [
+        "f-luz"
+      ],
+      "elementos": [
+        {
+          "tipo": "recurso",
+          "forma": "mecanismo",
+          "mecanismo": "reflexao-luz",
+          "entra": 0
+        }
+      ]
+    },
+    {
+      "id": "perspectiva",
+      "frases": [
+        2,
+        2
+      ],
+      "afirmacoes": [
+        "f-perspectiva"
+      ],
+      "elementos": [
+        {
+          "tipo": "recurso",
+          "forma": "mecanismo",
+          "mecanismo": "fases-lua",
+          "entra": 0
+        }
+      ]
+    },
+    {
+      "id": "convite",
+      "frases": [
+        3,
+        3
+      ],
+      "afirmacoes": [],
+      "elementos": [
+        {
+          "tipo": "recurso",
+          "forma": "documento",
+          "entra": 0,
+          "fonte": "Convite à observação",
+          "linhas": [
+            "OLHE PARA O CÉU",
+            "Que fase você viu?"
+          ],
+          "marcar": [
+            1
+          ],
+          "dur": 2.8
+        }
+      ]
+    }
+  ]
+}

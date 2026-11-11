@@ -37,8 +37,10 @@ button.sec{background:#222;color:#eee}input[type=range]{width:100%}label{display
   const ajusta = () => { const p = $('palco'); const k = Math.min(p.clientWidth / PW, p.clientHeight / PH); for (const e of [fr, cx]) { e.style.transform = `scale(${k})`; e.style.left = `${(p.clientWidth - PW) / 2}px`; e.style.top = `${(p.clientHeight - PH) / 2}px`; } };
   addEventListener('resize', ajusta); ajusta();
   const dur = spec.duracao;
+  const selecionada = spec.beats.find(b => b.id === new URLSearchParams(location.search).get('cena'));
+  let limite = selecionada?.ate ?? dur;
   const lista = $('beats');
-  spec.beats.forEach((b) => { const d = document.createElement('div'); d.className = 'beat'; d.innerHTML = `${b.id}<small>${b.de.toFixed(1)} a ${b.ate.toFixed(1)} s</small>`; d.onclick = () => ir(b.de + 0.8); lista.appendChild(d); b.d = d; });
+  spec.beats.forEach((b) => { const d = document.createElement('button'); d.type = 'button'; d.className = 'beat'; d.textContent = `${b.id} · ${b.de.toFixed(1)} a ${b.ate.toFixed(1)} s`; d.onclick = () => { limite = b.ate; ir(b.de); }; lista.appendChild(d); b.d = d; });
   let t = 0, tocando = false;
   const desenha = async () => {
     fr.contentWindow.ilu.quadro(t);
@@ -54,11 +56,12 @@ button.sec{background:#222;color:#eee}input[type=range]{width:100%}label{display
   };
   const ir = (x) => { t = Math.max(0, Math.min(dur - 0.02, x)); audio.currentTime = t; desenha(); };
   $('barra').oninput = (e) => ir((e.target.value / 1000) * dur);
-  $('ini').onclick = () => ir(0);
-  $('play').onclick = () => { tocando = !tocando; $('play').textContent = tocando ? 'Pausar' : 'Tocar'; if (tocando) audio.play().catch(() => {}); else audio.pause(); };
+  $('ini').onclick = () => { limite = selecionada?.ate ?? dur; ir(selecionada?.de ?? 0); };
+  $('play').onclick = () => { if (!tocando && t >= limite - .04) ir((spec.beats.find(b => b.ate === limite)?.de) ?? 0); tocando = !tocando; $('play').textContent = tocando ? 'Pausar' : 'Tocar'; if (tocando) audio.play().catch(() => {}); else audio.pause(); };
   $('caixas').onchange = desenha;
   $('guias').onchange = async () => { await carregar($('guias').checked); desenha(); };
-  const laco = () => { if (tocando) { t = audio.paused ? Math.min(dur - 0.02, t + 1 / 60) : audio.currentTime; if (t >= dur - 0.03) { tocando = false; $('play').textContent = 'Tocar'; } desenha(); } requestAnimationFrame(laco); };
+  const laco = () => { if (tocando) { t = audio.paused ? Math.min(dur - 0.02, t + 1 / 60) : audio.currentTime; if (t >= limite - 0.03) { t = Math.max(0,limite - 0.03); audio.pause(); tocando = false; $('play').textContent = 'Tocar'; } desenha(); } requestAnimationFrame(laco); };
+  if (selecionada) ir(selecionada.de);
   laco(); desenha();
   window.__previa = { ir, pronto: true };
 })();

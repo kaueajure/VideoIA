@@ -1,0 +1,83 @@
+{
+  "versao": 1,
+  "instaladoEm": "2026-11-11",
+  "skills": [
+    {
+      "skill": "social-captions",
+      "repo": "rediumvex/social-media-caption-generator-claude",
+      "commit": "37cad5471762609282583d9fb3e7b532d609630e",
+      "path": ".",
+      "local": "social-media-caption-generator",
+      "license": "MIT",
+      "arquivos": {
+        "LICENSE": "bdf72e9610ab8a622087534609230354492aaf7e5adb30e7e92bd29a5b7ae2a5",
+        "README.md": "f24e1513eac8feb651696e3166d51f098cb31b0ff7c87f44e0395a6562533289",
+        "SKILL.md": "2410bdfb6e9a362e3897ba3d1559b14ad94b4d063f64d877e4283db654798e96"
+      }
+    },
+    {
+      "skill": "viral-captions-and-ctas",
+      "repo": "vyralcontent/content-skills",
+      "commit": "349e495d97029a3e6303a7510e3f39c73f36d8fe",
+      "path": "skills/viral-captions-and-ctas",
+      "local": "content-skills/viral-captions-and-ctas",
+      "license": "MIT",
+      "arquivos": {
+        "SKILL.md": "f8c1b642c35e7cddffa4f474c6e2a38d705a62d4973d9942f3c6d4a04b99363a",
+        "assets/bait-check.md": "bfe73d21b8804866e24f9a408bff7f6cd38fe86d7824408724e4e19f0fccc54b",
+        "assets/caption-template.md": "ab35d004718d2447f10ded4d7d34a68e3f24a9f069e9ef8868ad69110edaef0f",
+        "assets/cta-picker.md": "4102ce6d5815bcb1a4a8965673dadee7d14b5ab54ef8e9f95e70ad8475a4acdb",
+        "assets/on-screen-text-spec.md": "f755ad6f113b3f5598716c238d30937abb88c59edbe4f26e7f493b5ffe5016c1",
+        "assets/pinned-comment-template.md": "6e6d8bbad061d62c4d200966fc8106d59e14be601c3a16372cd16235858eabfc",
+        "references/anti-patterns.md": "27205fc16261149ccc7b2b55b3a57c74639c3f0fe98c3b066888735248f497ec",
+        "references/caption-craft.md": "13d9926c65c24788a01d98998e4b1b3c011bb9d50c586ed8c118ce530186463a",
+        "references/ctas-that-work.md": "f3fbd5b4139c2477fb91ab86e63613f102b778b479595bf9db3733977fafc28f",
+        "references/hashtag-reality.md": "50ea529de58ce0cfc1787cd4cff98462781a3b7f52ddc98aaa079ccf179cda04",
+        "references/on-screen-text.md": "66df927ee20711e7ce0acffe203b2fdfed44e0146ae086f35c800363b1c0ad88",
+        "references/pinned-comments.md": "57688b39043e105691026a0ea465f605952c56ffcde285d9a14bfe6992dba568"
+      }
+    },
+    {
+      "skill": "viral-short-form",
+      "repo": "vyralcontent/content-skills",
+      "commit": "349e495d97029a3e6303a7510e3f39c73f36d8fe",
+      "path": "skills/viral-short-form",
+      "local": "content-skills/viral-short-form",
+      "license": "MIT",
+      "arquivos": {
+        "README.md": "952352abe637946ca134868e8ccceecfc3cc2e67ee57645a160085dc0022c5ea",
+        "SKILL.md": "d6563c8c5b4231ef18729bbd4b2888badb376962d23ce7ae62b3220608834d28",
+        "assets/carousel-outline.md": "7315711bacd3f16699f79c092d06593a2f82c3d7439719cfbc7051177a34987a",
+        "assets/hook-checklist.md": "6456655d33648fae3d2b1b92328ea938f5dc9dd42b4d25dd842196d29e1c1a6c",
+        "assets/script-template.md": "6dbdcf994a6c50f6647399ffa708f7f30812572892542ab6bee6f0d2cb563f2e",
+        "references/formats.md": "9f878f916893dcb11e51646de15f1b6e1dcf669b1de5df1dcb4c6bdcb38434f1",
+        "references/hooks.md": "af4e48a26c8bf25b5ce02e0e0f341df441837414467b424196e3ef9705d0abc3",
+        "references/metrics-honesty.md": "5ede2a2e048961ad99eaddd4ef49cd9230d02ed8e0300e52d26295a2ab7b91a8",
+        "references/platforms.md": "07c57e889cfb300e1dbe7bd7d3bee355448c6f3bc6d5362dbf23e4e0c72d9386",
+        "references/retention.md": "b17d82377441091ef08b57b6e32b046b7c53956d1a87e94ad63b59d4c4f1ba06"
+      }
+    },
+    {
+      "skill": "social-content",
+      "repo": "coreyhaines31/marketingskills",
+      "commit": "1f837447b20bb6f0e72d87b80ece1c221c362c7d",
+      "path": "skills/social",
+      "local": "marketingskills/social",
+      "license": "MIT",
+      "arquivos": {
+        "SKILL.md": "2e259195e4e72e475609feebaae810a386f4e2896a1889af62f7f158a8fecd79",
+        "evals/evals.json": "4d7a21a7675efc30d24ee276a6d38f004d483d4142e2a49c944aa355ed2ba686",
+        "references/carousel-frameworks.md": "e703aa530ec9f68cdf5b58e8e0d4d1a5cc3f22b9e2d3e3222f16a9763d423247",
+        "references/listening-sources-template.md": "c68bc6f57b0a48c432b1ce72c9324d41a04d0e7784d0bab91afb4a6065a43e38",
+        "references/listening.md": "52cf68aaaa57a69b69b3587ffd9b848a6f1ca7e0d51378f566339ad7f2b730e0",
+        "references/platform-limits.md": "6ecc6b40ff82b95c48906341f7d3c58337671d4d94f624c858764f1ed5a77c3c",
+        "references/platforms.md": "bb8c2f466184518a1290edbea99eef6b7dcad8e1f8091453d4dc5a21831b66b9",
+        "references/post-templates.md": "9cca4680c95801daedfd8acadf9089d0083784c2567784888807569896f71d9b",
+        "references/reverse-engineering.md": "c27bef59d463b3b11331c1770f4a23e9e6bbce7d7c8db1e7f7f4f14ba206243f",
+        "references/ship-post.md": "b9c60b300bc72d2540aef367bb1588b0e955dc1423303c5265b27a3dfb75f9b6",
+        "references/short-form-video.md": "04b567900eaac90833f3abf370a3e1c4d650f83a0672108e07a7f01bde3a64ad",
+        "references/x-algorithm.md": "943b2c5a819aad53ebf62a1652adc47956d6fdf738e18cd98eeb609819a66180"
+      }
+    }
+  ]
+}
