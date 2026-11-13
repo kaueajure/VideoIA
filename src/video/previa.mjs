@@ -22,7 +22,7 @@ export async function previa(nome, { projetosDir = pastaProjetos(), cena: cenaId
   try { ajustada = ler(path.join(pasta, 'saida', 'preparacao-previa.json')); } catch {}
   const valida = ajustada?.assinatura === assinaturaPreparacao(original, falado);
   const spec = prepararSpec(valida ? ajustada.cena : original, falado, {
-    pasta, locais: await lerLocais(pasta), plano: valida ? ajustada.plano : {},
+    pasta, locais: await lerLocais(pasta), plano: valida ? ajustada.plano : {}, preservarEnquadramento: valida,
   });
   if (cenaId != null && !spec.beats.some(b => b.id === cenaId)) throw new Error('Cena não encontrada na prévia.');
   const servidor = await servir(spec, { '/audio.mp3': path.join(pasta, 'narracao.mp3') });

@@ -4,6 +4,8 @@
 
 O diretor (você) escreve `projetos/<nome>/cena.json`. O motor cruza com os tempos da narração e renderiza.
 
+Produções novas também usam o planejamento `direcao.versao: 2` descrito em [Produção criativa](producao-criativa.md): pergunta e resposta na raiz; função, ganho visual, elementos-chave e continuidade em cada beat. Os exemplos básicos abaixo descrevem a composição; acrescente o planejamento nos projetos novos.
+
 ```json
 {
   "perfil": "curiosidades",
@@ -37,7 +39,7 @@ Leia este índice e **só o arquivo do estilo da vez** (sem `estilo` na cena, va
 | `smooth` e irmãos · `moderno` · `quadro-antigo` · `stop-motion` · `alternativo` | `docs/cena/estilo-smooth.md` · `docs/cena/estilo-moderno.md` · `docs/cena/estilo-quadro-antigo.md` · `docs/cena/estilo-stop-motion.md` · `docs/cena/estilo-alternativo.md` |
 | continuidade, queda, física, luz, virada limpa (`efeitos` das cenas novas) | `docs/cena/efeitos-3d.md` |
 | formato horizontal, @ e legenda · sujeito e storyboard | `docs/cena/formato.md` · `docs/cena/sujeito.md` |
-| comparação proporcional, linha do tempo, causa e efeito, destaque em documento e acompanhamento de imagem | `docs/cena/recursos-visuais.md` |
+| comparação proporcional ou por objetos, decomposição de um todo, campo tático, linha do tempo, causa e efeito, destaque em documento e acompanhamento de imagem | `docs/cena/recursos-visuais.md` |
 | cenários 3D · peças do dia a dia, de mundo e GLB · lista de formas | `docs/cena/cenarios.md` · `docs/cena/pecas.md` · `docs/cena/repertorio.md` |
 | logos e bandeiras · som e trilha | `docs/cena/logos-e-bandeiras.md` · `docs/cena/som-e-trilha.md` |
 

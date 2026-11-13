@@ -4,9 +4,10 @@ import { fileURLToPath } from 'node:url';
 import { compilar } from '../src/video/plano.mjs';
 import { validarSujeitosDaCena, avisosStoryboard } from '../src/video/sujeito.mjs';
 import { conferirStoryboard } from '../src/video/protecao-storyboard.mjs';
+import { analisarDirecaoCriativa, MARCA_DIRECAO_CRIATIVA } from '../src/video/direcao-criativa.mjs';
 
 // Esta análise confere o plano executável. A aparência exige revisão dos quadros.
-export function analisarStoryboard(cena, falado, { estrito = false, spec: specFinal = null } = {}) {
+export function analisarStoryboard(cena, falado, { estrito = false, spec: specFinal = null, exigirCriativa = false } = {}) {
   const falhas = [];
   const palavras = falado?.palavras;
   if (!Array.isArray(palavras) || !palavras.length || palavras.some(p =>
@@ -62,6 +63,8 @@ export function analisarStoryboard(cena, falado, { estrito = false, spec: specFi
   try { spec = specFinal || compilar(structuredClone(cena), falado); }
   catch (erro) { return { aprovado: false, falhas: [erro.message], avisos, planos: [] }; }
   falhas.push(...conferirStoryboard(cena, spec, { compilado: true }));
+  const criatividade = analisarDirecaoCriativa(cena, spec, { exigir: exigirCriativa });
+  if (criatividade) falhas.push(...criatividade.falhas);
   for (const beat of beats) {
     if (!spec.beats.some(b => b.id === beat.id)) falhas.push(`${beat.id}: beat autoral ausente no plano efetivo.`);
   }
@@ -90,6 +93,7 @@ export function analisarStoryboard(cena, falado, { estrito = false, spec: specFi
   });
   return {
     aprovado: !falhas.length, falhas, avisos, duracao: spec.duracao, planos,
+    ...(criatividade ? { criatividade } : {}),
     origem: specFinal ? 'motor-apos-qa' : 'compilacao-preliminar',
     revisaoVisual: 'pendente: conferir início, meio, fim e transições nos quadros renderizados; esta análise não comprova aparência nem equivalência semântica.',
   };
@@ -98,8 +102,9 @@ export function analisarStoryboard(cena, falado, { estrito = false, spec: specFi
 export function conferirDirecaoDoAgente(pasta, cena, falado, spec) {
   let pedido = '';
   try { pedido = fs.readFileSync(path.join(pasta, 'PEDIDO-DO-ESTUDIO.md'), 'utf8'); } catch {}
-  if (!pedido.includes('<!-- direcao-agente:v1 -->')) return null;
-  const relatorio = analisarStoryboard(cena, falado, { estrito: true, spec });
+  const exigirCriativa = pedido.includes(MARCA_DIRECAO_CRIATIVA);
+  if (!pedido.includes('<!-- direcao-agente:v1 -->') && !exigirCriativa) return null;
+  const relatorio = analisarStoryboard(cena, falado, { estrito: true, spec, exigirCriativa });
   fs.mkdirSync(path.join(pasta, 'saida'), { recursive: true });
   fs.writeFileSync(path.join(pasta, 'saida', 'analise-direcao.json'), JSON.stringify(relatorio, null, 2) + '\n');
   return relatorio;
@@ -112,7 +117,12 @@ export function executar(args, raiz = fileURLToPath(new URL('..', import.meta.ur
   }
   const pasta = path.join(raiz, 'projetos', nome);
   const ler = arquivo => JSON.parse(fs.readFileSync(path.join(pasta, arquivo), 'utf8').replace(/^\uFEFF/, ''));
-  const relatorio = analisarStoryboard(ler('cena.json'), ler('palavras.json'), { estrito: opcoes.includes('--estrito') });
+  let pedido = '';
+  try { pedido = fs.readFileSync(path.join(pasta, 'PEDIDO-DO-ESTUDIO.md'), 'utf8'); } catch {}
+  const exigirCriativa = pedido.includes(MARCA_DIRECAO_CRIATIVA);
+  const relatorio = analisarStoryboard(ler('cena.json'), ler('palavras.json'), {
+    estrito: opcoes.includes('--estrito') || exigirCriativa, exigirCriativa,
+  });
   fs.mkdirSync(path.join(pasta, 'saida'), { recursive: true });
   fs.writeFileSync(path.join(pasta, 'saida', 'analise-storyboard.json'), JSON.stringify(relatorio, null, 2) + '\n');
   return relatorio;

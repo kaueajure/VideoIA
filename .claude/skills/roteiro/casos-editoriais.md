@@ -10,7 +10,7 @@ Leia a linha da página: `npm run linha -- --ver` (campo `linhaEditorial` de `il
 - **Alfinetada:** as uma ou duas alfinetadas miram a incoerência que a linha quer apontar (promessa x entrega, discurso x voto, gasto x resultado), em fato, decisão ou instituição, nunca na pessoa.
 - **Pergunta final:** pode puxar o debate para o lado da página, sem induzir com meia verdade.
 - **Neutra:** mesmo espaço e mesma força para os dois lados.
-**Não muda com a linha:** nenhum fato ou número inventado, distorcido ou fora de contexto; tudo atribuído ("segundo o TSE", "a defesa nega"); o fato central do outro lado não é omitido; sem ataque pessoal nem desinformação; regras das plataformas e da Justiça Eleitoral em período eleitoral (sem pedir voto, sem propaganda de candidato, sem conteúdo fabricado com IA). O linter avisa se um roteiro político não tem atribuição.
+**Não muda com a linha:** nenhum fato ou número inventado, distorcido ou fora de contexto; fontes registradas fora da voz e incertezas preservadas na fala; o fato central do outro lado não é omitido; sem ataque pessoal nem desinformação; regras das plataformas e da Justiça Eleitoral em período eleitoral (sem pedir voto, sem propaganda de candidato, sem conteúdo fabricado com IA). Não acrescente citações faladas para atender ao linter.
 
 ## Notícia e checagem
 - **Notícia com validade de 48 h**: se a checagem em duas fontes não fecha em 24 h, mude o ângulo para a explicação que dura (o que acontece depois, como funciona), nunca publique atrasado como se fosse novidade.

@@ -65,7 +65,7 @@ Resumo com as nossas palavras. O minuto é o da aula no YouTube (`7tL5OripB-c`).
 - **Tensão nos 3 primeiros segundos** (as 8 primeiras palavras): um número, uma pergunta curta, um contraste ("não", "nunca", "só", "único", "mas") ou um conflito (perdeu, pagou, proibiu, apagou, sigilo, prejuízo).
 - **Dois ingredientes na primeira respiração**: nome conhecido + número, pergunta + contraste, fato + tensão, "você" + perda.
 - **Nada morno**: sem "Você sabia...", "Hoje vamos falar...", "Neste vídeo...", "Vou te contar...", cumprimento, preâmbulo, "Curiosidade:" ou "Nós criamos...".
-- **Fato antes da fonte**: "O BRB pagou R$ 12 bilhões ao Master, segundo a PF." A atribuição continua obrigatória, só não abre a frase.
+- **Fato direto, fontes fora da fala:** abra pelo fato confirmado e registre a evidência em `fontes.md` e `fontes.json`. Não mova "segundo..." para o fim da frase; retire a citação da narração e preserve o grau de certeza.
 - **Mostre, não adjetive**: troque "incrível", "interessante", "impressionante" pelo número ou pelo fato.
 - **3 opções por vídeo**, registradas na linha `GANCHOS:` do `roteiro.md`; abre a mais provocativa que continue verdadeira (skill `roteiro`).
 
@@ -158,7 +158,7 @@ No nosso nicho (curiosidade, dinheiro, ciência e política com linha direita le
 ### PD, ponto de dor
 - "Comeu e foi pra piscina? A Cruz Vermelha americana não achou nenhum afogamento por isso." (pergunta da vida real + contraste com fonte)
 - "Seu dinheiro pode estar esquecido num banco. São R$ 5,79 bilhões esperando os donos." (você + perda + número)
-- "Você paga imposto até o fim de maio. São 150 dias de trabalho, segundo o IBPT." (você + número + tensão)
+- "Você paga imposto até o fim de maio. São 150 dias de trabalho." (você + número + tensão) Referência do exemplo, fora da fala: IBPT.
 - Fraco: "Muita gente tem dúvidas sobre impostos." Não dói em ninguém: sem número, sem perda, sem a pessoa dentro da frase.
 
 ### PT, promessa de transformação
@@ -169,7 +169,7 @@ No nosso nicho (curiosidade, dinheiro, ciência e política com linha direita le
 
 ### EE, evocar emoção
 - "O polvo tem três corações. E quando ele nada, o principal para de bater." (espanto + escada de surpresa)
-- "Quem paga a conta não pode ver a conta: 99% dos gastos do cartão da Presidência são sigilosos, segundo o TCU." (indignação leve com fato atribuído)
+- "Quem paga a conta não pode ver a conta: 99% dos gastos do cartão da Presidência são sigilosos." (indignação leve; evidência registrada fora da narração)
 - "O programa que levou o homem à Lua foi tecido à mão, fio por fio, por operárias." (espanto + história humana)
 - Fraco: "Essa história vai te emocionar muito." Diz a emoção em vez de causar; nada concreto para sentir.
 
@@ -181,12 +181,12 @@ No nosso nicho (curiosidade, dinheiro, ciência e política com linha direita le
 
 ### EN, especificidade e números
 - "Os Correios perderam R$ 8 bilhões em 2025. Quatro anos antes, tinham lucro recorde." (número + contraste no tempo)
-- "Os voos da FAB para autoridades quase triplicaram: de 791 para 2.124, segundo o TCU." (número + verbo forte + fonte)
-- "A refinaria custou US$ 1,18 bilhão à Petrobras, segundo a CGU. Foi vendida por US$ 467 milhões." (dois números que não batem)
+- "Os voos da FAB para autoridades quase triplicaram: de 791 para 2.124." (número + verbo forte + evidência registrada) Referência do exemplo, fora da fala: TCU.
+- "A refinaria custou US$ 1,18 bilhão à Petrobras. Foi vendida por US$ 467 milhões." (dois números que não batem) Referência do exemplo, fora da fala: CGU.
 - Fraco: "O Brasil gasta muito dinheiro com várias coisas." Número nenhum: "muito" não para o dedo de ninguém.
 
 ### UO, urgência ou oportunidade
-- "Pelo 15º ano seguido, o Brasil ficou em último no retorno do imposto, segundo o IBPT." (dado do ano + superlativo com fonte; "acabou de sair" só quando acabou mesmo)
+- "Pelo 15º ano seguido, o Brasil ficou em último no retorno do imposto." (dado do ano + superlativo com evidência registrada; "acabou de sair" só quando acabou mesmo) Referência do exemplo, fora da fala: IBPT.
 - "Quase R$ 200 bilhões em bondades, em pleno ano de eleição. Quanto passa pela regra fiscal?" (número + momento + pergunta)
 - "Antes do segundo turno, entenda quanto custa faltar: R$ 3,51." (momento + número que parece errado)
 - Fraco: "Fique ligado nas novidades da semana." Urgência sem fato: não diz o que mudou nem por que importa.
@@ -211,7 +211,7 @@ No nosso nicho (curiosidade, dinheiro, ciência e política com linha direita le
 
 ### Política com linha direita leve: o que é provocar e o que é passar do ponto
 - Forte: "A Bahia é o único estado com mais de 1 milhão de analfabetos. E o PT governa lá desde 2007." (dois fatos verdadeiros lado a lado; a incoerência é do fato)
-- Forte: "O controlador do Banco Master esteve no Planalto. A reunião não estava na agenda oficial, segundo O Globo." (fato + segredo + fonte)
+- Forte: "O controlador do Banco Master esteve no Planalto. A reunião não estava na agenda oficial." (fato + segredo + evidência registrada) Referência do exemplo, fora da fala: O Globo.
 - Passou do ponto (proibido): "O governo ladrão escondeu a reunião." Adjetivo sobre pessoa ou governo, acusação sem decisão da Justiça.
 
 ## Combinar

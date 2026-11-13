@@ -4,9 +4,11 @@ Cada projeto de vídeo tem `fontes.json`, versão 1. Ele liga o texto narrado a 
 
 `fontes.md` continua guardando pesquisa livre, pendências e créditos/licenças de imagens, vídeos e áudio. O registro JSON não substitui os créditos de mídia. Não apague seções antigas para fazer a checagem passar.
 
+As referências e evidências ficam nestes arquivos, fora da narração. Não leia nomes de fontes, links ou chamadas como "segundo" e "de acordo com" na voz. A fala mantém os fatos e suas incertezas; a descrição ou legenda pode apresentar as referências.
+
 ## Fluxo do agente
 
-1. Pesquise o tema em fontes primárias e independentes, conforme o objetivo. Nunca marque uma página não aberta como consultada.
+1. Pesquise o tema em qualquer fonte acessível na web, sem lista fixa de domínios, conforme o objetivo. Prefira a origem primária quando disponível e confronte fontes independentes; varie termos, idiomas e publicadores até esclarecer o fato. Nunca marque uma página não aberta como consultada.
 2. Finalize o texto narrado. Para iniciar um registro sem sobrescrever pesquisa anterior, use `npm run fontes -- <projeto> --iniciar`. O comando cria afirmações **pendentes**, uma por parágrafo, sem inventar fontes. Ele sai com código 1 enquanto houver pendências.
 3. Edite `fontes.json`: divida parágrafos com várias alegações em trechos menores; registre as evidências e confira a equivalência entre a fala, a afirmação e o trecho da fonte. Classifique convites, perguntas e opiniões como editoriais somente quando não afirmarem fatos, com justificativa explícita. Não use a classificação editorial para esconder alegações sem fonte.
 4. Rode `npm run fontes -- <projeto> --exportar` antes da voz final. A saída inclui ids e falas que precisam de pesquisa/correção. A nota editorial do roteiro permanece independente dessa checagem.

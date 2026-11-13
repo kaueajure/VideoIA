@@ -7,7 +7,7 @@
  * Nada é instalado se o SHA-256 do arquivo baixado não for exatamente este. Conferidos em 18/10/2026.
  *
  * Node.js: nodejs.org/dist (hashes do SHASUMS256.txt oficial, assinado pela equipe do Node). Os mesmos valores
- *   estão em instalar.sh e instalar.ps1, que baixam o Node antes de existir Node para rodar este arquivo.
+ *   estão em bootstrap-unix e instalar.ps1, que baixam o Node antes de existir Node para rodar este arquivo.
  * FFmpeg e ffprobe: github.com/eugeneware/ffmpeg-static, release b6.1.1 (o mesmo binário do pacote npm
  *   ffmpeg-static, usado por milhões de projetos; GPL, com libx264). Hashes conferidos em 27/10/2026 contra o digest
  *   SHA-256 publicado pelo GitHub e no download. 0.6.5: saiu do b6.0 porque o FFmpeg 6.0 cortava o fim do vídeo com o

@@ -1,12 +1,15 @@
 #!/bin/bash
  
- # Acha um Node para o estúdio (Mac e Linux). Usado por instalar.sh, abrir.sh e ferramentas/rodar.
+ # Acha um Node para o estúdio (Mac e Linux). Usado por bootstrap-unix, abrir-unix e ferramentas/rodar.
 # Preferência: o Node portátil da pasta (.programas/node), depois o do computador se for versão 20 ou mais.
 # Define NODE (caminho do executável) ou deixa vazio.
+ilu_node_com_npm() {
+  "$1" -e 'const f=require("fs"),p=require("path"); const e=f.realpathSync(process.execPath); const n=[p.resolve(p.dirname(e),"../lib/node_modules/npm/bin/npm-cli.js"),"/usr/share/nodejs/npm/bin/npm-cli.js","/usr/lib/node_modules/npm/bin/npm-cli.js"]; process.exit(Number(process.versions.node.split(".")[0])>=20 && n.some(x=>f.existsSync(x))?0:1)' >/dev/null 2>&1
+}
 ilu_achar_node() {
   local studio="$1"
   NODE=""
-  if [ -x "$studio/.programas/node/bin/node" ] && "$studio/.programas/node/bin/node" -e "" >/dev/null 2>&1; then
+  if [ -x "$studio/.programas/node/bin/node" ] && ilu_node_com_npm "$studio/.programas/node/bin/node"; then
     NODE="$studio/.programas/node/bin/node"; return 0
   fi
   # ILU_SO_NODE_PORTATIL=1 ignora o Node do computador (testes do instalador)
@@ -16,7 +19,7 @@ ilu_achar_node() {
     [ -n "$cand" ] && [ -x "$cand" ] || continue
     local maior
     maior="$("$cand" -p 'process.versions.node.split(".")[0]' 2>/dev/null)"
-    if [ -n "$maior" ] && [ "$maior" -ge 20 ] 2>/dev/null; then NODE="$cand"; return 0; fi
+    if [ -n "$maior" ] && [ "$maior" -ge 20 ] 2>/dev/null && ilu_node_com_npm "$cand"; then NODE="$cand"; return 0; fi
   done
   return 1
 }

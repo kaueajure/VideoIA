@@ -1,6 +1,8 @@
 #!/bin/bash
- 
- # Estudio de videos: instalador de um clique para Mac. Não precisa digitar nada.
-# Instala tudo dentro desta pasta (.programas). Detalhes em ferramentas/instalador/instalar.sh.
-cd "$(dirname "$0")" || exit 1
-exec /bin/bash ferramentas/instalador/instalar.sh "$@"
+set -e
+cd "$(dirname "$0")"
+if [ "$(uname -s)" != "Darwin" ]; then
+  echo "Use o instalador correspondente ao seu sistema operacional."
+  exit 1
+fi
+exec /bin/bash ferramentas/instalador/bootstrap-unix "$@"

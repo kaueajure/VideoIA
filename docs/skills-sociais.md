@@ -29,7 +29,7 @@ Adaptações deliberadas:
 
 - Use o idioma do roteiro, normalmente pt-BR. O requisito de inglês do original Social Media Caption Generator não se aplica aqui.
 - Gere somente as plataformas pedidas. Sem indicação, o pacote do estúdio cobre Instagram Reels, Facebook Reels, TikTok e YouTube. Threads, grupo do Facebook, LinkedIn ou carrossel entram quando pertinentes ao pedido; não produza sete versões automaticamente para uma solicitação de uma rede.
-- Preserve fatos, atribuições e ressalvas. Não adicione números, resultados pessoais, depoimentos, links, produtos ou promessas sem evidência para preencher uma fórmula.
+- Preserve fatos, atribuições e ressalvas. Na narração, as referências bibliográficas ficam em `fontes.md` e `fontes.json`, fora da voz; a descrição ou legenda pode citá-las. Não reintroduza "segundo" e "de acordo com" para nomear fontes na fala. Não adicione números, resultados pessoais, depoimentos, links, produtos ou promessas sem evidência para preencher uma fórmula.
 - Percentuais de alcance, regras de algoritmo, horários e cadências das referências são hipóteses de trabalho, não fatos verificados. Não repita os percentuais sem fonte. Antes de afirmar limite ou capacidade atual de uma plataforma, verifique sua documentação oficial. Não é necessário pesquisar algoritmo para redigir cada legenda.
 - Preserve o CTA do objetivo e a escolha da pessoa. Uma ação principal por texto; sem oferta, assinatura, link ou comentário automatizado que o projeto não disponibilize.
 - Não force termos de urgência, promessas de viralização, perguntas artificiais ou pitches dos autores. Regras de formato rígidas são ajustáveis ao objetivo e às ressalvas necessárias.

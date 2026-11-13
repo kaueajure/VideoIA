@@ -2,21 +2,28 @@
 
 # Estudio de videos
 
-Estúdio de carrosséis e vídeos de curiosidades que roda no Claude Code ou no Codex. Do tema ao arquivo pronto, sem aprovar etapa por etapa. Roda em computador ou notebook (Mac ou Windows), não em celular nem tablet.
+Estúdio de carrosséis e vídeos de curiosidades que roda no Claude Code ou no Codex. Do tema ao arquivo pronto, sem aprovar etapa por etapa. Roda em computador ou notebook (Linux, Mac ou Windows), não em celular nem tablet.
 
-## Começar em 3 passos
-O Método é uma pasta que o seu assistente (Claude Code ou Codex) usa. Você escreve o que quer e ele faz o vídeo ou o carrossel.
+## Instalar e iniciar
 
-1. **Baixe e descompacte** o zip numa pasta fixa da sua pasta pessoal.
-2. **Abra a pasta** no Claude Code (aba **Code**, modo **Local**) ou no Codex.
-3. **Escreva:** `Comece pelos primeiros passos.` Ele instala o que faltar (Node, FFmpeg, navegador interno e alinhador de voz, dentro de `.programas/`, conferindo o SHA-256 de cada arquivo), liga a voz e faz o vídeo de teste. Não há licença para ativar. Depois: `Quero um vídeo sobre <tema>.`
+1. Baixe e extraia a pasta inteira para um local fixo no computador.
+2. Execute apenas o instalador do seu sistema: **Instalar (Linux).sh**, **Instalar (Windows).cmd** ou **Instalar (Mac).command**. No Linux, escolha executar no terminal no gerenciador de arquivos (ou `bash "Instalar (Linux).sh"`). No Mac, use Abrir no menu de contexto se o sistema bloquear o arquivo baixado.
+3. Ao concluir, o instalador gera **um único arquivo Iniciar**, correspondente ao sistema usado. Use esse arquivo nas próximas vezes.
 
-O **estúdio visual é opcional**: escreva **abrir estúdio** para ver seus vídeos, estilos, voz e marca em telas. Quem ainda não tem o assistente pode dar dois cliques em **Instalar (Mac)** ou **Instalar (Windows)**, que abre o estúdio; sem assistente dá para ver a demonstração e fazer o vídeo de teste, mas o vídeo do seu tema precisa dele. Avisos do macOS e do Windows na primeira vez: Guia 01, Seções 05 e 06.
+O instalador verifica e reutiliza dependências que já funcionam. Instala o que faltar: ferramentas de download, certificados, Node e npm, Git, runtime Visual C++ no Windows, FFmpeg/ffprobe, pacotes do projeto, Chromium e suas bibliotecas no Linux, alinhador Whisper e seu modelo. Os programas do projeto ficam em `.programas/`; bibliotecas do sistema e Git podem solicitar senha de administrador ou autorização do Windows. É necessária conexão com a internet.
 
-No estúdio:
-1. No estúdio (**Abrir Estúdio**), aba **Começar**: voz (a ElevenLabs é a padrão, com conta grátis e o passo a passo completo na própria tela: criar a conta, gerar a chave, colar e ouvir as 10 vozes; a chave vai direto para o `.env`, sem aparecer de novo), marca e tipo de página.
-2. No topo da aba **Começar**, digite um tema e clique em **Fazer meu primeiro vídeo**: o estúdio confere a instalação e a voz, instala o que faltar e mostra o vídeo tocando. Se algo parar, a tela diz a causa, o que fazer e tem **Copiar diagnóstico** para mandar no direct do Instagram @kaueajure (sem chaves nem dados pessoais).
-3. Os vídeos prontos ficam em **Meus vídeos**, com Baixar e Copiar legenda.
+O instalador **não instala Claude Code, Codex ou Cursor**. O usuário instala o assistente de sua preferência e conecta sua conta nas Configurações do estúdio. A escolha já existente é preservada. Configure a voz em Começar > Voz. Login, assinaturas e chaves pessoais não podem ser criados pelo instalador; nunca cole chaves no chat.
+
+A instalação completa só termina após a conferência final. Se uma dependência obrigatória falhar, ela informa o erro e não gera o arquivo Iniciar. Execute Instalar novamente para completar o que faltou. As opções técnicas `--so=...` e `--sem-alinhador` servem para manutenção e não equivalem à instalação completa.
+
+Compatibilidade: Windows 10/11 de 64 bits (ARM64 por emulação x64), macOS Intel/Apple Silicon e Linux x64 com glibc. No Linux, são reconhecidos apt, dnf, pacman e zypper; a conferência final identifica bibliotecas ainda ausentes. Linux ARM64 ainda não possui um FFmpeg portátil neste projeto.
+
+No estúdio, configure a marca e a voz, digite o tema e peça seu primeiro vídeo. Os arquivos prontos ficam em Meus vídeos. Para assistência, o diagnóstico continua disponível dentro do estúdio.
+
+## Pesquisa e fotos
+A IA pode pesquisar em qualquer fonte acessível na web, variando consultas, idiomas e publicadores. Duas fontes são o mínimo de conferência, não um limite. As referências ficam nos registros e na descrição, fora da narração.
+
+As fotos podem vir de outras páginas além de Commons/Wikipédia, com origem, autoria e condições de uso registradas. A IA deve comparar candidatos, abrir o original e conferir identidade, evento, nitidez e recorte. O render usa o arquivo selecionado; uma indicação de busca sem foto conferida recebe o visual de reserva, sem escolher uma foto às cegas.
 
 ## O que vem pronto
 - **Mais de 20 estilos de vídeo** (a aparência): `padrao`, `editorial`, `minimalista`, `papel`, `pontilhismo`, `impresso`, `cartoes`, `tubo`, `linhas`, `anatomia`, `fino`, `letreiro`, `interface`, `colagem`, `ribalta`, `mundos`, `antiguidade`, `moderno`, `alternativo`, `preto-branco`, `stop-motion`, `teologia`, `quadro-antigo`, `mindset2`, `mindset`, `fatos`, `colagem3d`, `novela`, `paper-rocket`, `lighthouse-mouse`, `moon-path`, `prickles`, `little-light`, `smooth`, `smooth-produto`, `smooth-estrategia`, `smooth-historia`, `smooth-vinheta` e `smooth-tipografia`. Um exemplo de cada estilo de motion em `projetos/exemplo-estilo-<nome>`; guias em `docs/estilo-<nome>.md`.
@@ -30,7 +37,7 @@ No estúdio:
 |---|---|---|
 | ElevenLabs (a padrão) | `ELEVENLABS_API_KEY`, `ELEVENLABS_VOICE_ID`. A conta grátis dá cerca de 10.000 créditos por mês (uns 10 minutos de fala) e só as 10 vozes padrão funcionam nela; as da biblioteca pedem plano pago. Quando a cota acabar: assinar um plano ou criar outra conta grátis com outro e-mail e trocar a chave. Passo a passo no estúdio (Começar > Voz) e no Guia 01 | exato |
 | Fish Audio | `FISH_API_KEY`, `FISH_VOICE_ID`, `FISH_MODEL` (padrão `s2.1-pro`) | por reconhecimento de fala (Whisper) se instalado, senão pelas pausas do áudio |
-| arquivo | nenhuma (sua gravação em `projetos/<nome>/narracao.mp3`) | por Whisper (precisa de faster-whisper) |
+| arquivo | nenhuma (sua gravação em `projetos/<nome>/narracao.mp3`) | por Whisper em Node (instalado pelo projeto) ou faster-whisper existente |
 | mock | nenhuma | estimado, sem som de voz |
 
 Grátis x pagas, com preços conferidos: Guia 01 (`guias/src/01-instalacao.md`, seção "A voz").

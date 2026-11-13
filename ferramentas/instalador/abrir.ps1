@@ -1,5 +1,5 @@
 ﻿ 
- # Abre o estúdio web (Windows). Quem chama: "Abrir Estúdio (Windows).bat" e o atalho da área de trabalho.
+ # Abre o estúdio web (Windows). Quem chama: "Iniciar (Windows).cmd" e o atalho da área de trabalho.
 $ErrorActionPreference = 'Stop'
 try { [Console]::OutputEncoding = [Text.Encoding]::UTF8 } catch {}
 try { $Host.UI.RawUI.WindowTitle = 'Estudio de videos' } catch {}
@@ -98,10 +98,10 @@ function Explicar-Excecao($msg) {
 function Explicar-Saida($codigo) {
   $n = [int64]$codigo; if ($n -lt 0) { $n += 4294967296 }
   # 0.6.40: a queda não é "logo ao abrir" (a telemetria mostra de 7 s a horas depois) e só apareceu com a pasta em Downloads ou OneDrive
-  if ($n -eq 3221226505) { return @{ causa = 'O Windows fechou o estúdio de repente (erro 0xC0000409). Isso costuma acontecer quando a pasta do estúdio está em Downloads ou no OneDrive.'; acao = 'Abra o estúdio de novo pelo "Abrir Estúdio" e aperte Enter quando ele pedir para ir para C:\ilustrando. Se ele não conseguir copiar sozinho, copie à mão: no Explorador de Arquivos, botão direito na pasta do estúdio, "Copiar"; abra o disco C:, botão direito num espaço vazio, "Colar"; entre na pasta colada e dê dois cliques em "Abrir Estúdio". Se ainda assim fechar, dê dois cliques em "Instalar (Windows)" e libere a pasta do estúdio no antivírus (Segurança do Windows > Proteção contra vírus > Exclusões).' } }
+  if ($n -eq 3221226505) { return @{ causa = 'O Windows fechou o estúdio de repente (erro 0xC0000409). Isso costuma acontecer quando a pasta do estúdio está em Downloads ou no OneDrive.'; acao = 'Abra o estúdio de novo pelo "Iniciar" e aperte Enter quando ele pedir para ir para C:\ilustrando. Se ele não conseguir copiar sozinho, copie à mão: no Explorador de Arquivos, botão direito na pasta do estúdio, "Copiar"; abra o disco C:, botão direito num espaço vazio, "Colar"; entre na pasta colada e dê dois cliques em "Iniciar". Se ainda assim fechar, dê dois cliques em "Instalar (Windows)" e libere a pasta do estúdio no antivírus (Segurança do Windows > Proteção contra vírus > Exclusões).' } }
   if ($n -eq 3221225477) { return @{ causa = 'O programa que roda o estúdio fechou por erro de memória (0xC0000005).'; acao = 'Reinicie o computador e dê dois cliques em "Instalar (Windows)" para o estúdio testar o Node dele. Se repetir, libere a pasta do estúdio no antivírus.' } }
   if ($n -ge 3221225472) { return @{ causa = "O Windows derrubou o programa do estúdio (erro 0x$($n.ToString('X8')))."; acao = 'Reinicie o computador e dê dois cliques em "Instalar (Windows)". Se repetir, libere a pasta do estúdio no antivírus.' } }
-  return @{ causa = "O estúdio fechou sozinho (código $codigo)."; acao = 'Abra de novo pelo "Abrir Estúdio". Se repetir, dê dois cliques em "Instalar (Windows)" para conferir a instalação.' }
+  return @{ causa = "O estúdio fechou sozinho (código $codigo)."; acao = 'Abra de novo pelo "Iniciar". Se repetir, dê dois cliques em "Instalar (Windows)" para conferir a instalação.' }
 }
 function Node-Abre($p) {
   $antes = $ErrorActionPreference
@@ -180,7 +180,7 @@ if ((Test-Path -LiteralPath $mover) -and $env:ILU_SEM_MUDANCA -ne '1') {
       try {
         $ws = New-Object -ComObject WScript.Shell
         $atalho = $ws.CreateShortcut((Join-Path ([Environment]::GetFolderPath('Desktop')) 'Estudio de videos.lnk'))
-        $atalho.TargetPath = Join-Path $novo 'Abrir Estúdio (Windows).bat'
+        $atalho.TargetPath = Join-Path $novo 'Iniciar (Windows).cmd'
         $atalho.WorkingDirectory = $novo
         $atalho.Save()
       } catch {}

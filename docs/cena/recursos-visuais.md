@@ -1,10 +1,20 @@
 # Recursos visuais executáveis
 
-Composições do motor Three/DOM/Canvas, sem instalar React, Remotion ou serviços externos. Use um `tipo: "recurso"` por beat, sem `modelo` nem outros elementos. Um título curto no beat é opcional. Estilos suportados: `padrao`, `editorial`, `minimalista` e `papel`, tanto vertical quanto horizontal. A composição ocupa a faixa da cena e deixa a legenda livre. Cores vêm da marca do vídeo.
+Composições do motor Three/DOM/Canvas, sem instalar React, Remotion ou serviços externos. Use um `tipo: "recurso"` por beat, sem `modelo` nem outros elementos. Um título curto no beat é opcional nos estilos base. Estilos suportados: `padrao`, `editorial`, `minimalista`, `papel` e toda a família `smooth`, tanto vertical quanto horizontal. No smooth, a explicação usa a paleta do fundo atual e reserva espaço para a fala do estilo; não acrescente um elemento smooth decorativo junto. Cores vêm da marca do vídeo.
 
 `entra` aceita segundos a partir do beat ou uma palavra da fala, inclusive `"palavra#2"` para a segunda ocorrência. Os itens também aceitam `entra`. Palavra ausente interrompe a preparação, em vez de animar no instante errado. `dur` é a duração da animação em segundos, com até 30 s. Nada depende da ordem de renderização.
 
 Os exemplos abaixo são **elementos** para colocar em `beat.elementos`. Escolha o recurso pela explicação necessária, sem forçar um recurso em todas as cenas. Dados de exemplo não são evidência factual.
+
+## Integração com a criação
+
+### Duração de cada ação
+
+Em comparação, cronologia e causa e efeito, cada item pode definir `dur` em segundos. Sem ela, vale a `dur` do recurso; sem duração explícita, permanece a entrada breve padrão. Exemplo: `{"rotulo":"Alternativa B","valor":20,"entra":"segunda","dur":1.8}`. A ação deve terminar com pelo menos 0,3 s de leitura antes do corte. A preparação recusa uma duração dirigida que corte a comparação antes de mostrar sua proporção final.
+
+Em objetos contáveis, a revelação é distribuída pela duração do item; não existe um limite oculto de menos de um segundo. Em `decomposicao`, use somente a `dur` do recurso para separar o todo; não defina durações nas partes. Em documentos, `dur` também governa a revelação do destaque e das linhas. A duração deve acompanhar a explicação e permitir leitura, sem esticar uma entrada para esconder falta de conteúdo.
+
+O autoplano de novas cenas em português reconhece um subconjunto explícito de comparações, cronologias e consequências. Confira os limites e o planejamento de recursos antes da voz em [Integração das explicações](../integracao-explicacoes.md). O agente pode especificar qualquer um dos seis recursos em `direcao-visual.json`, usando `plano.recurso`, ou diretamente em `cena.json`. A aplicação de curadoria do pipeline só modifica cenas automáticas; cenas autorais continuam sendo editadas explicitamente pelo agente ou pelo editor.
 
 ## Comparação proporcional
 
@@ -16,6 +26,38 @@ Os exemplos abaixo são **elementos** para colocar em `beat.elementos`. Escolha 
 ```
 
 De 2 a 3 itens. Barras partem de zero e têm largura proporcional ao maior valor. Zero não vira uma barra fictícia; diferenças muito grandes podem ficar imperceptíveis. Nesse caso, escolha outra explicação visual. O número apresentado é o valor final; a animação revela a barra, sem fabricar contagens intermediárias. `foco` é o índice do único destaque, começando em zero. Rótulos: até 32 caracteres. Valores não negativos até 1 trilhão; unidade de até 12 caracteres. O QA também mede o texto real e pede encurtá-lo se não couber.
+
+### Quantidades com objetos
+
+Na comparação, acrescente `"visual":"unidades","simbolo":"bola"` para mostrar uma bola por gol. Símbolos: `bola`, `moeda`, `pessoa` (pessoa anônima esquemática) e `caixa`. Use somente quantidades inteiras de 0 a 24 por item. O motor não arredonda valores nem inventa uma escala. Zero não desenha objeto. Para números maiores, use comparação proporcional ou outra representação apropriada. No autoplano, comparações explícitas de até 24 gols já recebem bolas; a direção autoral escolhe a representação de cada trecho.
+
+## Decomposição de um todo
+
+```json
+{"id":"origem","tipo":"recurso","forma":"decomposicao","simbolo":"bola",
+ "entra":0,"total":8,"rotuloTotal":"Total ilustrativo","unidade":" gols",
+ "separarEm":"divide","dur":1.1,"itens":[
+   {"rotulo":"Parte A","valor":7},{"rotulo":"Parte B","valor":1}
+ ]}
+```
+
+Oito objetos já visíveis se deslocam e formam dois grupos, preservando sua identidade e quantidade. `total` deve ser igual à soma das 2 ou 3 partes e estar entre 1 e 24. `separarEm` é a palavra da fala ou o segundo a partir do beat que inicia a separação; não defina `entra` nas partes, pois os objetos já pertencem ao todo inicial. A ação precisa terminar pelo menos 0,3 s antes do corte. As posições são ilustrativas; as quantidades exigem evidências. Não substitua este movimento por dois gráficos estáticos. O autoplano não infere partes de um todo; a direção declara a relação sustentada pelas fontes.
+
+## Campo tático com passes e deslocamentos
+
+```json
+{"id":"campo","tipo":"recurso","forma":"campo-tatico","entra":0,
+ "jogadores":[
+   {"id":"apoio","rotulo":"Apoio","time":"a","pos":[0.2,0.7]},
+   {"id":"ponta","rotulo":"Ponta","time":"a","pos":[0.7,0.65],
+    "destino":[0.7,0.2],"moverEm":0.2,"dur":0.7},
+   {"id":"defesa","rotulo":"Defesa","time":"b","pos":[0.4,0.3]}
+ ],"passes":[{"de":"apoio","para":"ponta","em":0.5,"dur":0.7}]}
+```
+
+De 2 a 8 jogadores esquemáticos; `pos` e `destino` usam coordenadas normalizadas de 0 a 1. O jogador pode correr enquanto a bola se desloca até sua posição de recepção. De 1 a 6 passes, com `em` em segundos a partir do beat e `dur` entre 0,3 e 5 s. Passes não se sobrepõem e cada passe seguinte parte de quem recebeu o anterior. O resultado precisa ter 0,3 s de leitura antes do corte. Ações e tempos devem acompanhar a fala; não use um campo por mera decoração.
+
+O motor escreve **ESQUEMA ILUSTRATIVO** no campo. Este recurso explica conceitos, sem reconstituir posições, táticas ou lances de uma partida específica. Para atribuir uma jogada real a alguém, pesquise e use registro verificável. Não invente movimento para ilustrar um placar, uma notícia ou uma estatística sem relação tática.
 
 ## Linha do tempo
 

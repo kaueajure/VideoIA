@@ -57,6 +57,8 @@ Todos opcionais, exceto `id` (igual ao nome do arquivo, só `[a-z0-9-]`), `nome`
 | `publicar.legenda`, `hashtags`, `fontesNaLegenda`, `aviso` | jeito da legenda | skill `publicar` |
 | `cuidados.fontesMinimas`, `fonteOficial`, `atribuicao`, `avisoFalado`, `avisoLegenda`, `temasBloqueados`, `revisaoHumana` | regras de fato e de responsabilidade; `avisoFalado` o linter cobra; `revisaoHumana` deixa o `entrega.json` com `publicavel: false` | skills `pauta` e `publicar`, linter, vídeo |
 
+`cuidados.atribuicao` trata do vínculo entre afirmações e fontes nos arquivos de pesquisa. Mesmo com `sempre`, não recite fontes na narração. Referências ficam em `fontes.md`, `fontes.json` e na descrição, preservando o grau de certeza na fala.
+
 Cada estilo de motion tem uma ficha com o nome dele (`interface`, `antiguidade`, `moderno`...), com a aparência e o jeito de roteiro próprio dele (usado quando o vídeo não escolhe objetivo). O `moderno` (janelas de vidro em perspectiva, cursor, crachá de passo e legenda com caixa de seleção) serve a tutorial, "como fazer", demonstração de ferramenta e antes e depois: `docs/estilo-moderno.md`.
 
 O validador (`npm run objetivos -- --validar`) recusa campo desconhecido, peça ou cenário que não existe, formato fora dos 8, estilo fora dos 24 e faixa de palavras incoerente com a duração, sempre com a sugestão do nome mais próximo.

@@ -1,13 +1,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
+import { instalarExplicacao } from './planejar-explicacoes.mjs';
 
 const ARQUIVO = 'direcao-visual.json';
 export const MARCA_PESQUISA_VISUAL = '<!-- pesquisa-visual:v1 -->';
 const PLANOS = new Set(['normal', 'aberto', 'fechado', 'topo', 'baixo', 'lateral', 'lateralEsq']);
 const MOVIMENTOS = new Set(['deriva', 'avanca', 'recua', 'orbita', 'sobe', 'desce', 'panEsq', 'panDir', 'nenhum']);
 const TRANSICOES = new Set(['desfoque', 'corte', 'varredura']);
-const ESTILOS_COM_IMAGEM = new Set(['padrao', 'editorial', 'minimalista', 'papel', 'tifo-football']);
+const ESTILOS_COM_IMAGEM = new Set(['padrao', 'editorial', 'minimalista', 'papel', 'tifo-football',
+  'smooth', 'smooth-produto', 'smooth-estrategia', 'smooth-historia', 'smooth-vinheta', 'smooth-tipografia']);
 const CLASSES = new Set(['registro', 'contexto']);
 const fotoPendente = el => typeof el?.busca === 'string' && el.busca.trim() && !el.arquivo;
 
@@ -154,6 +156,7 @@ export function aplicarDirecaoVisual(cena, direcao, palavras) {
   const fala = (palavras || []).flatMap((p, i) => tokens(typeof p === 'string' ? p : p?.w).map(token => ({ token, i })));
   const avisos = [...direcao.avisos];
   const imagens = [];
+  const recursos = [];
   const tratados = new Set();
   for (const { plano, foto } of direcao.planos) {
     const beat = acharBeat(cena.beats || [], fala, plano?.trecho);
@@ -162,11 +165,30 @@ export function aplicarDirecaoVisual(cena, direcao, palavras) {
       continue;
     }
     tratados.add(beat);
+    if (plano.recurso) {
+      if (plano.imagem) {
+        avisos.push('Escolha imagem ou recurso no mesmo plano, não os dois: ' + beat.id + '.');
+        continue;
+      }
+      try {
+        const recurso = instalarExplicacao(beat, plano.recurso, beat.estilo || cena.estilo || 'padrao');
+        recursos.push({ beat: beat.id, forma: recurso.forma, id: recurso.id, revisao: 'pendente' });
+      } catch (erro) {
+        avisos.push('Recurso inválido no beat ' + beat.id + ': ' + erro.message);
+        continue;
+      }
+    }
     if (!aplicarCamera(beat, plano)) avisos.push('Câmera ou transição inválida no beat ' + beat.id + '.');
     if (!plano.imagem) continue;
     if (!foto) {
       avisos.push('Imagem ausente, sem registro de fonte ou inválida no beat ' + beat.id + ': ' + String(plano.imagem.arquivo || '').slice(0, 140));
       continue;
+    }
+    // Uma foto explicitamente curada prevalece sobre a sugestão automática.
+    // Não misture os dois protagonistas no beat exclusivo de recurso.
+    if (beat.elementos?.some(el => el.tipo === 'recurso')) {
+      beat.elementos = [];
+      if (cena.explicacoes) cena.explicacoes.escolhas = cena.explicacoes.escolhas.filter(e => e.beat !== beat.id);
     }
     if (!aplicarImagem(beat, foto, beat.estilo || cena.estilo || 'padrao')) {
       avisos.push('O estilo não tem espaço compatível para ' + foto.arquivo + ' no beat ' + beat.id + '.');
@@ -174,7 +196,7 @@ export function aplicarDirecaoVisual(cena, direcao, palavras) {
     }
     imagens.push({ beat: beat.id, arquivo: foto.arquivo, classe: foto.classe });
   }
-  return { imagens, avisos };
+  return { imagens, avisos, ...(recursos.length ? { recursos } : {}) };
 }
 
 export function imagensNoPlano(spec, imagens) {

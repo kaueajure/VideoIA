@@ -33,7 +33,7 @@ Use a árvore de `docs/formatos.md` (revelação, mito x fato, comparativo, ante
 ## 2. Escolha o gatilho do gancho, de forma explícita (3 opções, obrigatório)
 Um ou dois dos 9 (PD, PT, EE, CI, EN, UO, HE, EM, CC). Antes, responda em uma linha: **por que isso é curioso?** Se não houver um ponto de diferença, volte à `pauta`. Depois:
 1. **Reaproveite os esboços da pauta** em `formato.md` e ajuste ou complete até ter três opções de gatilhos ou ângulos diferentes (ex.: um número que não bate, uma pergunta de mito, um nome conhecido com contraste). Use as técnicas de `docs/ganchos.md`, seção "O que a aula ensina": palavras do povo, nome conhecido, escada de surpresa, nome gigante + coisa banal + "por quê?", história com virada prometida.
-2. **Teste cada um**: primeira frase de até 12 palavras; tensão nas 8 primeiras palavras (número, pergunta curta, contraste ou conflito); dois ingredientes; nada morno ("Você sabia", "Hoje vamos falar", "Neste vídeo", "Vou te contar"); fato antes da fonte; nenhum adjetivo vazio ("incrível", "interessante").
+2. **Teste cada um**: primeira frase de até 12 palavras; tensão nas 8 primeiras palavras (número, pergunta curta, contraste ou conflito); dois ingredientes; nada morno ("Você sabia", "Hoje vamos falar", "Neste vídeo", "Vou te contar"); fato direto, fontes fora da fala; nenhum adjetivo vazio ("incrível", "interessante").
 3. **Escolha o mais provocativo que continue verdadeiro**: todo número e fato do gancho está no `fontes.md`, o vídeo entrega o que ele promete, sem promessa de renda, sem adjetivo sobre pessoa ("desesperado", "ladrão"), sem ataque pessoal, sem desinformação e dentro das regras da Justiça Eleitoral. Em política, linha direita leve: o ângulo provoca, o fato não muda. Entre dois igualmente fortes, fique com o mais específico. Se a pessoa fixou um gancho, use-o como primeira frase narrada e como a opção escolhida. Aponte qualquer conflito com as fontes.
 4. **Registre os 3 no `roteiro.md`**, na segunda linha (depois do STATUS), numa linha só:
    `GANCHOS: A) <opção 1> | B) <opção 2> | C) <opção 3> | escolhido: B (por quê, em poucas palavras)`
@@ -71,11 +71,16 @@ Se o roteiro pede um objeto, um lugar ou um mundo que o repertório não tem, el
 
 **Foto pelo nome (0.6.12).** Escreva pelo nome o que precisa aparecer em foto: pessoa ("o presidente Lula"), lugar ("a Torre Eiffel"), obra, evento, marca ou produto ("o iPhone"). O estúdio acha sozinho a foto de licença livre (Wikipédia, Wikimedia Commons, Openverse) e o logo das marcas da biblioteca, e registra o crédito em `fontes.md`. Personagem de exemplo leva só o primeiro nome ("a Ana ganha R$ 3.000") e nunca vira foto de alguém real. Para o objeto 3D, nomeie a coisa concreta ("o cofre do banco", "o pão"), não só a ideia.
 
+## Fontes fora da narração
+A fala conta o fato e explica o mecanismo, sem anunciar de onde veio a informação. Não escreva chamadas como "segundo a fonte", "de acordo com o estudo", "conforme o relatório" nem leia links, referências bibliográficas ou listas de instituições. Registre a pesquisa em `fontes.md` e `fontes.json`; referências para o público vão na descrição ou legenda da publicação. Essa regra vale também quando o objetivo traz `cuidados.atribuicao: sempre`: a atribuição fica no registro de pesquisa, fora da voz.
+
+Preserve o sentido e o grau de certeza: hipótese continua hipótese, estimativa continua estimativa e investigação não vira condenação. Em casos em andamento, prefira uma formulação direta como "A investigação apura uma suspeita de fraude". Se uma frase só faz sentido como uma acusação sem contexto, reescreva ou omita o trecho. Um órgão ou pesquisador pode aparecer quando for o próprio assunto ou autor da ação narrada; não o acrescente apenas como selo de autoridade. Não apague palavras automaticamente da fala pronta, pois isso pode mudar o sentido.
+
 ## 4. Como escrever
 - Média de 8 a 10 palavras por frase, nenhuma acima de 22.
 - Pelo menos 3 números concretos (mediana dos virais: 6 a 7) e uma virada interna a cada 80 palavras ("Mas", "Agora", "Aqui está o detalhe").
 - Frases curtas, uma ideia cada. Conversa, não aula ("primeiro faça isso, segundo aquilo" cansa).
-- Justifique toda afirmação em uma frase. Nuance onde houver controvérsia.
+- Sustente toda afirmação nos registros de pesquisa. Na narração, explique a causa ou o mecanismo sem recitar fontes. Preserve a incerteza quando ela fizer parte do fato.
 - Números: pode escrever como se lê na tela ("R$ 100", "40h", "71%", "6x1", "17/10/2026", "2 GB"); o estúdio converte para a fala ("cem reais", "quarenta horas", "setenta e um por cento") antes de ir para a voz, em ElevenLabs e Fish, e a legenda mostra o que você escreveu. Sigla que a voz leia errado: crie `pronuncia.json` na pasta do projeto ({ "CNI": "cê ene i" }). O linter avisa o que a voz não sabe ler.
 - Sem gíria de internet, sem travessão longo com espaços, sem "você sabia que".
 - Pontue para a voz: ponto entre ideias, vírgula onde respira.

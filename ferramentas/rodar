@@ -4,16 +4,16 @@
 # Para o assistente (Claude Code ou Codex) quando o Node não está no PATH do terminal dele:
 #   ferramentas/rodar npm run doctor
 #   ferramentas/rodar node src/video/cli.mjs exemplo --voz=mock --rapido
-# Funciona no Mac, no Linux e no Git Bash do Windows. No PowerShell, use ferramentas\rodar.cmd.
+# Funciona no Mac, no Linux e no Git Bash do Windows. No PowerShell, use ferramentas\rodar.ps1.
 AQUI="$(cd "$(dirname "$0")/.." && pwd)"
 for d in "$AQUI/.programas/node/bin" "$AQUI/.programas/node" "$AQUI/.programas/ffmpeg"; do
   [ -d "$d" ] && PATH="$d:$PATH"
 done
 # 0.6.2: sem Node portátil, usa o Node 20+ do computador mesmo fora do PATH (/opt/homebrew/bin e /usr/local/bin): o
 # terminal dos apps de assistente costuma vir sem essas pastas, e o instalador acha o Node lá
-if [ ! -x "$AQUI/.programas/node/bin/node" ] && [ ! -x "$AQUI/.programas/node/node.exe" ] && [ -f "$AQUI/ferramentas/instalador/node.sh" ]; then
-  # shellcheck source=instalador/node.sh
-  . "$AQUI/ferramentas/instalador/node.sh"
+if [ ! -x "$AQUI/.programas/node/bin/node" ] && [ ! -x "$AQUI/.programas/node/node.exe" ] && [ -f "$AQUI/ferramentas/instalador/node-unix" ]; then
+  # shellcheck source=instalador/node-unix
+  . "$AQUI/ferramentas/instalador/node-unix"
   if ilu_achar_node "$AQUI"; then PATH="$(dirname "$NODE"):$PATH"; fi
 fi
 export PATH
@@ -23,7 +23,7 @@ if ! command -v node >/dev/null 2>&1; then
   echo "O Node ainda não está nesta pasta nem no computador."
   case "$(uname -s)" in
     MINGW*|MSYS*|CYGWIN*) echo "Instale tudo (inclusive o Node) com: powershell.exe -NoProfile -ExecutionPolicy Bypass -File ferramentas/instalador/instalar.ps1 -Assistente" ;;
-    *) echo "Instale tudo (inclusive o Node) com: bash ferramentas/instalador/instalar.sh --assistente" ;;
+    *) echo "Instale tudo (inclusive o Node) com: bash ferramentas/instalador/bootstrap-unix --assistente" ;;
   esac
   exit 127
 fi

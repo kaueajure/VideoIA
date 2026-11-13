@@ -1,8 +1,11 @@
 import { validarMecanismo, estadoMecanismo, pintarMecanismo } from './mecanismos.js';
 import { geoDaCena } from './geo.js';
+import { partesSmooth, paletaSmooth } from './estilo-smooth.js';
+import { validarUnidades, pintarUnidades } from './unidades-visuais.js';
+import { validarCampo, pintarCampo, estadoCampo } from './campo-tatico.js';
 
 // Composições declarativas do motor. Nenhum estado de animação sobrevive ao quadro.
-export const FORMAS_RECURSO = ['comparacao', 'linha-do-tempo', 'causa-efeito', 'documento', 'seguir-objeto', 'mecanismo'];
+export const FORMAS_RECURSO = ['comparacao', 'decomposicao', 'campo-tatico', 'linha-do-tempo', 'causa-efeito', 'documento', 'seguir-objeto', 'mecanismo'];
 const clamp = n => Math.max(0, Math.min(1, n));
 const suave = n => { const k = clamp(n); return k * k * (3 - 2 * k); };
 const normalizar = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -14,7 +17,10 @@ export function validarRecurso(el) {
   if (!FORMAS_RECURSO.includes(el.forma)) return ['recurso.forma: use ' + FORMAS_RECURSO.join(', ') + '.'];
   if (el.dur != null && !(Number.isFinite(el.dur) && el.dur > 0 && el.dur <= 30)) erros.push('recurso.dur: use segundos, de 0 a 30, sem zero.');
   if (el.entra != null && !(Number.isFinite(el.entra) && el.entra >= 0) && !curto(el.entra, 60)) erros.push('recurso.entra: use segundos ou uma palavra da fala.');
-  if (['comparacao', 'linha-do-tempo', 'causa-efeito'].includes(el.forma)) {
+  if (el.visual != null && (el.forma !== 'comparacao' || el.visual !== 'unidades')) erros.push('recurso.visual: unidades é uma apresentação da comparação.');
+  erros.push(...validarUnidades(el));
+  if (el.forma === 'campo-tatico') erros.push(...validarCampo(el));
+  if (['comparacao', 'decomposicao', 'linha-do-tempo', 'causa-efeito'].includes(el.forma)) {
     const limite = 3;
     if (!Array.isArray(el.itens) || el.itens.length < 2 || el.itens.length > limite) {
       erros.push(`recurso.itens: use de 2 a ${limite} itens.`);
@@ -22,7 +28,9 @@ export function validarRecurso(el) {
       for (const [i, item] of el.itens.entries()) {
         if (!item || !curto(item.rotulo, 32)) { erros.push(`item ${i + 1}: rotulo de até 32 caracteres.`); continue; }
         if (item.entra != null && !(Number.isFinite(item.entra) && item.entra >= 0) && !curto(item.entra, 60)) erros.push(`item ${i + 1}: entra precisa de segundos ou palavra.`);
-        if (el.forma === 'comparacao' && !(Number.isFinite(item.valor) && item.valor >= 0 && item.valor <= 1e12)) erros.push(`item ${i + 1}: valor deve ser finito e não negativo, até 1 trilhão.`);
+        if (item.dur != null && !(Number.isFinite(item.dur) && item.dur > 0 && item.dur <= 30)) erros.push(`item ${i + 1}: dur deve ser maior que zero, até 30 segundos.`);
+        if (el.forma === 'decomposicao' && item.dur != null) erros.push('decomposicao: dur pertence à separação do todo, não às partes.');
+        if (['comparacao', 'decomposicao'].includes(el.forma) && !(Number.isFinite(item.valor) && item.valor >= 0 && item.valor <= 1e12)) erros.push(`item ${i + 1}: valor deve ser finito e não negativo, até 1 trilhão.`);
         if (el.forma === 'linha-do-tempo' && !curto(item.data, 18)) erros.push(`item ${i + 1}: data de até 18 caracteres.`);
       }
     }
@@ -62,8 +70,8 @@ export function validarRecursosCena(cena) {
     if (recursos.length !== 1 || beat.elementos.length !== 1 || beat.modelo) {
       erros.push(`${beat.id}: use um recurso por beat, sem modelo ou outros elementos; o título é opcional.`);
     }
-    if (!['padrao', 'editorial', 'minimalista', 'papel'].includes(beat.estilo || cena.estilo || 'padrao')) {
-      erros.push(`${beat.id}: recurso visual requer estilo padrao, editorial, minimalista ou papel.`);
+    if (!['padrao', 'editorial', 'minimalista', 'papel', 'smooth', 'smooth-produto', 'smooth-estrategia', 'smooth-historia', 'smooth-vinheta', 'smooth-tipografia'].includes(beat.estilo || cena.estilo || 'padrao')) {
+      erros.push(`${beat.id}: recurso visual requer um estilo base ou smooth.`);
     }
     for (const el of recursos) erros.push(...validarRecurso(el).map(e => `${beat.id}: ${e}`));
   }
@@ -92,7 +100,8 @@ export function avaliarRecurso(el, beat, t, palavras = []) {
   const progresso = suave((t - inicio) / dur);
   const itens = (el.itens || []).map((item, i) => {
     const em = instanteRecurso(item.entra, beat, palavras, inicio + i * .4);
-    return { ...item, em, progresso: suave((t - em) / Math.min(dur, .7)) };
+    const duracao = item.dur ?? el.dur ?? Math.min(dur, .7);
+    return { ...item, em, duracao, progresso: suave((t - em) / duracao) };
   });
   if (el.forma === 'comparacao') {
     const max = Math.max(...itens.map(i => i.valor), 1e-12);
@@ -100,9 +109,11 @@ export function avaliarRecurso(el, beat, t, palavras = []) {
   }
   const linhas = (el.revelarLinhas || []).map((entra, i) => {
     const em = instanteRecurso(entra, beat, palavras, inicio);
-    return { rotulo: el.linhas[i], em, progresso: suave((t - em) / Math.min(dur, .7)) };
+    return { rotulo: el.linhas[i], em, progresso: suave((t - em) / (el.dur ?? Math.min(dur, .7))) };
   });
   const estado = { visivel: t >= inicio, progresso, itens, linhas };
+  if (el.forma === 'campo-tatico') estado.campo = estadoCampo(el, beat, t, inicio);
+  if (el.forma === 'decomposicao') estado.separarEm = instanteRecurso(el.separarEm, beat, palavras);
   if (el.forma === 'mecanismo') { const m = estadoMecanismo(el,beat,t,inicio); estado.objeto = [...m.lua,m.fase,...m.pulsos]; }
   if (el.forma === 'seguir-objeto') {
     const posicao = tempo => {
@@ -116,11 +127,15 @@ export function avaliarRecurso(el, beat, t, palavras = []) {
   return estado;
 }
 
-function painelDaCena(spec) {
+function painelDaCena(spec, beat) {
   const geo = geoDaCena(spec);
+  if (String(beat?.estilo || spec.estilo || '').startsWith('smooth')) {
+    return geo.horizontal ? { x0: geo.util.x0 + 24, x1: geo.util.x1 - 24, y0: 270, y1: 740 }
+      : { x0: 96, x1: 984, y0: 400, y1: 1160 };
+  }
   const x0 = Math.max(geo.util.x0, geo.zona.lados) + 12;
   const x1 = Math.min(geo.util.x1, geo.W - geo.zona.lados) - 12;
-  return { x0, x1, y0: geo.zona.cena[0] + 16, y1: geo.zona.cena[1] - 16 };
+  return { x0, x1, y0: (beat?.titulo ? geo.zona.cena : geo.zona.cenaLivre)[0] + 16, y1: geo.zona.cena[1] - 16 };
 }
 const linha = (ctx, x, y, dx, dy, cor, largura = 3) => {
   ctx.beginPath(); ctx.strokeStyle = cor; ctx.lineWidth = largura;
@@ -148,11 +163,16 @@ function texto(ctx, valor, x, y, largura, tamanho, cor, problemas, maxLinhas = 2
 function pintar(ctx, spec, beat, el, t, imagens) {
   const estado = avaliarRecurso(el, beat, t, spec.palavras || []);
   if (!estado.visivel) return null;
-  if (estado.itens.length && !estado.itens.some(item => t >= item.em)) return null;
-  const area = painelDaCena(spec), { x0: x, y0: y } = area;
+  if (el.forma !== 'decomposicao' && estado.itens.length && !estado.itens.some(item => t >= item.em)) return null;
+  const area = painelDaCena(spec, beat), { x0: x, y0: y } = area;
   const w = area.x1 - x, h = area.y1 - y, geo = geoDaCena(spec);
   const fonte = geo.horizontal ? 32 : 38;
-  const marca = spec.marca;
+  let marca = spec.marca;
+  if (String(beat.estilo || spec.estilo || '').startsWith('smooth')) {
+    const parte = partesSmooth(spec).find(p => p.b.id === beat.id), paleta = paletaSmooth(spec.marca?.destaque);
+    marca = parte?.claro ? { fundo: paleta.claro, frente: paleta.tinta, apoio: paleta.tinta3, sombra: paleta.claro2, destaque: paleta.dstClaro }
+      : { fundo: paleta.escuro, frente: paleta.texto, apoio: paleta.claro2, sombra: paleta.escuro3, destaque: paleta.dst };
+  }
   const cor = marca.frente, destaque = marca.destaque, apoio = marca.apoio;
   const problemas = [];
   ctx.save();
@@ -160,7 +180,13 @@ function pintar(ctx, spec, beat, el, t, imagens) {
   caixa(ctx, x, y, w, h, marca.fundo, 18);
   const txt = (s, tx, ty, tw = w - 48, tam = fonte, c = cor, max = 2) => texto(ctx, s, tx, ty, tw, tam, c, problemas, max);
   const n = estado.itens.length;
-  if (el.forma === 'mecanismo') {
+  let unidades, campo;
+  if (el.forma === 'campo-tatico') {
+    campo = pintarCampo(ctx, el, beat, t, el.entra != null
+      ? instanteRecurso(el.entra, beat, spec.palavras) + (el.atraso || 0) : el.t0 ?? beat.de, area, marca, txt);
+  } else if (el.forma === 'decomposicao' || el.visual === 'unidades') {
+    unidades = pintarUnidades(ctx, el, estado, area, t, estado.separarEm, marca, txt);
+  } else if (el.forma === 'mecanismo') {
     pintarMecanismo(ctx,el,beat,t,area,marca,txt,el.entra != null ? instanteRecurso(el.entra,beat,spec.palavras) + (el.atraso || 0) : el.t0 ?? beat.de);
   } else if (el.forma === 'comparacao') {
     const fila = h / n;
@@ -191,9 +217,10 @@ function pintar(ctx, spec, beat, el, t, imagens) {
         ctx.globalAlpha = 1;
         if (i > 0) {
           const setaX = ix - 12, ponta = centro - 40;
-          linha(ctx, setaX - 8, ponta, setaX + 6, ponta, destaque, 3);
-          linha(ctx, setaX + 6, ponta, setaX, ponta - 6, destaque, 3);
-          linha(ctx, setaX + 6, ponta, setaX, ponta + 6, destaque, 3);
+          const fim = setaX - 8 + 14 * item.progresso;
+          linha(ctx, setaX - 8, ponta, fim, ponta, destaque, 3);
+          linha(ctx, fim, ponta, fim - 6, ponta - 6, destaque, 3);
+          linha(ctx, fim, ponta, fim - 6, ponta + 6, destaque, 3);
         }
       });
     } else {
@@ -209,8 +236,8 @@ function pintar(ctx, spec, beat, el, t, imagens) {
         txt(item.rotulo, eixo + 38, topo + fonte * 1.35, w - 112);
       } else {
         txt(item.rotulo, eixo + 38, topo + 3, w - 112);
-        if (i < n - 1) {
-          const ponta = topo + fila - 6;
+        if (i < n - 1 && t >= estado.itens[i + 1].em) {
+          const ponta = topo + 36 + (fila - 42) * estado.itens[i + 1].progresso;
           linha(ctx, eixo, topo + 36, eixo, ponta, destaque, 4);
           linha(ctx, eixo, ponta, eixo - 8, ponta - 12, destaque, 4);
           linha(ctx, eixo, ponta, eixo + 8, ponta - 12, destaque, 4);
@@ -260,7 +287,7 @@ function pintar(ctx, spec, beat, el, t, imagens) {
   ctx.restore();
   return { ...area, tipo: 'recurso', forma: el.forma, id: el.id, problemas,
     valor: estado.progresso,
-    movimento: estado.objeto, camera: estado.camera,
+    movimento: campo ? [...campo.jogadores.map(j => j.atual), campo.bola] : unidades?.objetos || estado.objeto, camera: estado.camera,
     itens: [...estado.itens, ...estado.linhas].map(i => ({ rotulo: i.rotulo, em: i.em, fracao: i.fracao, progresso: i.progresso })) };
 }
 
@@ -288,7 +315,7 @@ export function instalarRecursos(ilu) {
     const raiz = document.getElementById('raiz');
     canvas = document.createElement('canvas'); canvas.id = 'recursos-visuais';
     canvas.width = raiz.clientWidth; canvas.height = raiz.clientHeight;
-    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none';
+    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:50';
     raiz.insertBefore(canvas, document.getElementById('traco'));
     desenhar(0);
     return info;

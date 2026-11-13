@@ -1,17 +1,17 @@
 #!/bin/bash
  
- # Abre o estúdio web (Mac e Linux). Quem chama: "Abrir Estúdio (Mac).command" e o atalho da Mesa.
+ # Abre o estúdio web (Mac e Linux). Quem chama: "Iniciar (Mac).command" e o atalho da Mesa.
 cd "$(dirname "$0")/../.." || exit 1
 STUDIO="$(pwd)"
 printf '\033]0;Estudio de videos\007'
-# shellcheck source=node.sh
-. "$STUDIO/ferramentas/instalador/node.sh"
+# shellcheck source=node-unix
+. "$STUDIO/ferramentas/instalador/node-unix"
 if ! ilu_achar_node "$STUDIO" || [ ! -d "$STUDIO/node_modules/playwright" ]; then
   echo
   echo "  O estúdio ainda não foi instalado neste computador."
-  echo "  Feche esta janela e dê dois cliques em \"Instalar (Mac)\", na pasta do estúdio."
+  echo "  Feche esta janela e dê dois cliques em \"Instalar do seu sistema\", na pasta do estúdio."
   echo
-  ilu_tela_ajuda "$STUDIO" "O estúdio ainda não foi instalado neste computador." "Feche a janela preta e dê dois cliques em \"Instalar (Mac)\", na pasta do estúdio. Ele instala tudo sozinho." "abrir o estúdio" 2>/dev/null
+  ilu_tela_ajuda "$STUDIO" "O estúdio ainda não foi instalado neste computador." "Feche a janela preta e dê dois cliques em \"Instalar do seu sistema\", na pasta do estúdio. Ele instala tudo sozinho." "abrir o estúdio" 2>/dev/null
   exit 1
 fi
 # proxy da empresa ou da escola: o Node só usa HTTPS_PROXY com esta opção (licença e voz precisam de internet)
@@ -29,6 +29,6 @@ case "$CODIGO" in
   0|10|130|143) ;;
   *)
     "$NODE" "$STUDIO/src/estudio/socorro.mjs" --etapa=estudio-abrir --codigo=saida-$CODIGO --log="$LOG" 2>/dev/null \
-      || { ilu_aviso_anonimo "$STUDIO" "estudio-abrir" "saida-$CODIGO" "O estúdio fechou sozinho (código $CODIGO)."; ilu_tela_ajuda "$STUDIO" "O estúdio fechou sozinho (código $CODIGO)." "Abra de novo pelo \"Abrir Estúdio\". Se repetir, dê dois cliques em \"Instalar (Mac)\" para conferir a instalação." "abrir o estúdio"; } ;;
+      || { ilu_aviso_anonimo "$STUDIO" "estudio-abrir" "saida-$CODIGO" "O estúdio fechou sozinho (código $CODIGO)."; ilu_tela_ajuda "$STUDIO" "O estúdio fechou sozinho (código $CODIGO)." "Abra de novo pelo \"Iniciar\". Se repetir, dê dois cliques em \"Instalar do seu sistema\" para conferir a instalação." "abrir o estúdio"; } ;;
 esac
 exit "$CODIGO"

@@ -7,7 +7,11 @@ description: Julga a folha de contato do vídeo e corrige os 3 maiores defeitos,
 
 # Crítico visual
 
+**Movimento exige inspeção temporal.** Além da folha, confira antes, durante e depois de cada ação central e o corte vizinho; use prévia curta quando disponível. Compare a mudança real de objetos e relações, não apenas o texto e a entrada. Em `criatividade.montagem`, confira imagens congeladas e séries de SVGs. Cartões estáticos repetidos, bandeiras pequenas e vazio sem função narrativa exigem correção de direção. Não aprove animação por ler no briefing que ela existe. Se não houver reprodução com som, registre sincronismo audiovisual como pendente.
+
 O QA automático mede margens e sobreposição. Você olha o que ele não vê: composição, clareza, ritmo.
+
+Em produções novas, siga `docs/producao-criativa.md`. Consulte `criatividade` no relatório de direção após QA: confira os trechos decisivos e os alertas de repetição ou texto isolado. Em `revisao-direcao.md`, registre beat, instantes vistos, ação observada e informação que a imagem acrescenta à fala. Uma cena legível pode continuar sem valor explicativo. Inspecione início, meio e fim para julgar mudança de estado; não aprove ação ou ritmo pela intenção escrita ou por uma única miniatura. Se não houver reprodução com som, deixe a revisão audiovisual pendente. As notas abaixo não substituem essa evidência.
 
 ## Como
 1. Abra `projetos/<nome>/saida/qa/folha.jpg` (um quadro por beat, mais o primeiro e o último). Julgue **só o que está nos quadros**, nunca a intenção do `cena.json`.

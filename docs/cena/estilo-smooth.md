@@ -23,3 +23,8 @@ Leia `docs/estilo-smooth.md`. `"estilo": "<id>"` e `"tom": "alterna" | "escuro" 
 
 
 
+
+
+## Dados e gráficos
+
+`barras` usa larguras proporcionais aos valores, com origem em zero e rótulos fora do preenchimento. Valores negativos não são suportados. `curva` e `grafico` exigem `valores` explícitos, com pelo menos dois números finitos; `grafico` não aceita negativos. O planejador não cria séries apenas porque a fala menciona crescimento ou queda. Registre a evidência dos dados em fontes.json; números preenchidos não são prova de origem.

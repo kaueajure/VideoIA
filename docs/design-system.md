@@ -37,6 +37,10 @@ Múltiplos de 4 (4, 8, 12, 16, 24, 32, 48, 64, 96). Margem do carrossel 104 px; 
 ## Movimento
 Entrada com curva exponencial (`cubic-bezier(.16,1,.3,1)`), sem quicar. Durações: micro 160 ms, entrada 600 ms, transição 380 ms. Uma coisa se move por vez em cada cena. A câmera nunca salta. Veja `docs/principios-de-design.md`.
 
+## Estado de publicação no estúdio
+
+`src/video/estado-publicacao.mjs` é a decisão compartilhada entre a lista de vídeos e os detalhes do projeto. “Gerado” significa que existe um arquivo; `aprovado` indica aprovação técnica. Só `publicavel`, revalidado com as fontes atuais, a voz real, o roteiro e as pendências, recebe o rótulo **Pronto para publicar** e o tom de sucesso. Um arquivo existente sem essa liberação aparece **Com pendências**, com o motivo e o próximo passo. Uma prévia rápida não recebe liberação de publicação. Os estilos de etiquetas existentes em `src/estudio/pagina.html` continuam responsáveis pela aparência; este contrato não altera os tokens da marca.
+
 ## Vídeo e carrossel
 - **Topo do vídeo:** o handle da página (`marca/tokens.json`). **Rodapé do carrossel:** o handle; no último slide, mais a frase da página.
 - **Capa do vídeo:** gancho em letras grandes dentro do recorte 3:4 do grid (`capa-grid.jpg`).
@@ -46,3 +50,7 @@ Entrada com curva exponencial (`cubic-bezier(.16,1,.3,1)`), sem quicar. Duraçõ
 
 
 
+
+## Enquadramento dos protagonistas
+
+Nos estilos base verticais, uma foto isolada cresce proporcionalmente até 600 px de altura, com largura máxima de 800 px; grupos e versões horizontais preservam o encaixe próprio. Um contador isolado recebe um painel real acima da legenda, medido pelo QA além dos algarismos. Implementação compartilhada: `src/video/engine/enquadramento-base.js`. Nos estilos smooth verticais, as composições e a fala fixa são definidas em `estilo-smooth-enquadramento.js` e `estilo-smooth-kit.js`; o render usa esses mesmos módulos. O limitador em `camera-ritmo.js` controla a trajetória resultante, mantendo as transições intencionais.

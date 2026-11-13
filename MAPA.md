@@ -9,8 +9,8 @@ O que é cada pasta e cada arquivo desta pasta, em duas colunas: o que significa
 | Arquivo | Para você | Para o assistente | De quem |
 |---|---|---|---|
 | `COMECE-AQUI.pdf` e `.md` | os primeiros passos | não precisa ler | kit |
-| `Instalar (Mac).command` e `Instalar (Windows).bat` | **dois cliques e ele instala tudo** dentro da pasta (Node, FFmpeg, navegador, alinhador de voz) e abre o estúdio | pede para a pessoa usar quando o doctor acusar falta de programa | kit |
-| `Abrir Estúdio (Mac).command` e `Abrir Estúdio (Windows).bat` | abre o estúdio no navegador (voz, marca, meus vídeos, atualizar) | `npm run estudio -- --abrir` faz o mesmo | kit |
+| `Instalar (Linux).sh`, `Instalar (Mac).command` e `Instalar (Windows).cmd` | **instala o que falta** (Node, npm, Git, FFmpeg, navegador, alinhador Whisper) e abre o estúdio | pede para a pessoa usar quando o doctor acusar falta de programa | kit |
+| `Iniciar` (somente do sistema instalado, gerado ao terminar a instalação) | abre o estúdio no navegador (voz, marca, meus vídeos, atualizar) | `npm run estudio -- --abrir` faz o mesmo | kit |
 | `LEIA-ME.md` | visão geral e comandos | referência rápida | kit |
 | `MAPA.md` | este mapa | onde fica cada coisa e o que pode editar | kit |
 | `LICENSE` | licença MIT do estúdio open-source | não muda nada no trabalho | kit |
@@ -78,7 +78,7 @@ node src/identidade.mjs                  # logo, avatar da foto de perfil e bann
 npm run verificar                        # arquivos iguais aos de fábrica? (só lê, não muda nada)
 npm run estudio -- --abrir               # estúdio web: voz (chave direto no .env), marca, vídeos
 npm run atualizar -- <zip>               # versão nova sem tocar em projetos/, carrosseis/, marca/ e .env (a pessoa usa o estúdio web, Atualizar)
-bash ferramentas/instalador/instalar.sh --assistente   # instala o que falta, com o Node; Windows: ver skill `comece`, Passo 0
+bash ferramentas/instalador/bootstrap-unix --assistente   # instala o que falta, com o Node; Windows: ver skill `comece`, Passo 0
 node scripts/buscar-imagem.mjs <projeto> "<termo>" [--logo] [--listar] [--id=ID|--escolha=N]   # foto ou logo de licença livre, registrada em fontes.md
 node scripts/buscar-broll.mjs <projeto> "<termo>" [--fonte=…] [--listar] [--escolha=N]   # b-roll em vídeo livre (elemento video), em fontes.md
 node src/video/cli.mjs --galeria --projeto=<projeto>   # peças do projeto (projetos/<nome>/pecas.js)

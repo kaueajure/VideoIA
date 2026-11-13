@@ -845,7 +845,7 @@ Antes de entregar, o estúdio confere o vídeo a cada décimo de segundo e refaz
 - Alinhador de voz sem Python: Whisper rodando no próprio Node (`ferramentas/alinhar-voz.mjs`, transformers.js 4.2.0 travado por package-lock, modelo whisper-base com tempo por palavra). O `faster-whisper` em Python continua valendo para quem já tem.
 - Voz grátis (Piper) instalada com um botão, num Python portátil próprio dentro da pasta (python-build-standalone, SHA-256 conferido); funciona com o Piper em Python e com o Piper portátil.
 - Erros em português simples com o que fazer (`src/video/erros.mjs`), sem mandar ninguém abrir o Terminal; usados no comando de vídeo e em cada tarefa do estúdio web.
-- `ferramentas/rodar` (Mac, Linux, Git Bash) e `ferramentas\rodar.cmd` (PowerShell): o assistente roda os comandos do estúdio com o Node portátil quando o computador não tem Node. Liberados nas regras do Codex.
+- `ferramentas/rodar` (Mac, Linux, Git Bash) e `ferramentas\rodar.ps1` (PowerShell): o assistente roda os comandos do estúdio com o Node portátil quando o computador não tem Node. Liberados nas regras do Codex.
 - O zip do pacote agora é feito pelo próprio estúdio: nomes em UTF-8 marcados (o Windows mostra "Abrir Estúdio" certo) e permissão de execução dos `.command` guardada; a atualização preserva essa permissão.
 - O diagnóstico mede o espaço livre também no Windows e nunca dispara a janela "instalar ferramentas de linha de comando" do Mac.
 

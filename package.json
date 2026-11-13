@@ -35,7 +35,14 @@
     "broll": "node scripts/buscar-broll.mjs",
     "fontes": "node scripts/fontes-lint.mjs",
     "cena": "node scripts/editar-cena.mjs",
-    "pesquisar": "node scripts/pesquisar.mjs"
+    "pesquisar": "node scripts/pesquisar.mjs",
+    "test:instalador": "node --test ferramentas/instalador/instalacao.test.mjs",
+    "test:imagens": "node --test scripts/imagens-web.test.mjs",
+    "test:visual": "node --test scripts/qualidade-visual.test.mjs",
+    "test:criacao": "node --test scripts/direcao-criativa.test.mjs",
+    "test:explicacoes": "node --test scripts/integracao-explicacoes.test.mjs",
+    "test:producao": "node --test scripts/producao-dados.test.mjs scripts/direcao-criativa.test.mjs scripts/qualidade-visual.test.mjs scripts/producao-movimento.test.mjs scripts/ritmo-producao.test.mjs",
+    "test:ritmo": "node --test scripts/ritmo-producao.test.mjs"
   },
   "dependencies": {
     "playwright": "1.56.1",

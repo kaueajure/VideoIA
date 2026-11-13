@@ -1,0 +1,33 @@
+#!/bin/bash
+# Bootstrap mínimo antes do Node. O gerenciador instala somente pacotes ausentes.
+ilu_admin() {
+  if [ "$(id -u)" = 0 ]; then "$@"; else
+    command -v sudo >/dev/null 2>&1 || { echo 'É necessário sudo para instalar dependências do sistema.' >&2; return 1; }
+    sudo "$@"
+  fi
+}
+ilu_pacotes() {
+  if command -v apt-get >/dev/null 2>&1; then
+    ilu_admin apt-get update && ilu_admin apt-get install -y "$@"
+  elif command -v dnf >/dev/null 2>&1; then ilu_admin dnf install -y "$@"
+  elif command -v pacman >/dev/null 2>&1; then ilu_admin pacman -S --needed --noconfirm "$@"
+  elif command -v zypper >/dev/null 2>&1; then ilu_admin zypper --non-interactive install "$@"
+  else echo 'Não foi encontrado um gerenciador suportado (apt, dnf, pacman ou zypper).' >&2; return 1; fi
+}
+ilu_bootstrap() {
+  local faltam=() p
+  for p in curl tar gzip; do command -v "$p" >/dev/null 2>&1 || faltam+=("$p"); done
+  if [ "$(uname -s)" = Linux ]; then
+    command -v sha256sum >/dev/null 2>&1 || faltam+=(coreutils)
+    # curl depende dos certificados de confiança do sistema.
+    if command -v dpkg-query >/dev/null 2>&1; then
+      [ "$(dpkg-query -W -f='${Status}' ca-certificates 2>/dev/null)" = 'install ok installed' ] || faltam+=(ca-certificates)
+    elif [ ! -d /etc/ssl/certs ]; then faltam+=(ca-certificates); fi
+  else
+    command -v shasum >/dev/null 2>&1 || { echo 'O macOS precisa do shasum fornecido pelo sistema.'; return 1; }
+  fi
+  [ "${#faltam[@]}" = 0 ] && return 0
+  if [ "$SIMULAR" = 1 ]; then echo "  Instalaria pré-requisitos: ${faltam[*]}"; return 0; fi
+  echo "  Instalando pré-requisitos ausentes: ${faltam[*]} (pode solicitar senha do sistema)."
+  ilu_pacotes "${faltam[@]}"
+}

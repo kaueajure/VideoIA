@@ -2089,6 +2089,13 @@ async function retomarPrimeiro() {
 }
 
 /* ---------------- MEUS VÍDEOS ---------------- */
+function seloPublicacao(v) {
+  if (v.teste) return `<span class="etq aviso">${I('aviso')} sem voz (teste)</span>`;
+  return v.publicavel === true
+    ? `<span class="etq ok">${I('ok')} Pronto para publicar</span>`
+    : `<span class="etq aviso">${I('aviso')} Com pendências</span>`;
+}
+
 async function carregarVideos() {
   const vs = await api('/api/videos');
   const alvo = $('#videos');
@@ -2104,7 +2111,8 @@ async function carregarVideos() {
   alvo.innerHTML = novo + vs.map((v) => `<article class="vid">
     <button class="capa" data-ver="${v.nome}" aria-label="Assistir ${esc(v.titulo)}" style="${v.capa ? `background-image:url(/midia/${v.nome}/capa.jpg)` : ''}"></button>
     <div class="corpo-v"><b>${esc(v.titulo)}</b><small>${new Date(v.data).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })} · ${v.mb} MB</small>
-      <div class="marcas">${v.teste ? `<span class="etq aviso">${I('aviso')} sem voz (teste)</span>` : v.aprovado ? `<span class="etq ok">${I('ok')} conferido</span>` : `<span class="etq aviso">${I('aviso')} rever qualidade</span>`}${v.rapido ? '<span class="etq">prévia rápida</span>' : ''}</div></div>
+      <div class="marcas">${seloPublicacao(v)}${v.rapido ? '<span class="etq">prévia rápida</span>' : ''}</div></div>
+    ${!v.publicavel && !v.teste ? `<p class="dica" style="padding:0 16px">${esc(v.proximo || 'Revise a entrega antes de publicar.')}</p>` : ''}
     <div class="bts"><button class="btn sec" type="button" data-cenas-editar="${esc(v.nome)}">Corrigir cenas</button><a class="btn sec" href="/baixar/${v.nome}" download>Baixar</a><button class="btn sec" data-pasta="${v.nome}">Mostrar na pasta</button>
       <button class="btn sec" data-leg="${v.nome}" ${v.legenda ? '' : 'title="Peça ao assistente (Claude Code ou Codex): escreva a legenda deste vídeo"'}>${v.legenda ? 'Copiar legenda' : 'Pedir a legenda'}</button>
       <button class="btn sec" type="button" data-yt-enviar="${v.nome}">Enviar ao YouTube</button>
@@ -2336,10 +2344,10 @@ $('#enviarZip').onchange = async (e) => {
 
 /* ---------------- PROJETOS (estado, QA e produção) ---------------- */
 let projetos = [], atual = null, aba = 'roteiro', carregados = false;
-function estado(p) { return p.publicavel ? 'ok' : (!p.voz || !p.video) ? '' : p.pendencias.length ? 'aviso' : p.aprovadoQA === false ? 'erro' : 'ok'; }
+function estado(p) { return p.publicavel ? 'ok' : (!p.voz || !p.video) ? '' : p.aprovadoQA === false ? 'erro' : 'aviso'; }
 function desenhaLista() {
   const q = $('#busca').value.trim().toLowerCase();
-  const grupos = [['Prontos para publicar', (p) => p.publicavel], ['Vídeo pronto, falta fechar fontes', (p) => !p.publicavel && p.video && p.voz !== 'mock' && p.voz], ['Sem voz real ou sem vídeo', (p) => !p.publicavel && !(p.video && p.voz && p.voz !== 'mock')]];
+  const grupos = [['Prontos para publicar', (p) => p.publicavel], ['Vídeos com pendências', (p) => !p.publicavel && p.video && p.voz !== 'mock' && p.voz], ['Sem voz real ou sem vídeo', (p) => !p.publicavel && !(p.video && p.voz && p.voz !== 'mock')]];
   const alvo = $('#lista'); alvo.innerHTML = '';
   let total = 0;
   for (const [nome, f] of grupos) {
@@ -2350,7 +2358,7 @@ function desenhaLista() {
     for (const p of itens) {
       const b = document.createElement('button'); b.className = 'item'; b.setAttribute('role', 'listitem');
       b.setAttribute('aria-current', atual === p.nome);
-      b.innerHTML = `<span class="dot ${estado(p)}"></span><span><b>${esc(p.nome)}</b><small>${p.pendencias.length ? p.pendencias.length + ' pendência(s)' : 'sem pendências'}</small></span><span class="nota" title="Nota do roteiro, de 0 a 100">${p.nota ?? '-'}</span>`;
+      b.innerHTML = `<span class="dot ${estado(p)}"></span><span><b>${esc(p.nome)}</b><small>${p.publicavel ? 'Pronto para publicar' : esc(p.proximo || 'Ainda não gerado')}</small></span><span class="nota" title="Nota do roteiro, de 0 a 100">${p.nota ?? '-'}</span>`;
       b.onclick = () => abre(p.nome); alvo.appendChild(b);
     }
   }
@@ -2382,9 +2390,9 @@ async function abre(nome) {
     <div class="etapa"><div class="r">${rotulo(d.nota >= 85 ? true : d.nota >= 60 ? 'aviso' : false, 'Roteiro')}</div><div class="v">${d.nota ?? '-'} de 100</div><div class="s">${d.palavras ?? '-'} palavras</div></div>
     <div class="etapa"><div class="r">${rotulo(d.voz ? (d.voz === 'mock' ? 'aviso' : true) : null, 'Narração')}</div><div class="v">${d.voz ? esc(d.voz) : 'ainda não'}</div><div class="s">${d.tempos ? esc(d.tempos) : '&nbsp;'}</div></div>
     <div class="etapa"><div class="r">${rotulo(d.cena !== 'não' ? true : null, 'Cena')}</div><div class="v">${esc(d.cena)}</div><div class="s">${d.cena === 'automática' ? 'plano automático' : '&nbsp;'}</div></div>
-    <div class="etapa"><div class="r">${rotulo(d.video ? (falhas ? false : true) : null, 'Vídeo')}</div><div class="v">${d.video ? (falhas ? falhas + ' falha(s)' : 'conferido') : 'não gerado'}</div><div class="s">${j?.avisos?.length ?? 0} aviso(s) do QA</div></div>
+    <div class="etapa"><div class="r">${rotulo(d.video ? (falhas ? false : true) : null, 'Vídeo')}</div><div class="v">${d.video ? (falhas ? falhas + ' falha(s)' : 'gerado') : 'não gerado'}</div><div class="s">${j?.avisos?.length ?? 0} aviso(s) do QA</div></div>
     <div class="etapa"><div class="r">${rotulo(d.pendencias.length ? 'aviso' : true, 'Fontes')}</div><div class="v">${d.pendencias.length ? d.pendencias.length + ' pendente(s)' : 'fechadas'}</div><div class="s">&nbsp;</div></div>
-    <div class="etapa"><div class="r">${rotulo(d.publicavel ? true : null, 'Publicação')}</div><div class="v">${d.publicavel ? 'pode publicar' : 'ainda não'}</div><div class="s">${esc(d.publicavel ? '' : d.proximo)}</div></div>
+    <div class="etapa"><div class="r">${rotulo(d.publicavel ? true : d.video ? 'aviso' : null, 'Publicação')}</div><div class="v">${d.publicavel ? 'Pronto para publicar' : d.video ? 'Com pendências' : 'Não gerado'}</div><div class="s">${esc(d.publicavel ? '' : d.proximo)}</div></div>
   </div>
   <div class="corpo">
     <div class="midia">${d.video ? `<video controls playsinline preload="metadata" poster="${d.capa ? `/midia/${nome}/capa.jpg` : ''}" src="/midia/${nome}/video?t=${Date.now()}"></video>` : '<div class="nada">O vídeo aparece aqui depois de produzido.</div>'}</div>

@@ -6,7 +6,7 @@
 # 3) abre o estúdio no navegador.
 # Opções: --simular (só mostra o que faria)  --nao-abrir  --assistente  e as de instalar.mjs (--sem-alinhador...)
 # --assistente: a rota sem os dois cliques. O Claude Code ou o Codex roda este mesmo script, sem janela e sem abrir o
-# navegador no fim (bash ferramentas/instalador/instalar.sh --assistente); o resto é igual, inclusive o Node portátil.
+# navegador no fim (bash ferramentas/instalador/bootstrap-unix --assistente); o resto é igual, inclusive o Node portátil.
 set -u
 cd "$(dirname "$0")/../.." || exit 1
 STUDIO="$(pwd)"
@@ -20,7 +20,7 @@ done
 # título da janela só quando há uma janela de verdade (no assistente, o código de escape sujava a saída)
 [ -t 1 ] && printf '\033]0;Estudio de videos: instalação\007'
 # Mac: a pessoa já liberou o Instalar; tira a marca de "baixado da internet" do resto da pasta logo no começo. Antes isso
-# só acontecia no último passo (atalho) e, se um passo anterior parasse, o "Abrir Estúdio" pedia "Abrir Mesmo Assim" de novo
+# só acontecia no último passo (atalho) e, se um passo anterior parasse, o "Iniciar" pedia "Abrir Mesmo Assim" de novo
 if [ "$(uname -s)" = "Darwin" ] && [ "$SIMULAR" = "0" ]; then xattr -dr com.apple.quarantine "$STUDIO" 2>/dev/null || true; fi
 
 NODE_VERSAO="v22.23.3"
@@ -47,8 +47,10 @@ parar() {
   exit 1
 }
 
-# shellcheck source=node.sh
-. "$STUDIO/ferramentas/instalador/node.sh"
+# shellcheck source=node-unix
+. "$STUDIO/ferramentas/instalador/node-unix"
+. "$STUDIO/ferramentas/instalador/sistema-unix"
+ilu_bootstrap || parar "Não consegui instalar os pré-requisitos do sistema." "Confira a conexão e as permissões de administrador e execute Instalar novamente."
 
 echo
 if ilu_achar_node "$STUDIO"; then
@@ -89,6 +91,6 @@ if [ "$CODIGO" != "0" ]; then echo "  Pode fechar esta janela."; exit "$CODIGO";
 if [ "$SIMULAR" = "1" ] || [ "$ABRIR" = "0" ]; then exit 0; fi
 
 echo "  Abrindo o estúdio no navegador. Deixe esta janela aberta enquanto usa o estúdio."
-echo "  Da próxima vez, use \"Abrir Estúdio\" (na Mesa ou na pasta do estúdio)."
+echo "  Da próxima vez, use o arquivo Iniciar gerado nesta pasta."
 echo
 exec "$NODE" "$STUDIO/src/estudio/servidor.mjs" --abrir

@@ -61,7 +61,7 @@ export function descrever(m, tipo = 'objetivo') {
     m.cta && `Convite final: ${cta}${c.perguntaFinal ? `. Pergunta final: "${c.perguntaFinal}"` : ''}`,
     m.carrossel && `Carrossel: ${lista(m.carrossel.sequencia)}`,
     m.publicar && `Legenda: ${m.publicar.legenda || '-'}; ${lista(m.publicar.hashtags)}${m.publicar.aviso ? `; aviso "${m.publicar.aviso}"` : ''}`,
-    m.cuidados && `Cuidados: ${cu.fontesMinimas ?? 2} fonte${(cu.fontesMinimas ?? 2) > 1 ? 's' : ''}${cu.fonteOficial ? ' (uma oficial)' : ''}; atribuição ${cu.atribuicao || 'normal'}${cu.avisoFalado ? `; aviso falado "${cu.avisoFalado}"` : ''}${cu.temasBloqueados?.length ? `; recusa ${cu.temasBloqueados.join(', ')}` : ''}${cu.revisaoHumana ? '; revisão humana antes de publicar' : ''}`,
+    m.cuidados && `Cuidados: ${cu.fontesMinimas ?? 2} fonte${(cu.fontesMinimas ?? 2) > 1 ? 's' : ''}${cu.fonteOficial ? ' (uma oficial)' : ''}; atribuição ${cu.atribuicao || 'normal'} nos registros de pesquisa, fora da narração${cu.avisoFalado ? `; aviso falado "${cu.avisoFalado}"` : ''}${cu.temasBloqueados?.length ? `; recusa ${cu.temasBloqueados.join(', ')}` : ''}${cu.revisaoHumana ? '; revisão humana antes de publicar' : ''}`,
     `Arquivo: ${m._arquivo}`,
   ].filter(Boolean).join('\n');
 }

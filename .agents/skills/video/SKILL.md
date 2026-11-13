@@ -12,7 +12,9 @@ description: Produz o vídeo do Estudio de videos de ponta a ponta, sem paradas 
 roteiro.md -> narração -> tempos por palavra -> cena.json (você escreve) -> QA automático
 -> aprovação das fotos (pessoa) -> crítico visual (você olha a folha de contato) -> render -> QA do arquivo -> capa
 ```
-O QA decide qualidade e layout. **Fotos e logos reais** são a exceção: a pessoa escolhe o que entra antes do render.
+O QA verifica defeitos técnicos e layout; a qualidade narrativa e o movimento exigem revisão visual. **Fotos e logos reais** são a exceção: a pessoa escolhe o que entra antes do render.
+
+Antes da voz, siga `docs/producao-criativa.md`: confirme que a ideia permite uma sequência visual interessante e implemente as ações centrais, em vez de planejar apenas imagens de gráficos. Recursos de unidades, decomposição e campo tático estão em `docs/cena/recursos-visuais.md`. Antes da entrega, confira uma prévia curta das ações centrais e os diagnósticos `criatividade.montagem`; uma folha estática não aprova movimento. Nunca apresente um esquema ilustrativo como registro de um lance real.
 
 ## Passo a passo
 1. **Voz.** Veja `ilustrando.config.json` e confira a disponibilidade da voz com `npm run voz -- --situacao`. Sem chave, rode com `--voz=mock` para validar tudo e avise que a narração real ainda falta (isso é bloqueio de ativo, não de qualidade). Provedores: `elevenlabs` (tempos exatos por palavra), `fishaudio` (o motor alinha por Whisper se `faster-whisper` estiver instalado, senão pelas pausas), `arquivo` (sua própria gravação em `projetos/<nome>/narracao.mp3`). O relatório avisa se a voz leu diferente do roteiro ou falou rápido/lento demais.

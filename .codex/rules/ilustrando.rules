@@ -54,9 +54,9 @@ prefix_rule(
 
 # Node portátil: quando o Node não está instalado no computador, o instalador de um clique deixa um Node dentro
 # da pasta (.programas/) e o assistente roda os mesmos comandos através de ferramentas/rodar (Mac, Linux e Git Bash)
-# ou ferramentas\rodar.cmd (PowerShell). Liberados só os mesmos comandos de cima.
+# ou ferramentas\rodar.ps1 (PowerShell). Liberados só os mesmos comandos de cima.
 prefix_rule(
-    pattern = [["ferramentas/rodar", "ferramentas\\rodar.cmd", "ferramentas/rodar.cmd"], "npm", "run", ["estudio", "status", "doctor", "prova", "video", "previa", "carrossel", "identidade", "marca", "sincronizar", "galeria", "checar", "imagem", "linha", "modelos", "estilos", "objetivos", "verificar", "licenca", "ativar", "voz", "comece"]],
+    pattern = [["ferramentas/rodar", "ferramentas\\rodar.ps1", "ferramentas/rodar.ps1"], "npm", "run", ["estudio", "status", "doctor", "prova", "video", "previa", "carrossel", "identidade", "marca", "sincronizar", "galeria", "checar", "imagem", "linha", "modelos", "estilos", "objetivos", "verificar", "licenca", "ativar", "voz", "comece"]],
     decision = "allow",
     justification = "Scripts do estúdio Ilustrando com o Node portátil da pasta",
     match = [["ferramentas/rodar", "npm", "run", "doctor"]],
@@ -64,7 +64,7 @@ prefix_rule(
 )
 
 prefix_rule(
-    pattern = [["ferramentas/rodar", "ferramentas\\rodar.cmd", "ferramentas/rodar.cmd"], "node", ["src/video/cli.mjs", "src/carrossel.mjs", "src/identidade.mjs", "src/video/previa.mjs", "src/estudio/servidor.mjs", "scripts/marca.mjs", "scripts/buscar-imagem.mjs", "scripts/linha-editorial.mjs", "scripts/modelos.mjs", "scripts/estilos.mjs", "scripts/objetivos.mjs", "scripts/imagem-para-pontos.mjs", "scripts/folha-pontos.mjs", "scripts/respiros.mjs", "scripts/verificar.mjs", "scripts/resumir-relatorio.mjs", "ferramentas/instalador/instalar.mjs"]],
+    pattern = [["ferramentas/rodar", "ferramentas\\rodar.ps1", "ferramentas/rodar.ps1"], "node", ["src/video/cli.mjs", "src/carrossel.mjs", "src/identidade.mjs", "src/video/previa.mjs", "src/estudio/servidor.mjs", "scripts/marca.mjs", "scripts/buscar-imagem.mjs", "scripts/linha-editorial.mjs", "scripts/modelos.mjs", "scripts/estilos.mjs", "scripts/objetivos.mjs", "scripts/imagem-para-pontos.mjs", "scripts/folha-pontos.mjs", "scripts/respiros.mjs", "scripts/verificar.mjs", "scripts/resumir-relatorio.mjs", "ferramentas/instalador/instalar.mjs"]],
     decision = "allow",
     justification = "Motor do estúdio Ilustrando com o Node portátil da pasta",
     match = [["ferramentas/rodar", "node", "src/video/cli.mjs", "--doctor"]],
@@ -72,7 +72,7 @@ prefix_rule(
 )
 
 prefix_rule(
-    pattern = [["ferramentas/rodar", "ferramentas\\rodar.cmd", "ferramentas/rodar.cmd"], "npm", ["test", "ci"]],
+    pattern = [["ferramentas/rodar", "ferramentas\\rodar.ps1", "ferramentas/rodar.ps1"], "npm", ["test", "ci"]],
     decision = "allow",
     justification = "Testes e instalação exata do package-lock.json com o Node portátil da pasta",
 )
@@ -81,10 +81,10 @@ prefix_rule(
 # (baixa o Node portátil se faltar, o FFmpeg, as peças, o navegador e o alinhador, tudo dentro da pasta e com SHA-256
 # conferido). No Windows, o ExecutionPolicy Bypass vale só para esse processo do PowerShell.
 prefix_rule(
-    pattern = ["bash", "ferramentas/instalador/instalar.sh"],
+    pattern = ["bash", "ferramentas/instalador/bootstrap-unix"],
     decision = "allow",
     justification = "Instalador do estúdio Ilustrando (Mac e Linux), o mesmo dos dois cliques",
-    match = [["bash", "ferramentas/instalador/instalar.sh", "--assistente"]],
+    match = [["bash", "ferramentas/instalador/bootstrap-unix", "--assistente"]],
     not_match = [["bash", "outro.sh"]],
 )
 

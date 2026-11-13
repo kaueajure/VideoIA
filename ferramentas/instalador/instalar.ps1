@@ -1,5 +1,5 @@
 ﻿ 
- # Instalador do Estudio de videos para Windows. Quem chama: "Instalar (Windows).bat".
+ # Instalador do Estudio de videos para Windows. Quem chama: "Instalar (Windows).cmd".
 # 1) garante um Node (o portátil, baixado de nodejs.org com SHA-256 conferido, ou o do computador se for 20+);
 # 2) roda ferramentas\instalador\instalar.mjs, que instala o resto dentro da pasta (.programas\);
 # 3) abre o estúdio no navegador.
@@ -18,6 +18,7 @@ $studio = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $prog = Join-Path $studio '.programas'
 $nodeVersao = 'v22.23.3'
 if ($Assistente) { $NaoAbrir = $true }
+$env:ILU_SEM_MUDANCA = '1'
 
 # na janela dos dois cliques, espera o Enter para a pessoa ler; no assistente não há quem aperte Enter (travaria o comando)
 function Esperar-Enter {
@@ -195,7 +196,7 @@ function Node-Abre($p) {
 function Achar-Node {
   $p = Join-Path $prog 'node\node.exe'
   if (Test-Path -LiteralPath $p) {
-    if (Node-Abre $p) { return $p }
+    if ((Node-Abre $p) -and (Test-Path -LiteralPath (Join-Path (Split-Path -Parent $p) 'node_modules\npm\bin\npm-cli.js'))) { return $p }
     # Node do estúdio quebrado: apaga só a pasta dele (.programas\node) para baixar outro
     Registrar 'o Node do estúdio (.programas\node) não abre; apaguei a pasta para baixar de novo'
     Write-Host '  O Node do estúdio não abre neste computador (arquivo corrompido ou segurado pelo antivírus). Vou baixar outro.'
@@ -204,7 +205,7 @@ function Achar-Node {
   $c = Get-Command node.exe -ErrorAction SilentlyContinue
   if ($c) {
     try { $maior = [int](& $c.Source -p "process.versions.node.split('.')[0]") } catch { $maior = 0 }
-    if ($maior -ge 20 -and $maior -lt 24) { return $c.Source }  # 0.6.22: Node 24 ou mais cai no Windows (0xC0000409); usa o portátil 22
+    if ($maior -ge 20 -and $maior -lt 24 -and (Test-Path -LiteralPath (Join-Path (Split-Path -Parent $c.Source) 'node_modules\npm\bin\npm-cli.js'))) { return $c.Source }  # 0.6.22: Node 24 ou mais cai no Windows (0xC0000409); usa o portátil 22
   }
   return $null
 }
@@ -301,6 +302,7 @@ if (-not $node) {
 
 if ($env:HTTPS_PROXY -or $env:https_proxy) { $env:NODE_USE_ENV_PROXY = '1'; $env:NODE_NO_WARNINGS = '1' }
 $argsNode = @()
+if ($Assistente) { $argsNode += '--assistente' }
 if ($Simular) { $argsNode += '--simular' }
 if ($Resto) { $argsNode += $Resto }
 & $node (Join-Path $studio 'ferramentas\instalador\instalar.mjs') @argsNode
@@ -310,7 +312,7 @@ if ($codigo -ne 0) { Esperar-Enter; exit 10 }
 if ($Simular -or $NaoAbrir) { exit 0 }
 
 Write-Host '  Abrindo o estúdio no navegador. Deixe esta janela aberta enquanto usa o estúdio.'
-Write-Host '  Da próxima vez, use "Abrir Estúdio" (na área de trabalho ou na pasta do estúdio).'
+Write-Host '  Da próxima vez, use "Iniciar" (na pasta do estúdio).'
 Write-Host ''
 # 0.6.26 (telemetria de 02/11: o estúdio caía com 0xC0000409 logo depois do "Instalar" em pasta do OneDrive ou de Downloads): quem abre
 # o estúdio é o abrir.ps1, que primeiro muda a pasta para C:\ilustrando quando ela fica num lugar que o Windows trava. Antes o

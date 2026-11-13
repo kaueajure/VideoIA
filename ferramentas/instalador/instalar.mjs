@@ -4,9 +4,9 @@
  */
 /**
  * Instalador de um clique do Estudio de videos (a parte que roda com Node). Quem chama é o
- * "Instalar (Mac).command" ou o "Instalar (Windows).bat", depois de garantir um Node (o do computador, se for 20
+ * "Instalar (Mac).command" ou o "Instalar (Windows).cmd", depois de garantir um Node (o do computador, se for 20
  * ou mais, ou um Node portátil baixado para .programas/node). Tudo fica dentro da pasta do estúdio, em
- * .programas/: nada é instalado no sistema, nada pede senha de administrador.
+ * .programas/. Dependências do sistema podem solicitar senha de administrador.
  *
  *   node ferramentas/instalador/instalar.mjs              instala o que falta (FFmpeg, peças, navegador, alinhador)
  *   node ferramentas/instalador/instalar.mjs --simular    só mostra o que faria (baixa e grava nada)
@@ -16,6 +16,8 @@
  * Mensagens em português simples; a barra de progresso é texto puro (funciona em qualquer janela).
  */
 import fs from 'node:fs';
+import { prepararGit, bibliotecasChromium, prepararRuntimeWindows } from './sistema.mjs';
+import { criarIniciador } from './iniciar.mjs';
 import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -171,7 +173,7 @@ export function rodar(cmd, argv, { cwd = STUDIO, env = {}, envBase = process.env
 export function npmCli(execPath = process.execPath, win = WIN) {
   const cands = win
     ? [path.join(path.dirname(execPath), 'node_modules', 'npm', 'bin', 'npm-cli.js')]
-    : [path.join(path.dirname(execPath), '..', 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js'), path.join(path.dirname(fs.realpathSync(execPath)), '..', 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js')];
+    : [path.join(path.dirname(execPath), '..', 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js'), path.join(path.dirname(fs.realpathSync(execPath)), '..', 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js'), '/usr/share/nodejs/npm/bin/npm-cli.js', '/usr/lib/node_modules/npm/bin/npm-cli.js'];
   return cands.find(existe) || null;
 }
 /**
@@ -380,6 +382,8 @@ passo('computador', 'Conferindo o computador', async () => {
   }
 });
 
+passo('git', 'Git e dependências do sistema', async () => { prepararGit({ simular: SIMULAR, log: escrever }); prepararRuntimeWindows({ simular: SIMULAR, log: escrever }); });
+
 passo('ffmpeg', 'FFmpeg, o programa que junta imagem e som', async () => {
   const dir = path.join(PROG, 'ffmpeg');
   const exe = (n) => path.join(dir, n + (WIN ? '.exe' : ''));
@@ -551,6 +555,7 @@ passo('navegador', 'Navegador interno (Chromium), que desenha os quadros do víd
   }
   const temPw = existe(path.join(STUDIO, 'node_modules', 'playwright'));
   const antes = temPw ? await navegadorAbre() : { ok: false };
+  if (SIMULAR && process.platform === 'linux') bibliotecasChromium('', { simular: true, log: escrever });
   if (SIMULAR) return escrever(antes.ok && !antes.escolhido.reserva ? '   o navegador já abre: nada a fazer' : `   rodaria: playwright install chromium (cerca de 210 MB, até 3 tentativas)${antes.ok ? `; enquanto isso, a reserva é o ${antes.escolhido.nome} do computador` : ''}`);
   if (!tem('forcar') && antes.ok && antes.webgl && !antes.escolhido.reserva) return ok('o navegador já abre, com 3D');
   // download com até 3 tentativas e progresso (a barra aparece também no estúdio web)
@@ -571,6 +576,10 @@ passo('navegador', 'Navegador interno (Chromium), que desenha os quadros do víd
     if (!baixou && i < 3) await esperar(+(process.env.ILU_PAUSA_NAVEGADOR_MS ?? 5000) * i);
   }
   estado.navegadorPasta = process.env.PLAYWRIGHT_BROWSERS_PATH || pastaPadraoNavegadores();
+  if (baixou && process.platform === 'linux') {
+    const { chromium } = await import(pathToFileURL(path.join(STUDIO, 'node_modules/playwright/index.mjs')).href);
+    bibliotecasChromium(chromium.executablePath(), { log: escrever });
+  }
   const depois = await navegadorAbre();
   if (depois.ok && depois.webgl && !depois.escolhido.reserva) return ok('navegador instalado e abrindo com 3D');
   if (depois.ok && depois.webgl) {
@@ -602,55 +611,23 @@ passo('alinhador', 'Alinhador de voz (legenda no tempo exato da fala, sem Python
   const r = await npmComTentativas(['ci', '--omit=dev', '--no-audit', '--no-fund', '--loglevel=http', '--no-progress'], { cwd: dir, env: { ONNXRUNTIME_NODE_INSTALL: 'skip' }, total: pecasDoLock(lockAl).length, limpar: [path.join(dir, 'node_modules')] });
   if (!r.ok) {
     const c = causaPecas(r.linhas, { travou: r.travou, prefixo: 'alinhador', oque: 'as peças do alinhador de voz' });
-    estado.avisos.push(`O alinhador de voz não instalou (${c.causa.replace(/\.$/, '')}). O estúdio funciona sem ele: a legenda usa o tempo estimado pelas pausas da fala. ${c.oQueFazer}`);
-    await avisoAnonimo('instalador-alinhador', c.codigo, r.linhas);
-    return aviso(`não consegui instalar o alinhador agora (${c.causa.replace(/\.$/, '')}); o estúdio funciona sem ele.`);
+    throw new Falha(c.causa, c.oQueFazer, c.codigo);
   }
   const b = await rodar(process.execPath, [path.join(STUDIO, 'ferramentas', 'alinhar-voz.mjs'), '--baixar'], { silencioso: false, parado: msEnv('ILU_NPM_PARADO_MS', 120000) * 1.5, limite: 1800000, filtro: (l) => { const m = /^PROGRESSO (\d+) (\d+) (\d+)/.exec(l); if (m) { barra(+m[1] / 100, `baixando o modelo de voz (${m[2]} de ${m[3]} MB)`); return null; } return /PRONTO/.test(l) ? null : l; } });
-  if (b.codigo !== 0) { estado.avisos.push('O modelo do alinhador de voz não baixou. Dê dois cliques em Instalar de novo para tentar outra vez.'); return aviso('o modelo do alinhador não baixou agora; o estúdio funciona sem ele.'); }
+  if (b.codigo !== 0 || !pronto()) throw new Falha('O alinhador de voz ou seu modelo não ficou pronto.', 'Confira a conexão e execute Instalar novamente para completar a instalação.');
   estado.alinhador = true;
   ok('alinhador de voz instalado');
 });
 
-passo('atalho', 'Atalho "Abrir Estúdio"', async () => {
-  if (tem('sem-atalho') || SO) return escrever('   pulado.');
-  if (SIMULAR) return escrever(`   criaria o atalho na Mesa (área de trabalho)${MAC ? ' e liberaria a pasta do aviso de segurança do macOS (xattr)' : ''}`);
-  if (process.platform === 'linux') return escrever('   no Linux, use "Abrir Estúdio (Mac).command" de dentro da pasta (ou npm run estudio -- --abrir).');
-  const r = criarAtalho();
-  if (r) ok(r); else aviso('não consegui criar o atalho na Mesa; use "Abrir Estúdio" dentro da pasta do estúdio.');
+passo('ia', 'Assistentes pessoais (instalação pelo usuário)', async () => {
+  if (SIMULAR) return escrever('   preservaria a configuração de IA existente. Claude Code, Codex e Cursor são instalados pelo usuário.');
+  // O instalador não instala, troca nem autentica assistentes pessoais.
+  ok('Configuração de IA preservada. Instale seu assistente e conecte-o nas Configurações do estúdio.');
 });
 
-/** Cria o atalho na área de trabalho. Devolve a frase do que fez, ou null. */
-export function criarAtalho({ studio = STUDIO, casa = os.homedir(), plataforma: p = process.platform } = {}) {
-  try {
-    if (p === 'darwin') {
-      // tira a marca de "baixado da internet" da pasta toda, para "Abrir Estúdio" abrir com dois cliques sem aviso
-      spawnSync('xattr', ['-dr', 'com.apple.quarantine', studio], { stdio: 'ignore' });
-      const mesa = path.join(casa, 'Desktop');
-      if (!existe(mesa)) return null;
-      const alvo = path.join(studio, 'Abrir Estúdio (Mac).command');
-      const atalho = path.join(mesa, 'Abrir Estudio de videos.command');
-      fs.writeFileSync(atalho, `#!/bin/bash\n# Atalho criado pelo instalador do Estudio de videos. Abre o estúdio que está em:\n# ${studio}\nexec "${alvo.replace(/(["$`\\])/g, '\\$1')}"\n`, { mode: 0o755 });
-      fs.chmodSync(atalho, 0o755);
-      return 'atalho "Abrir Estudio de videos" criado na Mesa';
-    }
-    if (p === 'win32') {
-      const alvo = path.join(studio, 'Abrir Estúdio (Windows).bat');
-      const ps = [
-        '$ErrorActionPreference = "Stop"',
-        '$mesa = [Environment]::GetFolderPath("Desktop")',
-        '$s = (New-Object -ComObject WScript.Shell).CreateShortcut((Join-Path $mesa "Abrir Estudio de videos.lnk"))',
-        `$s.TargetPath = '${alvo.replace(/'/g, "''")}'`,
-        `$s.WorkingDirectory = '${studio.replace(/'/g, "''")}'`,
-        '$s.IconLocation = "$env:SystemRoot\\System32\\imageres.dll,186"',
-        '$s.Description = "Abre o Estudio de videos no navegador"',
-        '$s.Save()',
-      ].join('; ');
-      const r = spawnSync('powershell.exe', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', ps], { encoding: 'utf8', windowsHide: true });
-      return r.status === 0 ? 'atalho "Abrir Estudio de videos" criado na área de trabalho' : null;
-    }
-    return null; // Linux: use o "Abrir Estúdio" de dentro da pasta
-  } catch { return null; }
+/** Compatibilidade para consumidores antigos; gera somente o iniciador da pasta. */
+export function criarAtalho({ studio = STUDIO, plataforma = process.platform } = {}) {
+  return criarIniciador({ studio, plataforma });
 }
 
 passo('conferencia', 'Conferência final', async () => {
@@ -737,6 +714,7 @@ export async function instalar() {
     if (SO) for (const k of ['ffmpeg', 'alinhador']) if (info[k] == null || info[k] === false) info[k] = antes[k] ?? info[k];
     fs.writeFileSync(path.join(PROG, 'instalado.json'), JSON.stringify({ ...antes, ...info }, null, 1));
   }
+  if (!SIMULAR && !SO) ok(`Arquivo gerado: ${criarIniciador({ studio: STUDIO })}`);
   const min = Math.max(1, Math.round((Date.now() - ini) / 60000));
   escrever(SIMULAR ? '  Simulação concluída.' : `  Pronto! Tudo instalado em ${min} minuto(s).`);
   for (const a of estado.avisos) escrever(`  Atenção: ${a}`);
@@ -771,5 +749,9 @@ export function relancarSeNodeNaoServe({ versao = process.versions.node, platafo
 const real = (f) => { try { return fs.realpathSync(f); } catch { return path.resolve(f); } };
 if (process.argv[1] && real(process.argv[1]) === real(fileURLToPath(import.meta.url))) {
   const relancado = relancarSeNodeNaoServe();
-  process.exitCode = relancado !== null ? relancado : await instalar();
+  if (relancado !== null) process.exitCode = relancado;
+  else instalar().then(codigo => { process.exitCode = codigo; }).catch(erro => {
+    console.error('Não foi possível concluir a instalação:', erro.message);
+    process.exitCode = 1;
+  });
 }

@@ -8,7 +8,7 @@ import { MARCA_PESQUISA_VISUAL } from "../../video/direcao-visual.mjs";import{tr
 function exigirDirecao(raiz, nome) {
   let pedido = '';
   try { pedido = c.readFileSync(i.join(raiz, 'projetos', nome, 'PEDIDO-DO-ESTUDIO.md'), 'utf8'); } catch {}
-  if (!pedido.includes('<!-- direcao-agente:v1 -->')) return [];
+  if (!pedido.includes('<!-- direcao-agente:v1 -->') && !pedido.includes('<!-- direcao-criativa:v2 -->')) return [];
   return [{
     rotulo: 'conferindo a direção do agente',
     args: [i.join(raiz, 'scripts', 'storyboard-lint.mjs'), nome, '--estrito'],

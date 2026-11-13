@@ -302,7 +302,7 @@ Comece pelos primeiros passos.
 
 | No dia a dia com o Codex | O que fazer |
 |---|---|
-| Pedido de aprovação de `node src/`, `npm run`, `ferramentas/rodar` ou `ferramentas\rodar.cmd` | Pode aprovar: são os comandos do estúdio. |
+| Pedido de aprovação de `node src/`, `npm run`, `ferramentas/rodar` ou `ferramentas\rodar.ps1` | Pode aprovar: são os comandos do estúdio. |
 | A narração falha por falta de internet | Aprove o comando quando ele pedir. Não troque para Full access. |
 | Mudou uma skill ou o `AGENTS.md` | Feche e abra o Codex. |
 | Quer ver quanto do limite usou | Escreva `/status`. |
@@ -482,9 +482,9 @@ Você não precisa de nenhum. É o que o assistente roda.
 | `npm run video -- <projeto>` | vídeo completo (`--rapido` prévia; `--refazer-voz` nova narração; `--foto=12.5` um quadro) |
 | `npm run carrossel -- <nome>` | gera os PNGs do carrossel |
 | `npm run identidade` | avatar, banners e capas da marca |
-| `bash ferramentas/instalador/instalar.sh --assistente` | o Instalar, sem janela (Windows: `powershell.exe -NoProfile -ExecutionPolicy Bypass -File ferramentas/instalador/instalar.ps1 -Assistente`) |
+| `bash ferramentas/instalador/bootstrap-unix --assistente` | o Instalar, sem janela (Windows: `powershell.exe -NoProfile -ExecutionPolicy Bypass -File ferramentas/instalador/instalar.ps1 -Assistente`) |
 
-Sem Node no computador, ponha `ferramentas/rodar` (Mac) ou `ferramentas\rodar.cmd` (Windows) na frente.
+Sem Node no computador, ponha `ferramentas/rodar` (Mac) ou `ferramentas\rodar.ps1` (Windows) na frente.
 
 # Atualizações {versões novas sem perder nada}
 

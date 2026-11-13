@@ -11,7 +11,7 @@ Leia este arquivo quando a pessoa abriu a pasta direto no Claude Code ou no Code
 4. **Avise antes de cada pedido de aprovação** do aplicativo. Exemplo: "Vou conferir o seu computador. Vai aparecer um pedido de aprovação: pode aprovar."
 5. **Sem jargão e sem travessão longo com espaços.** Explique a palavra técnica na mesma frase.
 6. **Falhou duas vezes, pare.** No máximo 2 tentativas por problema, só pela lista segura da skill (seção "Quando o estúdio devolver um erro"). Depois: diga em uma frase o que tentou e mande para o direct (https://ig.me/m/kaueajure).
-7. **Windows:** ponha `ferramentas\rodar.cmd` na frente dos comandos quando o Node não estiver no caminho do terminal (PowerShell). No Git Bash e no Mac use `ferramentas/rodar`. Os exemplos abaixo usam `npm run ...`.
+7. **Windows:** ponha `ferramentas\rodar.ps1` na frente dos comandos quando o Node não estiver no caminho do terminal (PowerShell). No Git Bash e no Mac use `ferramentas/rodar`. Os exemplos abaixo usam `npm run ...`.
 8. **Nunca abra, controle nem tire print do navegador** (nem para "mostrar o roteiro no estúdio"): o estúdio web se atualiza sozinho. Para saber o estado, rode `npm run comece -- --situacao --json`; ele diz a pasta exata do estúdio em uso (`pasta`): confira que é a mesma pasta aberta no aplicativo. Se `mesmaPastaDoTerminal` for `false`, avise a pessoa e peça para abrir no aplicativo a pasta certa.
 9. **Gaste pouco do limite do plano:** saída curta, instalador em segundo plano, use `npm run comece -- --situacao` (uma tela) em vez de vários comandos.
 

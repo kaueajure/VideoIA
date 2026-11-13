@@ -11,7 +11,7 @@ export function planejarPesquisa(registro) {
   if (registro?.versao !== 1 || !Array.isArray(registro.afirmacoes) || !Array.isArray(registro.fontes)) throw new Error('Prepare fontes.json antes de pesquisar.');
   return { versao:1, assinatura:hashPesquisa(registro), tarefas:registro.afirmacoes.map(a=>({
     id:a.id, texto:a.texto, estado:a.estado,
-    buscas:[`${a.texto} fonte primária evidência`,`${a.texto} limitações controvérsia refutação`],
+    buscas:[a.texto,`${a.texto} limitações controvérsia refutação`,`${a.texto} fonte original evidência`,`${a.texto} reportagem contexto data`,`${a.texto} análise especializada histórico`],
     fontes:[...new Set((a.evidencias || []).map(e=>e.fonte))],
     verificar:['Equivalência da frase e contexto, inclusive ressalvas.','Data e validade do fato.','Independência editorial dos publicadores.','Evidências contrárias e resultados parciais.'],
   })) };
@@ -22,7 +22,6 @@ export async function coletarPesquisa(pasta,{baixar=baixarPagina,agora=()=>new D
     const registro=carregar(pasta,'fontes.json'),plano=planejarPesquisa(registro);
     const ids=new Set(plano.tarefas.flatMap(t=>t.fontes));
     const fontes=registro.fontes.filter(f=>ids.has(f.id));
-    if (fontes.length>12) throw new Error('Colete até 12 fontes por rodada; divida a pesquisa em projetos menores.');
     const pastaSaida=arquivoProjeto(pasta,'saida');fs.mkdirSync(pastaSaida,{recursive:true});
     const anterior=carregar(pasta,'saida/pesquisa-fontes.json');
     const coletadas=[];

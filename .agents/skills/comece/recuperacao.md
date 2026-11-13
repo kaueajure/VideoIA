@@ -11,7 +11,7 @@ Se a tentativa atual não gerou relatório, comece pela saída do comando atual 
 
 **2. Lista segura: só estas correções.**
 1. Repetir o passo. O estúdio reaproveita narração, trilha e quadros já feitos, sem gastar crédito.
-2. Reinstalar um componente do kit com o comando oficial: `bash ferramentas/instalador/instalar.sh --assistente` (Mac e Linux) ou o do Windows no Passo 0. Ele também troca um FFmpeg problemático pelo do kit.
+2. Reinstalar um componente do kit com o comando oficial: `bash ferramentas/instalador/bootstrap-unix --assistente` (Mac e Linux) ou o do Windows no Passo 0. Ele também troca um FFmpeg problemático pelo do kit.
 3. Trocar uma configuração do estúdio pelo estúdio web ou pelos comandos oficiais. Ex.: `"encoder": "x264"` no `ilustrando.config.json`; a voz em Começar > Voz.
 4. Erro de caminho: usar uma pasta curta. Mover a pasta do estúdio para a pasta pessoal, com nome curto, fora de Downloads e do OneDrive.
 5. Rodar `npm run verificar` e `npm run doctor`.
