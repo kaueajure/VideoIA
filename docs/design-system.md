@@ -42,7 +42,7 @@ Entrada com curva exponencial (`cubic-bezier(.16,1,.3,1)`), sem quicar. Duraçõ
 `src/video/estado-publicacao.mjs` é a decisão compartilhada entre a lista de vídeos e os detalhes do projeto. “Gerado” significa que existe um arquivo; `aprovado` indica aprovação técnica. Só `publicavel`, revalidado com as fontes atuais, a voz real, o roteiro e as pendências, recebe o rótulo **Pronto para publicar** e o tom de sucesso. Um arquivo existente sem essa liberação aparece **Com pendências**, com o motivo e o próximo passo. Uma prévia rápida não recebe liberação de publicação. Os estilos de etiquetas existentes em `src/estudio/pagina.html` continuam responsáveis pela aparência; este contrato não altera os tokens da marca.
 
 ## Vídeo e carrossel
-- **Topo do vídeo:** o handle da página (`marca/tokens.json`). **Rodapé do carrossel:** o handle; no último slide, mais a frase da página.
+- **Topo do vídeo:** identificação opcional; `exibirMarca: false` em `ilustrando.config.json` oculta o @ e a identificação da página nos vídeos. A marca neutra também é omitida. `marca/tokens.json` continua sendo a fonte dos tokens visuais. A preferência não apaga identidade nem altera arquivos já renderizados. **Rodapé do carrossel:** o handle; no último slide, mais a frase da página.
 - **Capa do vídeo:** gancho em letras grandes dentro do recorte 3:4 do grid (`capa-grid.jpg`).
 - Zonas seguras do vídeo em `src/video/engine/zona.js` (o QA mede em pixels).
 - **Carrossel viral** (`docs/carrossel-templates.md`): 29 tipos de slide (post, fio, jornal, plantão, conversa, nota, gráfico, quiz, revista, colagem e outros) que leem a marca daqui. Três visuais (`escuro`, `claro`, `papel`); em fundo claro o destaque usado como texto escurece até 3:1. Fontes extras dos tipos virais: Instrument Serif (jornal, revista, citação, versículo), JetBrains Mono (código) e Euphoria Script (nota à mão da colagem). Letra mínima de 26 px na área do conteúdo; nada a menos de 56 px das laterais.
@@ -54,3 +54,9 @@ Entrada com curva exponencial (`cubic-bezier(.16,1,.3,1)`), sem quicar. Duraçõ
 ## Enquadramento dos protagonistas
 
 Nos estilos base verticais, uma foto isolada cresce proporcionalmente até 600 px de altura, com largura máxima de 800 px; grupos e versões horizontais preservam o encaixe próprio. Um contador isolado recebe um painel real acima da legenda, medido pelo QA além dos algarismos. Implementação compartilhada: `src/video/engine/enquadramento-base.js`. Nos estilos smooth verticais, as composições e a fala fixa são definidas em `estilo-smooth-enquadramento.js` e `estilo-smooth-kit.js`; o render usa esses mesmos módulos. O limitador em `camera-ritmo.js` controla a trajetória resultante, mantendo as transições intencionais.
+
+## Marca opcional nos vídeos
+
+Em Configurações > Sua marca (opcional), o controle nativo “Exibir minha marca nos vídeos” salva `exibirMarca` sem exigir nome, @ ou logo para desligar. A etapa não bloqueia o progresso. O desligamento não apaga `marca/tokens.json`, as cores nem os arquivos da identidade. Para ligar, deve existir nome/@ configurado; aplicar uma nova identidade liga a exibição após o sucesso. Prévia e produção leem a mesma preferência atual, inclusive para cenas antigas. O modo sem marca oculta a identificação e torna genérico o @ nos títulos de CTA, sem alterar a fala nem remover logos de terceiros que fazem parte do assunto. Carrosséis continuam com o comportamento existente.
+
+Implementação: `src/marca-opcional.mjs` persiste a preferência; `src/video/preparar-spec.mjs` aplica-a à preparação compartilhada; `src/video/engine/marca-opcional.js` é a política comum de identificação do renderizador. Os controles reutilizam `.campo`, `.dica` e os estados de erro da tela, sem novos tokens.

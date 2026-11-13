@@ -1,3 +1,6 @@
+import path from 'node:path';
+import { estadoMarca } from '../marca-opcional.mjs';
+import { aplicarMarcaOpcional } from './engine/marca-opcional.js';
 import { compilar } from './plano.mjs';
 import { variedadeEntradas } from './variedade-entradas.mjs';
 import { embutirImagens } from './imagens-projeto.mjs';
@@ -76,5 +79,10 @@ export function prepararSpec(cena, falado, {
   embutirModelos(spec, pasta);
   const marcas = embutirMarcas(spec);
   if (registrarUsoMarcas) registrarMarcas(marcas, pasta);
-  return spec;
+  // A preferência atual também vale para prévias preparadas antes de ela mudar.
+  if (pasta && !estadoMarca(path.resolve(pasta, '..', '..')).exibir) {
+    spec.semMarca = true;
+    spec.handle = false;
+  }
+  return aplicarMarcaOpcional(spec);
 }

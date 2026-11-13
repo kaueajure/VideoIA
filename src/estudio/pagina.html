@@ -804,7 +804,7 @@ img,video{max-width:100%}
     <div class="cartao" style="margin-top:16px"><h2>Pedidos prontos para copiar</h2><div class="pedidos" id="carPedidos"></div></div>
     <div class="dois">
       <div class="cartao"><h2>Trocar o estilo</h2><p class="dica" style="font-size:14px;color:var(--suave)">Cada carrossel tem uma cara só: post de rede social, jornal, conversa, lista, tabela, revista e outras. Para escolher, diga o estilo no pedido, por exemplo <b>no estilo [nome do estilo]</b>. Para mudar um que já existe, peça: <b>Refaça o carrossel [nome] no estilo [nome do estilo]</b>.</p><div class="acoes"><button class="btn sec" id="carVerEstilos">Ver os estilos de carrossel</button></div></div>
-      <div class="cartao"><h2>Sua marca e o @</h2><p class="dica" style="font-size:14px;color:var(--suave)">O nome, o @ e a cor vêm da sua marca e aparecem no rodapé de todo slide. Mudou a marca? Peça: <b>Gere de novo o carrossel [nome]</b>.</p><div class="acoes"><button class="btn sec" id="carMarca">Ajustar a marca</button></div></div>
+      <div class="cartao"><h2>Sua marca e o @</h2><p class="dica" style="font-size:14px;color:var(--suave)">O nome, o @ e a cor vêm da sua marca e aparecem no rodapé dos slides. Nos vídeos, a identificação é opcional. Mudou a marca? Peça: <b>Gere de novo o carrossel [nome]</b>.</p><div class="acoes"><button class="btn sec" id="carMarca">Ajustar a marca</button></div></div>
     </div>
     <h2 style="margin-top:34px">Meus carrosséis</h2>
     <p class="sub">Para postar, baixe as imagens e suba na ordem (01, 02, 03...). Cada carrossel fica numa pasta com os slides em PNG. A legenda do post você pede ao assistente (Claude Code ou Codex): <b>Escreva a legenda do carrossel [nome]</b>.</p>
@@ -1095,7 +1095,7 @@ function alertaTopo(e) {
 const PASSOS = [
   { id: 'instalacao', t: 'Instalação', s: 'o computador está pronto?' },
   { id: 'voz', t: 'Voz e trilha', s: 'quem narra e a música de fundo' },
-  { id: 'marca', t: 'Sua marca', s: 'nome, @ e cor' },
+  { id: 'marca', t: 'Sua marca (opcional)', s: 'vídeos com ou sem identificação' },
   { id: 'objetivo', t: 'Objetivo', s: 'roteiro, tom e linha editorial' },
   { id: 'estilo', t: 'Estilo', s: 'a aparência dos vídeos' },
   { id: 'ia', t: 'Configurar IA', s: 'quem escreve roteiro e vídeo' },
@@ -1238,8 +1238,11 @@ const RENDER = {
     const P = $('#painelPasso'), m = conf.marca;
     const presets = await api('/api/presets');
     const cores = [...new Set(Object.values(presets).map((p) => p.cor))];
-    let cor = m.destaque || '#FF7A2F';
-    P.innerHTML = `<h2>A marca da sua página</h2><p class="sub">O nome e o @ aparecem no topo de todo vídeo e no rodapé de todo carrossel. O estúdio também gera a foto de perfil e os banners das redes.</p>
+    let cor = m.destaque || '#FF7A2F', mostrarMarca = m.exibir !== false;
+    P.innerHTML = `<h2>Marca nos vídeos (opcional)</h2><p class="sub">Você pode produzir e publicar vídeos sem nome, @ ou logo da página. Se quiser uma identidade, configure-a abaixo.</p>
+      <label class="campo"><span><input type="checkbox" id="mExibir" ${mostrarMarca ? 'checked' : ''}> Exibir minha marca nos vídeos</span></label>
+      <p class="dica">A escolha vale para as próximas renderizações. Sua marca fica salva para você usar quando quiser.</p>
+      <div id="resExibicao" role="status" aria-live="polite"></div>
       <div class="grade-marca"><div>
         <h3 style="margin-top:18px">Não tem nome ainda? Comece por uma ideia do seu nicho</h3>
         <div class="nichos">${Object.entries(presets).map(([id, p]) => `<button data-n="${esc(id)}">${esc(p.nicho)}</button>`).join('')}</div>
@@ -1256,9 +1259,30 @@ const RENDER = {
     ligarRodape();
     const prev = () => {
       const nome = $('#mNome').value.trim() || 'Sua Página', h = ($('#mHandle').value.trim() || '@suapagina').replace(/^@*/, '@').toLowerCase();
+      $('#cel .topo').style.display = mostrarMarca ? '' : 'none'; $('#mAv').style.display = mostrarMarca ? '' : 'none';
       $('#celH').textContent = h; $('#celAv').style.background = cor; $('#celEm').style.background = cor; $('#celEm').style.color = '#111';
       $('#cel').style.setProperty('--cel', cor);
       const a = $('#mAv'); a.style.background = cor; a.style.color = '#111'; a.textContent = (nome.normalize('NFD').replace(/[^A-Za-z0-9]/g, '')[0] || 'A').toUpperCase();
+    };
+    $('#mExibir').onchange = async (evento) => {
+      const controle = evento.target, anterior = mostrarMarca;
+      controle.disabled = true;
+      $('#resExibicao').textContent = 'Salvando…';
+      try {
+        const salvo = await post('/api/marca/exibicao', { exibir: controle.checked });
+        if (!salvo.ok || salvo.erro) throw salvo;
+        mostrarMarca = salvo.exibir;
+        conf = await api('/api/configuracao');
+        $q('#resExibicao').textContent = mostrarMarca ? 'Os próximos vídeos terão a identificação da página.' : 'Os próximos vídeos sairão sem identificação da página.';
+        desenhaPassos();
+      } catch (erro) {
+        mostrarMarca = anterior;
+        $q('#resExibicao').innerHTML = caixaErro(erro.erro || { causa: erro.message, acao: 'Tente salvar novamente. Você pode continuar sem configurar uma marca.' }, { leve: true });
+      } finally {
+        controle.checked = mostrarMarca;
+        controle.disabled = false;
+        if ($('#mExibir') === controle) prev();
+      }
     };
     const imgs = (pasta) => { $q('#imgsMarca').innerHTML = `<h3 style="margin-top:22px">${pasta === 'teste' ? 'Prévia (ainda não aplicada)' : 'Arquivos da sua marca'}</h3><div class="imgs-marca">${['avatar', 'banner-youtube', 'banner-facebook', 'destaque-instagram'].map((f) => `<img alt="${f}" src="/marca-img/${pasta}/${f}.png?t=${Date.now()}" onerror="this.remove()">`).join('')}</div>${pasta === 'saida' ? '<div class="acoes"><button class="btn sec pequeno" id="abrirMarca">Abrir a pasta com as imagens</button></div>' : ''}`; const b = $('#abrirMarca'); if (b) b.onclick = () => post('/api/mostrar', { pasta: 'marca' }); };
     $$('#mCores button').forEach((b) => (b.onclick = () => { cor = b.dataset.c; $('#mCor').value = cor; $$('#mCores button').forEach((x) => x.setAttribute('aria-pressed', x === b)); prev(); }));
@@ -1269,8 +1293,19 @@ const RENDER = {
       const corpo = { nome: $('#mNome').value.trim(), handle: $('#mHandle').value.trim(), cor, testar };
       if (!corpo.nome || !corpo.handle) { $q('#resMarca').innerHTML = caixaErro({ causa: 'Escreva o nome e o @ da página.', acao: 'Sem ideia? Clique num nicho acima para ver um exemplo.' }, { leve: true }); return; }
       $q('#resMarca').innerHTML = '<p class="dica" style="margin-top:12px">Gerando as imagens (uns 20 segundos)…</p>';
-      iniciarTarefa('/api/marca', corpo, (j) => {
+      iniciarTarefa('/api/marca', corpo, async (j) => {
         if (j.codigo !== 0) { $q('#resMarca').innerHTML = caixaErro(j.erro); return; }
+        if (!testar) {
+          try {
+            const salvo = await post('/api/marca/exibicao', { exibir: true });
+            if (!salvo.ok || salvo.erro) throw salvo;
+            conf = await api('/api/configuracao');
+            mostrarMarca = true; if ($('#mExibir')) { $('#mExibir').checked = true; prev(); }
+          } catch (erro) {
+            $('#resMarca').innerHTML = caixaErro(erro.erro || { causa: erro.message, acao: 'A marca foi salva. Tente ligar a exibição novamente.' });
+            return;
+          }
+        }
         const avisos = (j.linhas || []).filter((l) => /^\s+- /.test(l)).map((l) => l.trim().slice(2));
         $q('#resMarca').innerHTML = (testar ? '<div class="caixa-ok">Prévia pronta. Gostou? Clique em "Aplicar na minha página".</div>' : '<div class="caixa-ok">Marca aplicada. Os próximos vídeos e carrosséis já saem com ela.</div>') + (avisos.length ? `<div class="caixa-erro"><b>Atenção</b>${avisos.map(esc).join('<br>')}</div>` : '');
         imgs(testar ? 'teste' : 'saida'); desenhaPassos();
