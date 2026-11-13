@@ -1,6 +1,6 @@
 ---
 name: social-content
-description: Planeja formatos, reaproveitamento e calendário de conteúdo para a página do Metodo-Video com o método Social Content de Corey Haines. Use quando o pedido envolver planejamento além de um post.
+description: Planeja formatos e calendário social no Metodo-Video. Use em planejamento.
 ---
 
 # Social Content de Corey Haines no Metodo-Video

@@ -78,6 +78,116 @@
         "references/short-form-video.md": "04b567900eaac90833f3abf370a3e1c4d650f83a0672108e07a7f01bde3a64ad",
         "references/x-algorithm.md": "943b2c5a819aad53ebf62a1652adc47956d6fdf738e18cd98eeb609819a66180"
       }
+    },
+    {
+      "skill": "viral-hooks",
+      "repo": "vyralcontent/content-skills",
+      "commit": "349e495d97029a3e6303a7510e3f39c73f36d8fe",
+      "path": "skills/viral-hooks",
+      "local": "content-skills/viral-hooks",
+      "license": "MIT",
+      "arquivos": {
+        "assets/hook-batch-template.md": "0282a4e709486d011633ec47a34f0e53d1ae968d9172194415e065767461a378",
+        "assets/hook-checklist.md": "884daf3f5de7188e615d9bc9d22888b7ffca9d376abfd9413e4b598c23004869",
+        "assets/three-layer-worksheet.md": "5841c71ee3bdb26c420717900b64da2dc70c46cdd238dffde7542ccad42967e4",
+        "references/hook-anti-patterns.md": "4cc90d9839d76e0d566f3b655be274d5d866d63176dc426d4d9a21c1a62c2cf3",
+        "references/hook-archetypes.md": "418de890371d57e0e1aca5dfa47f30357d35e932c34896849a00bbb0ba875ff2",
+        "references/hook-by-platform.md": "2e4e72c1bfee8d616ed30228fced8bc92a2b1475c3d92063d8d7a16c8298c54f",
+        "references/hook-tactics.md": "89ec65f47ea8cf47b70ef79c4b87e352091f4d4d434d9e4be1d9f6f68bb999e0",
+        "references/three-layer-hook.md": "726b6025520f36c4b42250f71dfadd7c97e2b4253c0c8703e52898c5ed0d3017",
+        "SKILL.md": "4a9548a9c90623d424dc7ea0e1a5d62519eef610c59283575d7929c394b9ebb9"
+      }
+    },
+    {
+      "skill": "viral-short-form-ideas",
+      "repo": "vyralcontent/content-skills",
+      "commit": "349e495d97029a3e6303a7510e3f39c73f36d8fe",
+      "path": "skills/viral-short-form-ideas",
+      "local": "content-skills/viral-short-form-ideas",
+      "license": "MIT",
+      "arquivos": {
+        "assets/content-matrix.md": "994afbf11d16cb293f20a033c30bf939322540d6eacb156ea28642d8c9f61ffd",
+        "assets/idea-tracker.md": "1da050e491b89762fd7042c77d2a7776c023a2dbb0236de6e33f93009440fdb4",
+        "assets/mining-checklist.md": "4653753bc89cab6f1a03b064ac9ecd115c5d092cfc5d4352b7fae049e59329a7",
+        "assets/pillar-worksheet.md": "0da86ae98f0e1b35869b5bdc2c21b4e6a6fff8a29f58c7f7766890ad102a78d1",
+        "assets/repurposing-plan.md": "f0f8dd6140466613adab6d7edf547d9a27e87398aa3166b63eeb6905ca007c47",
+        "references/anti-patterns.md": "b259bf60ab1006b3c96105f25d1baf9f8038c1a55ed5fb402e82320876e15667",
+        "references/evergreen-vs-trend.md": "7bbabfedab7919cfc236b1896520639a3d80a8817fd4edb256e6fb7c5e358611",
+        "references/frameworks.md": "08ef9536c65663e02302c6621901db9654d9e8ea10911952c2a6d29436b0ef22",
+        "references/idea-evaluation.md": "8a2d08e421c2ab997bf99560c80615332d5c669afea3c22472275aa7dd554d10",
+        "references/mining.md": "070d9ecf107f10f7d51c6dc53b0fc0c95d3d4ff25b76e39caf1e33dfc224ac03",
+        "references/pillars.md": "a0a585d2fe04f2c4de81217d6f065098c57abc1e70b67693aed37ed7dce0d8c7",
+        "references/repurposing.md": "8b7fe9dd34c01dce37fe27dd8d5e8560bb032c59126df7d750496bd10765bfba",
+        "SKILL.md": "8a8807438741972c463896e681a2b145f42ea0da661d5c4c7c3fae1fc42d6eae"
+      }
+    },
+    {
+      "skill": "viral-tiktok-content",
+      "repo": "vyralcontent/content-skills",
+      "commit": "349e495d97029a3e6303a7510e3f39c73f36d8fe",
+      "path": "skills/viral-tiktok-content",
+      "local": "content-skills/viral-tiktok-content",
+      "license": "MIT",
+      "arquivos": {
+        "assets/hook-checklist.md": "979d7974be9f9fe85be2189fe5130eea8e7a703f7c94541d1cec879185abb7e8",
+        "assets/long-tiktok-template.md": "eafb5ebf7a54269d58a7addeef15ed0a9bf9c746e663665342eb8ec2b471ebbb",
+        "assets/shop-video-template.md": "809057a59f836323125cf05c643cdda9dc8a2e60eb8641efd97852c9d140b7a3",
+        "assets/sound-tracker.md": "0666430b1244bc4a3776753357ec53feb01df517cf56cf591a9a939f3693b374",
+        "assets/tiktok-script-template.md": "ad88f6e9764a526f501350feeff6b20bfe11d7b8ec043df08f5a8adedc1488ed",
+        "references/algorithm.md": "44963d387ebe7562c5432416d3724ef6c9fc0d5d1c1451827a6417295190415b",
+        "references/anti-patterns.md": "6d4e31142815a43146ee778bdc2f56699d4e75d9e9d4d0e0dc4514d3f68dff96",
+        "references/native-features.md": "6af403eb55afae1c41e3a75c811e22f5a5b30b6c89fff1357a2ca47c8b3d61fb",
+        "references/retention-math.md": "f4e39b310c1379f69e213d4583801d1729e1bee2fa7f56f86e027004f33cd52e",
+        "references/script-structure.md": "ed471421ef810975a2157c58b43c964166ebc78368db28dd1648b4dd0e889e43",
+        "references/shop-and-monetization.md": "8a2f149b2d016413524df83aac1b1c1c3b15e4d3c28ba8a49978eb88bd008623",
+        "references/sounds.md": "a0edbb11076b2489d123ebca8453ff0b7dd9c2d9abaf8a69350529e11954d047",
+        "references/tiktok-hooks.md": "ead6be42e228fab79bca55a941befa9fe3464080c6abd0b0dd2e570173c3228c",
+        "SKILL.md": "526b97eb6eef87a65686d2fe9525aff6a3aaa7fa2684b0c8052af965464b50c6"
+      }
+    },
+    {
+      "skill": "viral-instagram-reels",
+      "repo": "vyralcontent/content-skills",
+      "commit": "349e495d97029a3e6303a7510e3f39c73f36d8fe",
+      "path": "skills/viral-instagram-reels",
+      "local": "content-skills/viral-instagram-reels",
+      "license": "MIT",
+      "arquivos": {
+        "assets/insights-readout.md": "8b1b8e6b298cb3c06393845c6f42c352284c94128343d07d36dda1d51621afc5",
+        "assets/reels-hook-checklist.md": "138082234b43633e0aecee76c1e4e2dd9ea42edb01ac501b17b07bdf85dadb1d",
+        "assets/reels-script-template.md": "9627ccc8eea638c70a1ae12fbee52e61ebf565df081301f5304800ce8b38a471",
+        "assets/trial-reels-decision.md": "0b35d691dac82e34d3de12b62b27b56c28f134ce0d75e6539fc6f05c75230f10",
+        "references/caption-and-search.md": "e1f87618221a926398250e3cdd057b96f4e3437403053b9493dd917e83ffaf88",
+        "references/diagnose-flop.md": "128d2291a19e66d688b55622a93ee33d00f26a27c335d6c8a1c16bdb079c7815",
+        "references/edits-app.md": "7a9f569551ae143a33fe3fc249c2032e5d5710adf8512fcad3e6a60495187473",
+        "references/insights.md": "e1ef4c1049447087a863ecfb2775240ca9f23298d1532285a8d96ce3d8b8e1ae",
+        "references/originality-and-audio.md": "b8893e39edad1543d5af259eb6551883bffe280d4a415a77b67c9d178ec3e1b9",
+        "references/reels-hook.md": "129009c8c0c5c01592c0f81a7dfb329fd5b42e33c5deb46595efe09a9764c3d2",
+        "references/sends-playbook.md": "e91aba248e7df9a02b53d291be6d456b8a444502e3cc6a0ec1fe5b56f0836989",
+        "references/trial-reels.md": "bf11745fd089feb30f39684ff624ed28848b5e95aeee76ec47e60dd788c0c7e7",
+        "SKILL.md": "bef61d6b5ccf348fb10f251d51016f4609a1d188a27c0fd84c280570e60a4972"
+      }
+    },
+    {
+      "skill": "viral-youtube-shorts",
+      "repo": "vyralcontent/content-skills",
+      "commit": "349e495d97029a3e6303a7510e3f39c73f36d8fe",
+      "path": "skills/viral-youtube-shorts",
+      "local": "content-skills/viral-youtube-shorts",
+      "license": "MIT",
+      "arquivos": {
+        "assets/shorts-script-template.md": "0336cf7c42db5a7d15d3cc1ff640d396815a2090986f18631d9e1713a19f1bc7",
+        "assets/shorts-to-longform-bridge.md": "84fc569b817c245de8fb34988a62ebcefdbbb31be633e0b36e29d210c2fc3d82",
+        "assets/shorts-vvsa-checklist.md": "e2367e06f9fbd76ae3922c939c2580624882ebbaf5a8d6831b3a996be06bae0c",
+        "references/shorts-algorithm.md": "d5e1779ec13f903a13e45dca958a3445ff2dfe1eff49d87eac72c716e6fd8581",
+        "references/shorts-anti-patterns.md": "ea69f08e6c68c041e5ff6dc6e7630ad07311df7a8a1cacb05ab0057b7176c1c5",
+        "references/shorts-monetization.md": "c66cb94f80a61a3d33d797d231690f0fd33a3529a1796a78b96b5747f304ab6b",
+        "references/shorts-retention.md": "9e57864007161815b560de93b5702e1a15b42830e2234f61ccc50b891fe2bcdb",
+        "references/shorts-search-and-shelf.md": "ea9a23a7d7773860df60187619f24e232dd02bc7c6d4c754690b8818f2d95cac",
+        "references/shorts-to-longform-funnel.md": "79e0f906ed3544e777705edb1d25305175d8f3cd65a504958f33a4867e480cf1",
+        "SKILL.md": "d7c4276e6d6af543839695045a10b983ae5f2be62b51abfc6a514fe0741f2a88"
+      }
     }
-  ]
+  ],
+  "atualizadoEm": "2026-11-12"
 }

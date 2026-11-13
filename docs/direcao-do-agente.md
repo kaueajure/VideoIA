@@ -2,6 +2,9 @@
 
 Ao criar ou melhorar um vídeo pelo chat, siga pauta, roteiro, pesquisa-visual e cena. O roteiro narrado e as instruções visuais são entregas separadas: comandos de câmera e citações de fontes nunca entram na voz. Fontes ficam nos registros de pesquisa e na descrição; a fala preserva hipóteses, estimativas e a condição de investigação. Preserve o tema, os fatos confirmados, o estilo, a voz e os textos que a pessoa fixou.
 
+## Gate (12/11/2026)
+Em produção nova, **não entregue** se faltar `storyboard.md`, se a voz tiver rodado sem storyboard, se `cena.json` permanecer `automatica`, se faltar `direcao.versao: 2`, ou se o crítico não tiver `revisao-direcao.md` com evidência dos trechos decisivos. O pedido `PEDIDO-DO-ESTUDIO.md` também exige essa direção: pare só depois da cena autoral, do lint estrito e do crítico; o estúdio web renderiza o MP4. QA técnico limpo não autoriza pular estes passos.
+
 Para produções novas, leia `docs/producao-criativa.md`: planeje a progressão da informação e as cenas decisivas antes da voz; use `direcao.versao: 2` no `cena.json`. Essa versão vincula ganho visual e continuidade aos elementos do plano efetivo. Em correções localizadas de produções existentes, preserve o contrato anterior. A validação estrutural e seus alertas não aprovam criatividade.
 
 1. Pesquise e registre fontes na web aberta, sem restringir a poucos domínios ou tipos de publicação. Compare fontes e imagens, seguindo `pesquisa-visual`; uma imagem principal só é fixada após conferir identidade, contexto, resolução e recorte, com os direitos de uso registrados. Fixe o caminho em `arquivo`; uma indicação `busca` sem arquivo selecionado usa o recurso visual de reserva no render, sem baixar um candidato às cegas. Escreva três ganchos, escolha o mais forte que os fatos sustentam e revise causa e efeito, clareza e a virada. Salve o roteiro de trabalho em `projetos/<nome>/roteiro.rascunho.md`.

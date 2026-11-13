@@ -8,7 +8,7 @@ description: Escreve a legenda, os marcadores e a descrição por plataforma par
 # Legenda e publicação
 
 ## Skills sociais integradas
-Use `social-captions` para redigir as plataformas pedidas e `viral-captions-and-ctas` para revisar CTA, hashtags e comentário sugerido. Leia `docs/skills-sociais.md`; idioma do roteiro e regras locais prevalecem. Para YouTube, mantenha `youtube.json` como fonte única com títulos, descrições, tags e hashtags. Preserve as checagens abaixo; preparar textos não executa publicação.
+Use `social-captions` para redigir as plataformas pedidas e `viral-captions-and-ctas` para revisar CTA, hashtags e comentário sugerido. Se a entrega incluir TikTok, Instagram/Reels ou Shorts, refine com `viral-tiktok-content`, `viral-instagram-reels` ou `viral-youtube-shorts` só nessas redes. Leia `docs/skills-sociais.md`; idioma do roteiro e regras locais prevalecem. Para YouTube, mantenha `youtube.json` como fonte única com títulos, descrições, tags e hashtags. Preserve as checagens abaixo; preparar textos não executa publicação.
 
 
 **Antes de tudo:** leia `projetos/<nome>/saida/entrega.json`. Se estiver ausente, confira o estado do projeto com `npm run status`. Só publique quando `publicavel` for `true`: voz real, QA aprovado e nenhuma linha `PENDENTE` em `fontes.md`. Se houver pendência, identifique-a nos textos como rascunho. Para liberar a publicação, será preciso resolver a fonte ou a afirmação e gerar uma entrega nova. Um pedido só de textos não autoriza alterar roteiro, sintetizar voz ou renderizar: nessa tarefa, preserve o vídeo e relate o que impede a liberação.

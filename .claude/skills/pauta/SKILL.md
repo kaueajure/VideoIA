@@ -8,7 +8,7 @@ description: Escolhe o ângulo de um tema e confere os fatos antes de escrever q
 # Pauta e fatos
 
 ## Skills sociais integradas
-Se o pedido incluir calendário, formatos ou reaproveitamento, use `social-content` de Corey Haines conforme `docs/skills-sociais.md`. Use o material real da página e registre hipóteses sem inventar métricas. Em um pedido de vídeo único, siga diretamente a pauta; não imponha planejamento adicional.
+Se o pedido incluir calendário, formatos ou reaproveitamento, use `social-content` de Corey Haines conforme `docs/skills-sociais.md`. Se pedir temas, série, pilares ou banco de ideias, use também `viral-short-form-ideas`. Use o material real da página e registre hipóteses sem inventar métricas. Em um pedido de vídeo único com tema já escolhido, siga diretamente a pauta; não imponha planejamento adicional.
 
 
 Nada se escreve de cabeça. Um número errado circula em print por anos.
@@ -52,7 +52,7 @@ O bom conteúdo cabe em "todo mundo acha X, mas é Y". Se não completa a frase,
 - **Antes e depois**: regra, preço ou lei que mudou.
 
 ## 5. Entregue (sem pedir aprovação)
-Escreva `fontes.md` e siga direto para a skill `roteiro` (vídeo) ou `carrossel`. Se houver risco de erro factual que você não conseguiu resolver, pare e diga qual número está em dúvida.
+Escreva `fontes.md` e siga direto para a skill `roteiro` (vídeo) ou `carrossel`. No vídeo, a `roteiro` já exige `storyboard.md` antes da voz e a `video`/`cena` substituem qualquer plano automático: não considere a pauta encerrada só com fontes. Se houver risco de erro factual que você não conseguiu resolver, pare e diga qual número está em dúvida.
 
 ## Navegador: nunca
 Você NUNCA abre, controla nem tira print do navegador da pessoa (nem o Chrome, nem o Safari, nem o Edge, nem o controle de navegador do aplicativo), para "mostrar o roteiro no estúdio" ou para qualquer outra coisa. O estúdio web se atualiza sozinho: ele vigia a pasta e começa o vídeo quando o roteiro chega. Já aconteceu de o assistente tentar controlar o Chrome, a janela da frente ser outro site e as tentativas só se repetirem. Para saber o estado, rode comando, nunca olhe a tela: `npm run status` (projetos e o próximo passo) ou `npm run comece -- --situacao --json` (que também diz a pasta exata do estúdio em uso, para conferir que é a mesma aberta no aplicativo). Se o estúdio parecer parado, confira se o `roteiro.md` está em `<pasta do estúdio>/projetos/<nome>/` e peça à pessoa o botão "Não está andando? Copiar diagnóstico do primeiro vídeo". Pediu "tenta de novo" e nada mudou: não repita; rode o comando de estado.

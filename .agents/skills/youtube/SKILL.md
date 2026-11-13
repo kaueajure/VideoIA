@@ -1,12 +1,12 @@
 ---
 name: youtube
-description: Monta o pacote YouTube de um vídeo do Estudio de videos (3 títulos, 3 descrições, tags e hashtags) a partir do roteiro.md, e grava youtube.json para a aba Meus vídeos.
+description: Monta youtube.json (títulos, descrições, tags e hashtags) a partir do roteiro.md.
 ---
 
 # Pacote YouTube (títulos, descrições, tags, hashtags)
 
 ## Skills sociais integradas
-Use o adaptador `social-captions` para a forma do título/descrição e `viral-captions-and-ctas` para CTA e hashtags, conforme `docs/skills-sociais.md`. Nesta tarefa exclusiva, use apenas os trechos pertinentes dessas skills: gere ou ajuste somente `youtube.json` e sua cópia escolhida em `post.md`, sem produzir textos de outras redes, revisar roteiro ou gerar vídeo. Tags do Studio continuam obrigatórias no pacote, separadas das hashtags.
+Use `viral-youtube-shorts` para gancho/retenção de Shorts, `social-captions` para a forma do título/descrição e `viral-captions-and-ctas` para CTA e hashtags, conforme `docs/skills-sociais.md`. Nesta tarefa exclusiva, use apenas os trechos pertinentes dessas skills: gere ou ajuste somente `youtube.json` e sua cópia escolhida em `post.md`, sem produzir textos de outras redes, revisar roteiro ou gerar vídeo. Tags do Studio continuam obrigatórias no pacote, separadas das hashtags.
 
 
 Use depois do `roteiro.md` definitivo. No fluxo completo, `publicar` usa este pacote para preparar a seção YouTube do `post.md`. No pedido do estúdio web (`PEDIDO-DO-ESTUDIO.md`), use depois de gravar roteiro e fontes, antes de encerrar.

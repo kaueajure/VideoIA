@@ -14,17 +14,20 @@ O QA automático mede margens e sobreposição. Você olha o que ele não vê: c
 Em produções novas, siga `docs/producao-criativa.md`. Consulte `criatividade` no relatório de direção após QA: confira os trechos decisivos e os alertas de repetição ou texto isolado. Em `revisao-direcao.md`, registre beat, instantes vistos, ação observada e informação que a imagem acrescenta à fala. Uma cena legível pode continuar sem valor explicativo. Inspecione início, meio e fim para julgar mudança de estado; não aprove ação ou ritmo pela intenção escrita ou por uma única miniatura. Se não houver reprodução com som, deixe a revisão audiovisual pendente. As notas abaixo não substituem essa evidência.
 
 ## Como
+0. Se `cena.json` ainda tem `"automatica": true`, ou faltam `storyboard.md` / `direcao.versao: 2` em produção nova, **reprove antes de pontuar** e devolva à skill `cena`. Plano automático não passa no crítico.
 1. Abra `projetos/<nome>/saida/qa/folha.jpg` (um quadro por beat, mais o primeiro e o último). Julgue **só o que está nos quadros**, nunca a intenção do `cena.json`.
-2. Pontue de 0 a 10, com uma linha de evidência cada: **gancho** (o primeiro quadro prende?), **legibilidade** (título, legenda, número), **uma ideia por cena**, **hierarquia** (o olho vai ao destaque?), **continuidade** (os objetos contam uma história?).
-3. Liste os **3 maiores defeitos**, cada um com: beat, evidência (o que se vê), correção local (a edição no `cena.json`).
-4. Corrija só esses 3, rode `--sem-render` de novo e olhe outra vez. **No máximo 3 rodadas.**
-5. Passa quando nenhuma nota fica abaixo de 7 e o QA automático não tem falhas.
+2. Nos 3 trechos decisivos (gancho, explicação/virada, fecho), inspecione movimento: prévia `--rapido` ou `node src/video/cli.mjs <projeto> --foto=<segundos>` no antes, durante e depois da ação. Sem isso, marque sincronismo/movimento como pendente em `revisao-direcao.md` e não declare aprovação criativa.
+3. Pontue de 0 a 10, com uma linha de evidência cada: **gancho**, **legibilidade**, **uma ideia por cena**, **hierarquia**, **continuidade**, **ganho visual** (a imagem acrescenta algo que a fala sozinha não dá?).
+4. Liste os **3 maiores defeitos**, cada um com: beat, evidência (o que se vê), correção local (a edição no `cena.json`).
+5. Corrija só esses 3, rode `--sem-render` de novo e olhe outra vez. **No máximo 3 rodadas.**
+6. Passa quando nenhuma nota fica abaixo de 7, o QA automático não tem falhas, e `revisao-direcao.md` registra os instantes vistos.
 
-6. **Fala x imagem** (0.6.12): para cada beat, o que aparece mostra o que a voz diz naquele trecho? Use `saida/relevancia.json` como ponto de partida e confira nos quadros. Objeto sem relação (uma escada quando a fala é sobre dinossauro) é defeito grave. Desde 05/11/2026, palavra a palavra: a forma tem que mostrar a AÇÃO e o OBJETO daquele beat ("dorme" pede cama, não o despertador do gancho); peça repetida só porque é do assunto do vídeo, ou forma trocada por rodízio, é defeito. Sem nada que represente a frase, o certo é a figura neutra do estilo + o texto da fala. Ferramenta: `auditarFalaForma(cena, palavras)` em `src/video/fala-forma.mjs` (falhas `fala-desenho`); corrija na raiz (`docs/planejador-fala-forma.md`).
+7. **Fala x imagem** (0.6.12): para cada beat, o que aparece mostra o que a voz diz naquele trecho? Use `saida/relevancia.json` como ponto de partida e confira nos quadros. Objeto sem relação (uma escada quando a fala é sobre dinossauro) é defeito grave. Desde 05/11/2026, palavra a palavra: a forma tem que mostrar a AÇÃO e o OBJETO daquele beat ("dorme" pede cama, não o despertador do gancho); peça repetida só porque é do assunto do vídeo, ou forma trocada por rodízio, é defeito. Sem nada que represente a frase, o certo é a figura neutra do estilo + o texto da fala. Ferramenta: `auditarFalaForma(cena, palavras)` em `src/video/fala-forma.mjs` (falhas `fala-desenho`); corrija na raiz (`docs/planejador-fala-forma.md`).
 
 Quando houver `direcao-visual.json`, compare a folha com o trecho narrado e o campo `pesquisaVisual` do relatório. Confirme que o arquivo escolhido chegou ao plano e aparece no beat certo. Confira a função da imagem (registro ou contexto), a legibilidade e se o movimento ajuda a revelar ou explicar a informação. Use `pesquisa-visual` para rever uma imagem ou um movimento duvidoso.
 
 ## O que reprova
+- Cena automática entregue como final, ou beats decisivos vazios.
 - Objeto, cenário ou foto sem relação com a fala do beat.
 - Foto cujo nome bate, mas o assunto não (homônimo: sertanejo no lugar de jogador, prédio no lugar da agência citada). Confira o arquivo em `assets/` e a linha em `fontes.md` (título da foto no Commons).
 - Pessoa, lugar, obra ou produto citado pelo nome sem a foto (ou sem o logo da marca).
@@ -33,6 +36,7 @@ Quando houver `direcao-visual.json`, compare a folha com o trecho narrado e o ca
 - Cena vazia durante explicação.
 - Título que cobre o objeto.
 - Mais de uma ideia na mesma cena.
+- Imagem que só ilustra a palavra sem mudar de estado (foto parada enquanto a fala explica um mecanismo).
 
 Registre as rodadas em `projetos/<nome>/revisoes.md` (uma linha por defeito corrigido). Isso alimenta o método: defeito que se repete em vários vídeos vira regra.
 

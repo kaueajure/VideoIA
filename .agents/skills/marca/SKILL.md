@@ -1,6 +1,6 @@
 ---
 name: marca
-description: Coloca a marca da pessoa no estúdio (nome, @, cor, símbolo, avatar, banners) com uma conversa curta e um comando. Use quando a pessoa disser que quer a própria página, trocar nome, @, cor ou logo, "minha marca", "minha identidade", ou na primeira vez que ela usar o estúdio ainda com a marca de demonstração.
+description: Coloca nome, @, cor e logo da página no estúdio. Use para marca, identidade ou troca de cor/@.
 ---
 
 

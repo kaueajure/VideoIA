@@ -1,6 +1,6 @@
 ---
 name: social-captions
-description: Transforma o roteiro final em legendas por plataforma no Metodo-Video, com hashtags e pacote YouTube incluindo tags. Use ao preparar ou revisar textos de publicação.
+description: Escreve legendas por plataforma no Metodo-Video. Use em publicar.
 ---
 
 # Social Media Caption Generator no Metodo-Video

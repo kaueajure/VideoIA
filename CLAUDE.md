@@ -32,7 +32,7 @@ Primeira vez: `comece`. Trocar nome, @ ou cor: `marca`.
 `pauta` -> `roteiro` -> `video` (que usa `cena` e `critico`) -> `publicar` (que usa `youtube` para o pacote). Para carrossel: `pauta` -> `carrossel` -> `publicar`. Para imitar o jeito de um conteúdo que deu certo: `referencia`.
 
 ## Skills sociais
-Leia `docs/skills-sociais.md` na etapa pertinente: `viral-short-form` revisa roteiro antes da voz; `social-captions` e `viral-captions-and-ctas` apoiam `publicar` e `youtube`, com tags separadas de hashtags. `social-content` (Corey Haines) entra quando o pedido incluir planejamento ou reaproveitamento. O idioma, os fatos e as regras da página prevalecem sobre as referências. Preparar textos não autoriza envio ou agendamento.
+Leia `docs/skills-sociais.md` na etapa: hooks/roteiro (`viral-hooks`, `viral-short-form`), ideias (`viral-short-form-ideas`), legendas (`social-captions`, `viral-captions-and-ctas`), rede pedida (`viral-tiktok-content`, `viral-instagram-reels`, `viral-youtube-shorts`) e planejamento (`social-content`). Idioma e fatos da página prevalecem. Preparar textos não autoriza envio.
 
 ## Leituras por etapa
 Abra a skill da etapa atual e consulte as referências que ela indicar para o trabalho em curso.

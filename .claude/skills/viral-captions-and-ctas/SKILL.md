@@ -1,6 +1,6 @@
 ---
 name: viral-captions-and-ctas
-description: Refina legendas, chamadas para ação, comentários fixados e propostas de texto na tela por rede no Metodo-Video. Use como revisão dos textos de publicação.
+description: Refina legendas, CTAs e comentários no Metodo-Video. Use após social-captions.
 ---
 
 # Viral Captions and CTAs no Metodo-Video

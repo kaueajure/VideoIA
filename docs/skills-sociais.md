@@ -1,22 +1,27 @@
 # Skills sociais instaladas no Metodo-Video
 
-As quatro skills solicitadas estão disponíveis no primeiro nível de `.claude/skills/` e `.agents/skills/`. Os arquivos originais ficam em `_terceiros/`, com referências, licença e versões fixadas em `skills-sociais.lock.json`. As entradas do primeiro nível são adaptadores locais, não cópias que se atualizam pela rede.
+As skills sociais ficam no primeiro nível de `.claude/skills/` e `.agents/skills/`. Os arquivos originais ficam em `_terceiros/`, com referências, licença e versões fixadas em `skills-sociais.lock.json`. As entradas do primeiro nível são adaptadores locais, não cópias que se atualizam pela rede.
 
 | Skill local | Origem | Uso no projeto |
 |---|---|---|
 | `social-captions` | [Roman Knox / rediumvex](https://github.com/rediumvex/social-media-caption-generator-claude/tree/37cad5471762609282583d9fb3e7b532d609630e) | Primeira versão das legendas por plataforma |
 | `viral-captions-and-ctas` | [Vyral](https://github.com/vyralcontent/content-skills/tree/349e495d97029a3e6303a7510e3f39c73f36d8fe/skills/viral-captions-and-ctas) | Revisão de legendas, CTA, hashtags e comentário |
 | `viral-short-form` | [Vyral](https://github.com/vyralcontent/content-skills/tree/349e495d97029a3e6303a7510e3f39c73f36d8fe/skills/viral-short-form) | Revisão de gancho, desenvolvimento e conclusão antes da voz |
+| `viral-hooks` | [Vyral](https://github.com/vyralcontent/content-skills/tree/349e495d97029a3e6303a7510e3f39c73f36d8fe/skills/viral-hooks) | Abertura de 1 a 3 s e lote de GANCHOS |
+| `viral-short-form-ideas` | [Vyral](https://github.com/vyralcontent/content-skills/tree/349e495d97029a3e6303a7510e3f39c73f36d8fe/skills/viral-short-form-ideas) | Ideias, pilares e reaproveitamento na pauta |
+| `viral-tiktok-content` | [Vyral](https://github.com/vyralcontent/content-skills/tree/349e495d97029a3e6303a7510e3f39c73f36d8fe/skills/viral-tiktok-content) | Ajuste TikTok em roteiro/legenda |
+| `viral-instagram-reels` | [Vyral](https://github.com/vyralcontent/content-skills/tree/349e495d97029a3e6303a7510e3f39c73f36d8fe/skills/viral-instagram-reels) | Ajuste Reels em roteiro/legenda |
+| `viral-youtube-shorts` | [Vyral](https://github.com/vyralcontent/content-skills/tree/349e495d97029a3e6303a7510e3f39c73f36d8fe/skills/viral-youtube-shorts) | Ajuste Shorts e apoio ao pacote YouTube |
 | `social-content` | [Corey Haines, upstream `social`](https://github.com/coreyhaines31/marketingskills/tree/1f837447b20bb6f0e72d87b80ece1c221c362c7d/skills/social) | Formatos, reaproveitamento e calendário quando pedidos |
 
-Todas as origens instaladas têm licença MIT, preservada junto às cópias. `viral-captions-and-ctas` já existia como referência byte a byte igual à versão fixada; foi reaproveitada. A referência anterior `viral-youtube-shorts` continua disponível.
+Todas as origens instaladas têm licença MIT, preservada junto às cópias.
 
 ## Como o projeto usa
 
-- `pauta`: chama `social-content` se houver planejamento/reaproveitamento, sem impor essa etapa a cada vídeo.
-- `roteiro`: aplica `viral-short-form` antes de liberar a fala final e a voz.
-- `publicar`: usa `social-captions` para as legendas e `viral-captions-and-ctas` para a revisão, preservando a verificação da entrega.
-- `youtube`: usa os métodos de caption/CTA, mas continua sendo o único responsável por `youtube.json`, incluindo tags.
+- `pauta`: chama `viral-short-form-ideas` quando houver pedido de temas, série ou banco de ideias; chama `social-content` se houver planejamento/reaproveitamento amplo.
+- `roteiro`: usa `viral-hooks` nas três opções de `GANCHOS:`; aplica `viral-short-form` antes da voz e grava `revisao-roteiro.md`; se a entrega citar TikTok/Reels/Shorts, consulta a skill da rede correspondente só no que for pertinente.
+- `publicar`: usa `social-captions` e `viral-captions-and-ctas`; nas redes pedidas, reforça com `viral-tiktok-content`, `viral-instagram-reels` ou `viral-youtube-shorts`.
+- `youtube`: usa `viral-youtube-shorts` e os métodos de caption/CTA, mas continua sendo o único responsável por `youtube.json`, incluindo tags.
 - O prompt do chat do estúdio aponta esse roteamento. Uma tarefa exclusiva de YouTube não chama produção; tarefas de pesquisa ou correção visual não disparam revisão de roteiro ou publicação.
 
 São instruções para o assistente conectado (Codex, Claude Code ou Cursor), não geradores determinísticos do motor de vídeo. Instalar uma skill não cria conta, conexão, agenda ou serviço. O motor não passa a chamar uma API de marketing. O assistente precisa ler as skills e produzir os arquivos; os validadores existentes continuam conferindo fontes, roteiro e metadados de envio. A qualidade editorial requer revisão.
@@ -61,8 +66,9 @@ A revisão do roteiro vai para `revisao-roteiro.md`; o plano social, para `plano
 - “Prepare as legendas do projeto X para Instagram, Facebook, TikTok e YouTube, com hashtags e tags do Studio.”
 - “Revise onde o roteiro do projeto X perde atenção, antes de gerar a voz.”
 - “Sugira três reaproveitamentos deste vídeo para a próxima semana, sem agendar.”
+- “Gere um lote de ganchos para o tema Y com viral-hooks.”
 
-Os mesmos pedidos funcionam no chat do estúdio conectado a um assistente. Os adaptadores locais também podem ser invocados pelo nome (`social-captions`, `viral-captions-and-ctas`, `viral-short-form` e `social-content`).
+Os mesmos pedidos funcionam no chat do estúdio conectado a um assistente. Os adaptadores locais também podem ser invocados pelo nome.
 
 ## Atualização e verificação
 

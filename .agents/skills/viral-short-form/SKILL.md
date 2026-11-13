@@ -1,6 +1,6 @@
 ---
 name: viral-short-form
-description: Revisa gancho, desenvolvimento e conclusão de roteiros curtos do Metodo-Video antes da voz. Use ao criar ou melhorar roteiro, mantendo os fatos e o objetivo editorial.
+description: Revisa gancho e retenção do roteiro curto no Metodo-Video antes da voz.
 ---
 
 # Viral Short Form no Metodo-Video

@@ -1,6 +1,6 @@
 ---
 name: referencia
-description: Dissecar um vídeo ou carrossel de referência para extrair o padrão transferível (mecanismo, estrutura, ritmo), nunca o conteúdo nem a identidade. Use quando a pessoa citar um conteúdo que deu certo e quiser algo no mesmo estilo.
+description: Extrai padrão transferível de um vídeo ou carrossel de referência. Use para imitar estrutura, não conteúdo.
 ---
 
 

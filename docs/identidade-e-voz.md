@@ -7,21 +7,26 @@ Avatar (1080x1080) e banner (2560x1440) de cada página saem de `npm run identid
 
 | Elemento | Valor |
 |---|---|
-| Fundo | `#14141B` (escuro de verdade) |
-| Cartão | `#1E1E28` |
-| Texto | `#FFFFFF` |
-| Sombra / secundário | `#3C3B4A` |
-| Destaque Curiosidades | `#FF7A2F`, apoio `#FFC9A3` |
-| Destaque Tecnologia | `#29D9F2`, apoio `#B5F1FA` |
-| Destaque Dinheiro | `#46E08A`, apoio `#BDF5D4` |
-| Fonte | Inter Tight (já embutida nos kits, licença de uso comercial) |
-| Símbolo | o "i": haste branca e ponto na cor da página |
+| Fundo | tokens `base.fundo` / `neutros` em `marca/tokens.json` |
+| Cartão | `base.superficie` |
+| Texto | `base.texto` |
+| Destaque desta página | `paginas.curiosidades.destaque` / `apoio` (hoje `#2FD8F0` / `#A8EFF9`) |
+| Fonte | tipografia de `marca/tokens.json` (display + texto) |
+| Símbolo | monograma/logo em `marca/logo/` e `marca/tokens.json` |
 
 Regra de ouro herdada dos kits: **uma cor de destaque por slide ou cena, em um único elemento.** O olho vai para o destaque ou o destaque morreu.
 
 A identidade é propositalmente diferente de qualquer outro perfil de curiosidades. Pode se inspirar na estrutura (fundo escuro, título curto, um destaque), nunca reproduzir logo, nome ou arte de outro perfil.
 
 ## Voz
+### Jeito Kauê Ajure (@kaueajure)
+- **Promessa da página:** mostrar o mecanismo por trás do que a pessoa já viu, sem aula e sem mistério falso.
+- **Tom padrão:** curioso seco, quase de conversa no sofá. Nunca apresentador de TV, nunca guru.
+- **Direção de TTS (ElevenLabs):** varie por vídeo; não use só `[calm, clear]`. Prefira combinações curtas como `[curious, clear]`, `[matter-of-fact, clear]` ou `[deadpan, clear]` conforme o ângulo. Em esporte quente: `[excited, clear]` só no gancho, depois volta ao seco.
+- **Frases que soam da página:** "Todo mundo trata isso como detalhe. Não é."; "A regra escondida é esta."; "O número que não fecha é este."; "Se fosse o contrário, ninguém reclamava."
+- **Palavras e moldes a evitar na fala:** "você sabia", "preste atenção", "incrível", "interessante", "neste vídeo", "vamos entender", "o detalhe que muda tudo", "ou seja", "traduzindo", "resumindo".
+
+### Regras permanentes
 - **Curioso, direto, sem jargão.** Frases curtas. Uma ideia por frase.
 - **Fala com a pessoa**, sobre a vida dela: "o que você vê todo dia".
 - **Contradiz antes de explicar.** Todo conteúdo abre com "todo mundo acha X, mas é Y".
@@ -40,9 +45,9 @@ Em assunto que está em alta, **o protagonista que todo mundo está procurando a
 3. **O número que não bate:** "A diagonal do quadrado é 41% maior que o lado."
 
 ## Handle no topo e assinatura no rodapé
-- Topo de todo vídeo e cabeçalho do carrossel: o @ de `marca/tokens.json` (na página de demonstração, **@exemplo**).
-- Rodapé do último slide: "uma página exclusiva para pessoas inteligentes e curiosas".
-- Bio: "Uma página exclusiva para pessoas inteligentes e curiosas 😌".
+- Topo de todo vídeo e cabeçalho do carrossel: o @ de `marca/tokens.json` (nesta página: **@kaueajure**).
+- Rodapé e assinatura: o texto de `marca/tokens.json` (`assinatura`), hoje "o mecanismo por trás do que você já viu".
+- Bio: a mesma frase da assinatura; não use textos de demonstração do kit.
 
 ## Fontes fora da narração
 A fala conta o fato e explica o mecanismo, sem anunciar de onde veio a informação. Não escreva chamadas como "segundo a fonte", "de acordo com o estudo", "conforme o relatório" nem leia links, referências bibliográficas ou listas de instituições. Registre a pesquisa em `fontes.md` e `fontes.json`; referências para o público vão na descrição ou legenda da publicação. Essa regra vale também quando o objetivo traz `cuidados.atribuicao: sempre`: a atribuição fica no registro de pesquisa, fora da voz.

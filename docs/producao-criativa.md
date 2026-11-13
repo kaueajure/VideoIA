@@ -2,6 +2,13 @@
 
 Use em vídeos novos. Edições de projetos existentes preservam o contrato e os trechos válidos, salvo pedido de reformulação. O objetivo é que a imagem acrescente entendimento: um componente do assunto não é necessariamente uma cena que explica a fala.
 
+## Entrega proibida
+- Voz sem `storyboard.md`.
+- Cena final com `"automatica": true`.
+- Beat decisivo sem ação executável (só entrada de card/foto parada enquanto a fala explica relação, quantidade ou mecanismo).
+- `ganhoVisual` vazio ou que só parafraseia a narração.
+- Declarar pronto só porque o QA de layout passou.
+
 ## Planejar antes da voz
 
 Em `storyboard.md`, comece com a pergunta central e a resposta sustentada pelas fontes. Organize a progressão de informação: apresentação do problema, explicação ou evidência e consequência. Entregue informação cedo; retire promessas repetidas de uma revelação futura. Preserve textos fixados pela pessoa.

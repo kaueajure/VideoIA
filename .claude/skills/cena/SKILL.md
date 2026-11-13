@@ -7,10 +7,19 @@ description: Escreve o cena.json de um vídeo do Estudio de videos, o que aparec
 
 # Direção de cena
 
+## Entrega proibida
+- Deixar `"automatica": true` na cena final.
+- Aceitar o plano automático sem reescrever gancho, mecanismo e virada.
+- Beat decisivo (gancho, virada, fecho ou explicação central) com `elementos: []` e sem `modelo`/`recurso` executável.
+- Produção nova sem `direcao.versao: 2`, sem `ganhoVisual` concreto, ou com `ganhoVisual` que só repete a fala.
+- Trocar o assunto por peça genérica do léxico quando a fala pede demonstração (comparação, decomposição, causa-efeito, contagem, documento).
+
+Leia `storyboard.md` (obrigatório em vídeo novo). Se não existir, escreva-o antes de gravar a cena. O autoplano é rascunho: copie o que for útil, depois remova `automatica` e autorize cada beat.
+
 ## O que ler (só o necessário)
 1. `docs/cena-schema.md`: o índice curto (beat, elementos comuns, modelos de cena) com a tabela "Onde está cada parte".
 2. **Só o arquivo do estilo da vez** em `docs/cena/`, pela tabela do índice (sem `estilo` na cena: `docs/cena/estilo-padrao.md`). Os outros arquivos de `docs/cena/` (cenários, peças, repertório, efeitos, som) só quando a cena pedir.
-3. `projetos/<nome>/palavras.json`.
+3. `projetos/<nome>/palavras.json` e `projetos/<nome>/storyboard.md`.
 
 Para explicar comparação, cronologia, causalidade, evidência ou mecanismo, consulte `docs/integracao-explicacoes.md` e `docs/cena/recursos-visuais.md`. Os recursos também funcionam no smooth; use um recurso por beat, preservando o estilo. Quantidades pequenas podem usar objetos contáveis, relações parte/todo usam `decomposicao`, e conceitos de passes e deslocamentos podem usar `campo-tatico` identificado como esquema. Sugestões do autoplano exigem revisão factual e visual antes de virar direção autoral.
 

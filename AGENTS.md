@@ -34,7 +34,7 @@ Primeira vez: `comece`. Trocar nome, @ ou cor: `marca`.
 `pauta` -> `roteiro` -> `video` (que usa `cena` e `critico`) -> `publicar` (que usa `youtube` para o pacote). Para carrossel: `pauta` -> `carrossel` -> `publicar`. Para imitar o jeito de um conteúdo que deu certo: `referencia`.
 
 ## Skills sociais
-Leia `docs/skills-sociais.md` na etapa pertinente: `viral-short-form` revisa roteiro antes da voz; `social-captions` e `viral-captions-and-ctas` apoiam `publicar` e `youtube`, com tags separadas de hashtags. `social-content` (Corey Haines) entra quando o pedido incluir planejamento ou reaproveitamento. O idioma, os fatos e as regras da página prevalecem sobre as referências. Preparar textos não autoriza envio ou agendamento.
+Leia `docs/skills-sociais.md` na etapa: hooks/roteiro (`viral-hooks`, `viral-short-form`), ideias (`viral-short-form-ideas`), legendas (`social-captions`, `viral-captions-and-ctas`), rede pedida (`viral-tiktok-content`, `viral-instagram-reels`, `viral-youtube-shorts`) e planejamento (`social-content`). Idioma e fatos da página prevalecem. Preparar textos não autoriza envio.
 
 ## Leituras por etapa
 Abra a skill da etapa atual e consulte as referências que ela indicar para o trabalho em curso.
@@ -96,18 +96,23 @@ As skills são as mesmas do Claude Code, copiadas para `.agents/skills/` (a font
 | `cena` | `$cena` | Escreve o cena.json de um vídeo do Estudio de videos, o que aparece na tela em cada trecho da narração. |
 | `comece` | `$comece` | Primeira vez no estúdio, para quem nunca usou nada parecido. |
 | `critico` | `$critico` | Julga a folha de contato do vídeo e corrige os 3 maiores defeitos, sem pedir aprovação humana. |
-| `marca` | `$marca` | Coloca a marca da pessoa no estúdio (nome, @, cor, símbolo, avatar, banners) com uma conversa curta e um comando. |
+| `marca` | `$marca` | Coloca nome, @, cor e logo da página no estúdio. |
 | `pauta` | `$pauta` | Escolhe o ângulo de um tema e confere os fatos antes de escrever qualquer roteiro ou slide. |
 | `pesquisa-visual` | `$pesquisa-visual` | Planeja imagens reais, enquadramento e movimento para vídeos do VideoIA. |
 | `publicar` | `$publicar` | Escreve a legenda, os marcadores e a descrição por plataforma para um vídeo ou carrossel do Estudio de videos já gerado. |
-| `referencia` | `$referencia` | Dissecar um vídeo ou carrossel de referência para extrair o padrão transferível (mecanismo, estrutura, ritmo), nunca o conteúdo nem a identidade. |
-| `roteiro` | `$roteiro` | Escolhe o formato e o gatilho de gancho e escreve o roteiro narrado de um vídeo curto do Estudio de videos, na faixa de palavras do objetivo do vídeo (padrão 150 a 230). |
-| `social-captions` | `$social-captions` | Transforma o roteiro final em legendas por plataforma no Metodo-Video, com hashtags e pacote YouTube incluindo tags. |
-| `social-content` | `$social-content` | Planeja formatos, reaproveitamento e calendário de conteúdo para a página do Metodo-Video com o método Social Content de Corey Haines. |
+| `referencia` | `$referencia` | Extrai padrão transferível de um vídeo ou carrossel de referência. |
+| `roteiro` | `$roteiro` | Escreve o roteiro narrado de um vídeo curto do Estudio de videos. |
+| `social-captions` | `$social-captions` | Escreve legendas por plataforma no Metodo-Video. |
+| `social-content` | `$social-content` | Planeja formatos e calendário social no Metodo-Video. |
 | `video` | `$video` | Produz o vídeo do Estudio de videos de ponta a ponta, sem paradas de aprovação, a partir de um roteiro.md. |
-| `viral-captions-and-ctas` | `$viral-captions-and-ctas` | Refina legendas, chamadas para ação, comentários fixados e propostas de texto na tela por rede no Metodo-Video. |
-| `viral-short-form` | `$viral-short-form` | Revisa gancho, desenvolvimento e conclusão de roteiros curtos do Metodo-Video antes da voz. |
-| `youtube` | `$youtube` | Monta o pacote YouTube de um vídeo do Estudio de videos (3 títulos, 3 descrições, tags e hashtags) a partir do roteiro.md, e grava youtube.json para a aba Meus vídeos. |
+| `viral-captions-and-ctas` | `$viral-captions-and-ctas` | Refina legendas, CTAs e comentários no Metodo-Video. |
+| `viral-hooks` | `$viral-hooks` | Escreve e critica o gancho (1 a 3 s) no Metodo-Video. |
+| `viral-instagram-reels` | `$viral-instagram-reels` | Ajusta roteiro e legenda para Instagram Reels no Metodo-Video. |
+| `viral-short-form` | `$viral-short-form` | Revisa gancho e retenção do roteiro curto no Metodo-Video antes da voz. |
+| `viral-short-form-ideas` | `$viral-short-form-ideas` | Gera ideias de short-form no Metodo-Video. |
+| `viral-tiktok-content` | `$viral-tiktok-content` | Ajusta roteiro e legenda para TikTok no Metodo-Video. |
+| `viral-youtube-shorts` | `$viral-youtube-shorts` | Ajusta Shorts e apoia youtube.json no Metodo-Video. |
+| `youtube` | `$youtube` | Monta youtube.json (títulos, descrições, tags e hashtags) a partir do roteiro.md. |
 <!-- skills:fim -->
 
 ### Primeira vez
@@ -115,7 +120,7 @@ Se a pessoa disser "comece", "comece pelos primeiros passos", "primeira vez" ou 
 
 ### Sandbox, internet e aprovações
 - A pasta do estúdio precisa estar marcada como **confiável**. Sem isso o Codex abre só para leitura (a pasta não tem Git) e não carrega `.codex/config.toml` nem `.codex/rules/`. Se um comando falhar com "read-only", explique à pessoa como confiar na pasta (aviso na primeira abertura ou `/permissions`) e peça para reabrir o Codex.
-- `.codex/rules/ilustrando.rules` libera para rodar fora do sandbox só os comandos do estúdio: `node src/...`, `node scripts/marca.mjs`, `node scripts/sincronizar-skills.mjs`, `node scripts/resumir-relatorio.mjs`, `node scripts/buscar-imagem.mjs`, `node scripts/linha-editorial.mjs`, `npm run <script do estúdio>`, `npm test`, `npm ci`, `npx playwright install chromium`, `ffmpeg` e `ffprobe`. Use exatamente essas formas (caminho relativo, a partir da pasta do estúdio). `npm install` de pacote novo e `rm -rf` sempre pedem aprovação.
+- `.codex/rules/ilustrando.rules` libera fora do sandbox os comandos do estúdio (`node src/...`, scripts listados nas rules, `npm run <script>`, `ffmpeg`/`ffprobe`). `npm install` novo e `rm -rf` pedem aprovação.
 - A narração (ElevenLabs, Fish Audio) e o download do Chromium precisam de internet. Se falharem por rede, diga que é o modo de permissão e que basta aprovar o comando. **Nunca** sugira "Full access" nem `danger-full-access`.
 - O modo recomendado é **Ask for approval**.
 
