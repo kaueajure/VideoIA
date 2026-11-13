@@ -20,11 +20,12 @@ export const assinaturaPreparacao = (cena, falado) => crypto.createHash('sha256'
 // Prévia e produção recebem os mesmos dados, ativos e regras de entrada.
 // A preparação de b-roll pode popular o cache local; não baixa mídia remota.
 export function prepararSpec(cena, falado, {
-  pasta, plano = {}, locais, registrarUsoMarcas = false, preservarEnquadramento = false,
+  pasta, raiz = pasta && path.resolve(pasta, '..', '..'), plano = {}, locais,
+  registrarUsoMarcas = false, preservarEnquadramento = false,
 } = {}) {
   const erros = validarRecursosCena(cena);
   if (erros.length) throw new Error(erros.join('\n'));
-  const spec = compilar(structuredClone(cena), falado, { plano });
+  const spec = compilar(structuredClone(cena), falado, { plano, raiz });
   const protecao = conferirStoryboard(cena, spec, { compilado: true });
   if (protecao.length) throw new Error('Storyboard protegido: ' + protecao.join(' '));
   variedadeEntradas(spec);
@@ -80,7 +81,7 @@ export function prepararSpec(cena, falado, {
   const marcas = embutirMarcas(spec);
   if (registrarUsoMarcas) registrarMarcas(marcas, pasta);
   // A preferência atual também vale para prévias preparadas antes de ela mudar.
-  if (pasta && !estadoMarca(path.resolve(pasta, '..', '..')).exibir) {
+  if (raiz && !estadoMarca(raiz).exibir) {
     spec.semMarca = true;
     spec.handle = false;
   }

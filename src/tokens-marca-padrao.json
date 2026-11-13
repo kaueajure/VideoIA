@@ -1,0 +1,78 @@
+{
+  "base": {
+    "fundo": "#0E0E13",
+    "superficie": "#17171F",
+    "superficie2": "#20202B",
+    "texto": "#FFFFFF",
+    "textoSuave": "#FFFFFFBD",
+    "textoFraco": "#FFFFFF73",
+    "linha": "#FFFFFF1F"
+  },
+  "paginas": {
+    "curiosidades": {
+      "nome": "",
+      "handle": "",
+      "curto": "",
+      "assinatura": "",
+      "destaque": "#FF7A2F",
+      "apoio": "#FFC9A3",
+      "tinta": "#1A0D05"
+    }
+  },
+  "tipografia": {
+    "display": {
+      "familia": "Bricolage Grotesque",
+      "arquivo": "fontes/display.woff2",
+      "pesos": "200-800 (variável)",
+      "uso": "títulos, números, capa, logotipo",
+      "tracking": "-0.035em",
+      "entrelinha": 0.98
+    },
+    "texto": {
+      "familia": "Inter Tight",
+      "arquivos": ["fontes/regular.woff2", "fontes/semibold.woff2", "fontes/bold.woff2"],
+      "uso": "legenda, rótulo, corpo, interface",
+      "tracking": "-0.01em",
+      "entrelinha": 1.42
+    },
+    "escala": {
+      "capa": 116,
+      "titulo": 80,
+      "numero": 270,
+      "legenda-video": 64,
+      "corpo": 40,
+      "rotulo": 26
+    }
+  },
+  "neutros": {
+    "0": "#FFFFFF",
+    "200": "#F3F2F6",
+    "400": "#7A7A80",
+    "600": "#20202B",
+    "700": "#17171F",
+    "800": "#14141B",
+    "900": "#0E0E13"
+  },
+  "espacamento": {
+    "base": 4,
+    "escala": [4, 8, 12, 16, 24, 32, 48, 64, 96],
+    "margem-carrossel": 104,
+    "margem-video": 72
+  },
+  "raios": { "chip": 999, "painel": 34, "item": 20, "avatar": "círculo" },
+  "movimento": {
+    "duracoes": { "micro": 160, "entrada": 600, "cena": 2500, "transicao": 380 },
+    "curvas": {
+      "entrada": "cubic-bezier(.16,1,.3,1)",
+      "saida": "cubic-bezier(.5,0,.9,.4)",
+      "suave": "cubic-bezier(.42,0,.58,1)"
+    },
+    "regras": ["sem quicar", "uma coisa se move por vez em cada cena", "câmera nunca salta"]
+  },
+  "simbolo": {
+    "arquivos": ["marca/logo/simbolo.svg", "marca/logo/simbolo-para-fundo-claro.svg"],
+    "areaLivre": "meia largura da haste em todos os lados",
+    "tamanhoMinimo": "16 px",
+    "proibido": ["girar", "trocar a cor do ponto", "aplicar brilho, gradiente ou sombra", "esticar", "adicionar anéis ou contornos"]
+  }
+}

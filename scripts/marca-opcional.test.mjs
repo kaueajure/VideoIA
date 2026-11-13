@@ -9,6 +9,8 @@ import { resolverFormato, aplicarNaCena } from '../src/video/formato.mjs';
 import { prepararSpec } from '../src/video/preparar-spec.mjs';
 import { compilar } from '../src/video/plano.mjs';
 import { baseGlobal } from '../src/video/render.mjs';
+import { lerTokensMarca } from '../src/tokens-marca.mjs';
+import { prepararExemplo, temExemplo } from '../src/video/exemplo.mjs';
 
 test('pessoa sem marca pode continuar; preferência é reversível e preserva identidade e configuração', () => {
   const raiz = fs.mkdtempSync(path.join(os.tmpdir(), 'marca-opcional-'));
@@ -41,6 +43,50 @@ test('sem @ funciona no vertical e no horizontal e sobrevive à compilação', (
   assert.equal(resolverFormato({ opc: { handle: false } }).handle, false);
 });
 
+test('clone sem tokens prepara o vídeo com a paleta padrão e o CTA sem identificação', () => {
+  const raiz = fs.mkdtempSync(path.join(os.tmpdir(), 'marca-ausente-'));
+  try {
+    gravarExibicaoMarca(raiz, false);
+    const pasta = path.join(raiz, 'projetos', 'teste');
+    const cena = { tema: 'Teste', beats: [{ id: 'a', palavras: [0, 0], elementos: [
+      { tipo: 'peca', forma: 'seguirperfil', dados: { handle: '@antiga', nome: 'Antiga' } },
+    ] }] };
+    const spec = prepararSpec(cena, { duracao: 2, palavras: [{ w: 'Teste.', t: 0, f: 1 }] }, { pasta });
+    assert.equal(spec.semMarca, true);
+    assert.equal(spec.handle, false);
+    assert.equal(spec.marca.destaque, '#FF7A2F');
+    assert.equal(spec.marca.serieCta, '');
+    assert.equal(spec.beats[0].elementos[0].dados.handle, '');
+    assert.equal(fs.existsSync(path.join(raiz, 'marca')), false);
+
+    fs.mkdirSync(path.join(raiz, 'marca'));
+    const tokens = path.join(raiz, 'marca', 'tokens.json');
+    fs.writeFileSync(tokens, '{"paginas":{}}');
+    assert.equal(lerTokensMarca(raiz).base.fundo, '#0E0E13');
+    fs.writeFileSync(tokens, '{');
+    assert.throws(() => lerTokensMarca(raiz), SyntaxError);
+  } finally { fs.rmSync(raiz, { recursive: true, force: true }); }
+});
+
+test('prova em clone limpo instala o exemplo distribuído sem substituir um roteiro local', () => {
+  const raiz = fs.mkdtempSync(path.join(os.tmpdir(), 'marca-prova-'));
+  try {
+    const modelo = path.join(raiz, 'templates', 'primeiro-video', 'ceu-azul');
+    const pasta = path.join(raiz, 'projetos', 'exemplo');
+    fs.mkdirSync(modelo, { recursive: true });
+    fs.writeFileSync(path.join(modelo, 'roteiro.md'), 'Roteiro do estúdio');
+    fs.writeFileSync(path.join(modelo, 'fontes.md'), 'Fontes do estúdio');
+    assert.equal(temExemplo(raiz), true);
+    assert.equal(fs.existsSync(pasta), false);
+    prepararExemplo(raiz, pasta);
+    assert.equal(fs.readFileSync(path.join(pasta, 'roteiro.md'), 'utf8'), 'Roteiro do estúdio');
+    assert.equal(fs.readFileSync(path.join(pasta, 'fontes.md'), 'utf8'), 'Fontes do estúdio');
+    fs.writeFileSync(path.join(pasta, 'roteiro.md'), 'Roteiro local');
+    prepararExemplo(raiz, pasta);
+    assert.equal(fs.readFileSync(path.join(pasta, 'roteiro.md'), 'utf8'), 'Roteiro local');
+  } finally { fs.rmSync(raiz, { recursive: true, force: true }); }
+});
+
 test('ocultar @ preserva CTA; sem marca também remove a identificação no CTA sem tocar no tema ou na fala', () => {
   const input = { handle: false, marca: { serie: '@teste', destaque: '#123456' }, beats: [
     { id: 'fato', titulo: { texto: '@teste faz parte do assunto' } },
@@ -67,6 +113,7 @@ test('prévia e render de cena antiga obedecem à preferência atual e invalidam
     const falado = { duracao: 2, palavras: [{ w: 'Teste.', t: 0, f: 1.8 }] };
     const antes = JSON.stringify(cena);
     const com = prepararSpec(cena, falado, { pasta });
+    assert.equal(com.marca.serie, '@teste');
     gravarExibicaoMarca(raiz, false);
     const sem = prepararSpec(cena, falado, { pasta });
     assert.equal(sem.handle, false); assert.equal(sem.marca.serie, ''); assert.equal(sem.marca.serieCta, '');

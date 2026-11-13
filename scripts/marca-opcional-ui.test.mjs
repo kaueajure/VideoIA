@@ -5,6 +5,28 @@ import vm from 'node:vm';
 
 const html = fs.readFileSync(new URL('../src/estudio/pagina.html', import.meta.url), 'utf8');
 const handler = html.slice(html.indexOf("$('#mExibir').onchange = async (evento) => {"), html.indexOf('    const imgs = (pasta) =>'));
+const painel = html.slice(html.indexOf('  async marca() {'), html.indexOf('  async objetivo() {'));
+
+test('painel de marca abre com campos vazios e mantém o formulário se as sugestões falharem', async () => {
+  const nodes = new Map();
+  const P = { set innerHTML(html) {
+    this.html = html;
+    for (const [, id] of html.matchAll(/id="([^"]+)"/g)) nodes.set('#' + id, { value: '', style: { setProperty() {} } });
+    nodes.set('#cel .topo', { style: {} });
+  } };
+  nodes.set('#painelPasso', P);
+  let responder;
+  const ctx = { conf: { marca: { exibir: false, neutra: true } }, $: key => nodes.get(key), $$: () => [],
+    esc: String, rodape: () => '', ligarRodape() {}, apiSeguro: () => new Promise(resolve => { responder = resolve; }) };
+  const render = vm.runInNewContext('({' + painel + '}).marca()', ctx);
+  assert.match(P.html, /id="mNome"[^>]*value=""/);
+  assert.doesNotMatch(P.html, /id="mExibir" checked/);
+  assert.equal(nodes.get('#cel .topo').style.display, 'none');
+  assert.equal(typeof nodes.get('#mAplicar').onclick, 'function');
+  responder({ erro: { causa: 'Sugestões indisponíveis' } });
+  await assert.doesNotReject(render);
+  assert.equal(typeof nodes.get('#mTestar').onclick, 'function');
+});
 function tela(post) {
   const nodes = { '#mExibir': { checked: false, disabled: false }, '#resExibicao': {} };
   const ctx = { mostrarMarca: true, post, api: async () => ({ pronto: { marca: true } }),

@@ -22,9 +22,8 @@ test.after(() => fs.rmSync(tmp, { recursive: true, force: true }));
 
 function raizFalsa(nome) {
   const r = path.join(tmp, nome);
-  fs.mkdirSync(path.join(r, 'marca'), { recursive: true });
+  fs.mkdirSync(r, { recursive: true });
   fs.copyFileSync(path.join(RAIZ, '.env.exemplo'), path.join(r, '.env.exemplo'));
-  fs.copyFileSync(path.join(RAIZ, 'marca', 'tokens.json'), path.join(r, 'marca', 'tokens.json'));
   fs.cpSync(path.join(RAIZ, 'modelos'), path.join(r, 'modelos'), { recursive: true, filter: (f) => !f.includes(`${path.sep}meus`) });
   fs.mkdirSync(path.join(r, 'templates', 'identidades'), { recursive: true });
   fs.copyFileSync(path.join(RAIZ, 'templates', 'identidades', 'presets.json'), path.join(r, 'templates', 'identidades', 'presets.json'));
@@ -49,10 +48,6 @@ function pedir(porta, rota, { metodo = 'GET', corpo = null, token = null, host =
 test('marca opcional: API permite pular a identidade, exige token e salva a escolha sem apagar dados', async () => {
   const raiz = raizFalsa('marca-opcional-api');
   const arquivo = path.join(raiz, 'marca/tokens.json');
-  const tokens = JSON.parse(fs.readFileSync(arquivo));
-  tokens.paginas.curiosidades.handle = '@suapagina';
-  fs.writeFileSync(arquivo, JSON.stringify(tokens));
-  const original = fs.readFileSync(arquivo, 'utf8');
   const srv = await estudio({ raiz });
   try {
     const pg = await pedir(srv.porta, '/');
@@ -61,14 +56,27 @@ test('marca opcional: API permite pular a identidade, exige token e salva a esco
     assert.equal(conf.pronto.marca, true);
     assert.equal(conf.marca.opcional, true);
     assert.equal(conf.marca.exibir, false);
+    assert.equal(conf.marca.neutra, true);
+    assert.equal(conf.marca.destaque, '#FF7A2F');
+    const padrao = await pedir(srv.porta, '/api/tokens');
+    assert.equal(padrao.status, 200);
+    assert.equal(padrao.json.paginas.curiosidades.handle, '');
+    const presets = await pedir(srv.porta, '/api/presets');
+    assert.equal(presets.status, 200);
+    assert.ok(presets.json.curiosidades.nomes.length);
     assert.equal((await pedir(srv.porta, '/api/marca/exibicao', { metodo: 'POST', corpo: { exibir: false } })).status, 403);
     assert.equal((await pedir(srv.porta, '/api/marca/exibicao', { metodo: 'POST', corpo: { exibir: 'false' }, token })).status, 400);
     const salvo = await pedir(srv.porta, '/api/marca/exibicao', { metodo: 'POST', corpo: { exibir: false }, token });
     assert.equal(salvo.status, 200); assert.equal(salvo.json.exibir, false);
-    assert.equal(fs.readFileSync(arquivo, 'utf8'), original);
+    assert.equal(fs.existsSync(arquivo), false);
     assert.equal(JSON.parse(fs.readFileSync(path.join(raiz, 'ilustrando.config.json'))).exibirMarca, false);
     assert.equal((await pedir(srv.porta, '/api/marca/exibicao', { metodo: 'POST', corpo: { exibir: true }, token })).status, 400);
-    tokens.paginas.curiosidades.handle = '@minhapagina'; fs.writeFileSync(arquivo, JSON.stringify(tokens));
+    fs.mkdirSync(path.dirname(arquivo));
+    const original = JSON.stringify({ paginas: { curiosidades: { handle: '@minhapagina', nome: 'Minha Página', destaque: '#123456' } } });
+    fs.writeFileSync(arquivo, original);
+    assert.equal((await pedir(srv.porta, '/api/configuracao')).json.marca.exibir, false);
     assert.equal((await pedir(srv.porta, '/api/marca/exibicao', { metodo: 'POST', corpo: { exibir: true }, token })).json.exibir, true);
+    assert.equal((await pedir(srv.porta, '/api/tokens')).json.paginas.curiosidades.destaque, '#123456');
+    assert.equal(fs.readFileSync(arquivo, 'utf8'), original);
   } finally { srv.fechar(); }
 });

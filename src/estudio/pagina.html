@@ -1235,22 +1235,19 @@ const RENDER = {
     det();
   },
   async marca() {
-    const P = $('#painelPasso'), m = conf.marca;
-    const presets = await api('/api/presets');
-    const cores = [...new Set(Object.values(presets).map((p) => p.cor))];
-    let cor = m.destaque || '#FF7A2F', mostrarMarca = m.exibir !== false;
+    const P = $('#painelPasso'), m = conf?.marca || {};
+    let cor = /^#[0-9a-f]{6}$/i.test(m.destaque) ? m.destaque : '#FF7A2F', mostrarMarca = m.exibir === true;
     P.innerHTML = `<h2>Marca nos vídeos (opcional)</h2><p class="sub">Você pode produzir e publicar vídeos sem nome, @ ou logo da página. Se quiser uma identidade, configure-a abaixo.</p>
       <label class="campo"><span><input type="checkbox" id="mExibir" ${mostrarMarca ? 'checked' : ''}> Exibir minha marca nos vídeos</span></label>
       <p class="dica">A escolha vale para as próximas renderizações. Sua marca fica salva para você usar quando quiser.</p>
       <div id="resExibicao" role="status" aria-live="polite"></div>
       <div class="grade-marca"><div>
-        <h3 style="margin-top:18px">Não tem nome ainda? Comece por uma ideia do seu nicho</h3>
-        <div class="nichos">${Object.entries(presets).map(([id, p]) => `<button data-n="${esc(id)}">${esc(p.nicho)}</button>`).join('')}</div>
+        <div id="mSugestoes"></div>
         <label class="campo"><span>Nome da página</span><input type="text" id="mNome" maxlength="30" placeholder="ex.: Pílula Curiosa" value="${m.neutra ? '' : esc(m.nome)}"></label>
         <label class="campo"><span>@ da página (o mesmo nas 4 redes)</span><input type="text" id="mHandle" maxlength="31" placeholder="@pilulacuriosa" value="${m.neutra ? '' : esc(m.handle)}" spellcheck="false" autocapitalize="off"></label>
         <p class="dica">Antes de decidir, confira se o @ está livre no Instagram, TikTok, YouTube e Facebook (Guia 03).</p>
         <label class="campo"><span>Cor de destaque</span></label>
-        <div class="cores" id="mCores">${cores.map((c) => `<button style="background:${c}" data-c="${c}" aria-label="cor ${c}" aria-pressed="${c.toUpperCase() === cor.toUpperCase()}"></button>`).join('')}<input type="color" id="mCor" value="${esc(cor)}" aria-label="outra cor"></div>
+        <div class="cores" id="mCores"><input type="color" id="mCor" value="${esc(cor)}" aria-label="Cor de destaque"></div>
         <div class="acoes"><button class="btn" id="mAplicar">Aplicar na minha página</button><button class="btn sec" id="mTestar">Ver as imagens antes</button></div>
         <div id="resMarca"></div>
       </div>
@@ -1285,13 +1282,11 @@ const RENDER = {
       }
     };
     const imgs = (pasta) => { $q('#imgsMarca').innerHTML = `<h3 style="margin-top:22px">${pasta === 'teste' ? 'Prévia (ainda não aplicada)' : 'Arquivos da sua marca'}</h3><div class="imgs-marca">${['avatar', 'banner-youtube', 'banner-facebook', 'destaque-instagram'].map((f) => `<img alt="${f}" src="/marca-img/${pasta}/${f}.png?t=${Date.now()}" onerror="this.remove()">`).join('')}</div>${pasta === 'saida' ? '<div class="acoes"><button class="btn sec pequeno" id="abrirMarca">Abrir a pasta com as imagens</button></div>' : ''}`; const b = $('#abrirMarca'); if (b) b.onclick = () => post('/api/mostrar', { pasta: 'marca' }); };
-    $$('#mCores button').forEach((b) => (b.onclick = () => { cor = b.dataset.c; $('#mCor').value = cor; $$('#mCores button').forEach((x) => x.setAttribute('aria-pressed', x === b)); prev(); }));
     $('#mCor').oninput = (e) => { cor = e.target.value.toUpperCase(); $$('#mCores button').forEach((x) => x.setAttribute('aria-pressed', 'false')); prev(); };
-    $$('.nichos button').forEach((b) => (b.onclick = () => { const p = presets[b.dataset.n]; const [n, h] = p.nomes[p.exemplo || 0]; $('#mNome').value = n; $('#mHandle').value = h; cor = p.cor; $('#mCor').value = cor; $$('#mCores button').forEach((x) => x.setAttribute('aria-pressed', x.dataset.c === cor)); prev(); }));
     $('#mNome').oninput = prev; $('#mHandle').oninput = prev;
     const enviar = (testar) => {
       const corpo = { nome: $('#mNome').value.trim(), handle: $('#mHandle').value.trim(), cor, testar };
-      if (!corpo.nome || !corpo.handle) { $q('#resMarca').innerHTML = caixaErro({ causa: 'Escreva o nome e o @ da página.', acao: 'Sem ideia? Clique num nicho acima para ver um exemplo.' }, { leve: true }); return; }
+      if (!corpo.nome || !corpo.handle) { $q('#resMarca').innerHTML = caixaErro({ causa: 'Escreva o nome e o @ da página.' }, { leve: true }); return; }
       $q('#resMarca').innerHTML = '<p class="dica" style="margin-top:12px">Gerando as imagens (uns 20 segundos)…</p>';
       iniciarTarefa('/api/marca', corpo, async (j) => {
         if (j.codigo !== 0) { $q('#resMarca').innerHTML = caixaErro(j.erro); return; }
@@ -1300,9 +1295,10 @@ const RENDER = {
             const salvo = await post('/api/marca/exibicao', { exibir: true });
             if (!salvo.ok || salvo.erro) throw salvo;
             conf = await api('/api/configuracao');
+            aplicarCor(conf.marca.destaque);
             mostrarMarca = true; if ($('#mExibir')) { $('#mExibir').checked = true; prev(); }
           } catch (erro) {
-            $('#resMarca').innerHTML = caixaErro(erro.erro || { causa: erro.message, acao: 'A marca foi salva. Tente ligar a exibição novamente.' });
+            $q('#resMarca').innerHTML = caixaErro(erro.erro || { causa: erro.message, acao: 'A marca foi salva. Tente ligar a exibição novamente.' });
             return;
           }
         }
@@ -1313,6 +1309,16 @@ const RENDER = {
     };
     $('#mAplicar').onclick = () => enviar(false); $('#mTestar').onclick = () => enviar(true);
     prev(); if (m.avatar && !m.neutra) imgs('saida');
+    const sugestoes = $('#mSugestoes');
+    const presets = await apiSeguro('/api/presets');
+    if ($('#mSugestoes') !== sugestoes || !presets || presets.erro) return;
+    const nichos = Object.entries(presets).filter(([, p]) => /^#[0-9a-f]{6}$/i.test(p?.cor) && Array.isArray(p.nomes?.[p.exemplo || 0]));
+    if (!nichos.length) return;
+    sugestoes.innerHTML = `<h3 style="margin-top:18px">Comece por uma ideia do seu nicho</h3><div class="nichos">${nichos.map(([id, p]) => `<button data-n="${esc(id)}">${esc(p.nicho)}</button>`).join('')}</div>`;
+    const cores = [...new Set(nichos.map(([, p]) => p.cor.toUpperCase()))];
+    $('#mCor').insertAdjacentHTML('beforebegin', cores.map((c) => `<button style="background:${c}" data-c="${c}" aria-label="cor ${c}" aria-pressed="${c === cor.toUpperCase()}"></button>`).join(''));
+    $$('#mCores button').forEach((b) => (b.onclick = () => { cor = b.dataset.c; $('#mCor').value = cor; $$('#mCores button').forEach((x) => x.setAttribute('aria-pressed', x === b)); prev(); }));
+    $$('#mSugestoes button').forEach((b) => (b.onclick = () => { const p = presets[b.dataset.n]; const [n, h] = p.nomes[p.exemplo || 0]; $('#mNome').value = n; $('#mHandle').value = h; cor = p.cor.toUpperCase(); $('#mCor').value = cor; $$('#mCores button').forEach((x) => x.setAttribute('aria-pressed', x.dataset.c === cor)); prev(); }));
   },
   async objetivo() {
     const P = $('#painelPasso');
@@ -2137,7 +2143,7 @@ async function carregarVideos() {
   // 0.5.3: tema livre em + Vídeo (um só lugar para criar; aqui só a lista)
   const novo = `<section class="cta-novo"><div><h2>Vídeo</h2><p class="sub">Tema, gancho e fecho ficam em <b>+ Vídeo</b>. O assistente escreve o roteiro; o estúdio produz.</p></div><button class="btn" id="ctaIrNovo">+ Vídeo</button></section>`;
   const ligaNovo = () => { const b = $('#ctaIrNovo'); if (!b) return; b.onclick = () => { mostrar('novo'); requestAnimationFrame(() => $('#pvTema')?.focus({ preventScroll: true })); }; };
-  if (!vs.length) { alvo.innerHTML = novo + '<div class="vazio-bonito" style="grid-column:1/-1"><h2>Você ainda não tem vídeos prontos</h2><p>Os vídeos que o estúdio fizer aparecem aqui, com os botões de assistir, baixar e copiar a legenda. O jeito mais rápido de ver o primeiro é fazer o vídeo de teste.</p><div class="acoes"><button class="btn" id="vazioTeste">Fazer o vídeo de teste</button></div></div>'; ligaNovo(); $('#vazioTeste').onclick = () => irPara('teste'); return; }
+  if (!vs.length) { alvo.innerHTML = novo + '<div class="vazio-bonito" style="grid-column:1/-1"><h2>Você ainda não tem vídeos prontos</h2><p>Os vídeos que o estúdio fizer aparecem aqui, com os botões de assistir, baixar e copiar a legenda. O jeito mais rápido de ver o primeiro é fazer o vídeo de teste.</p><div class="acoes"><button class="btn" id="vazioTeste">Fazer o vídeo de teste</button></div></div>'; ligaNovo(); $('#vazioTeste').onclick = () => mostrar('novo'); return; }
   const chatConectado = !!conf?.pronto?.ia;
   const ajustar = (projeto, tipo, sugestao) => {
     const video = vs.find(item => item.nome === projeto);

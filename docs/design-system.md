@@ -2,7 +2,7 @@
 
 # Design system do Estudio de videos
 
-Fonte única: `marca/tokens.json`. Tudo (carrossel, vídeo, estúdio web, avatar) lê daqui. Para gerar os arquivos de marca: `npm run identidade` (saem em `marca/saida`).
+A paleta de fábrica vem em `src/tokens-marca-padrao.json`. A primeira aplicação de uma marca cria `marca/tokens.json` com a identidade local. Vídeo, carrossel e estúdio web usam a paleta de fábrica quando esse arquivo ainda não existe. Para gerar os arquivos de uma marca configurada, use `npm run identidade`. Eles saem em `marca/saida`.
 
 ## Identidade
 - **Página única:** o @ de `marca/tokens.json` (na página de demonstração, @exemplo). Bio de exemplo: "Uma página exclusiva para pessoas inteligentes e curiosas 😌".
@@ -57,6 +57,6 @@ Nos estilos base verticais, uma foto isolada cresce proporcionalmente até 600 p
 
 ## Marca opcional nos vídeos
 
-Em Configurações > Sua marca (opcional), o controle nativo “Exibir minha marca nos vídeos” salva `exibirMarca` sem exigir nome, @ ou logo para desligar. A etapa não bloqueia o progresso. O desligamento não apaga `marca/tokens.json`, as cores nem os arquivos da identidade. Para ligar, deve existir nome/@ configurado; aplicar uma nova identidade liga a exibição após o sucesso. Prévia e produção leem a mesma preferência atual, inclusive para cenas antigas. O modo sem marca oculta a identificação e torna genérico o @ nos títulos de CTA, sem alterar a fala nem remover logos de terceiros que fazem parte do assunto. Carrosséis continuam com o comportamento existente.
+Em Configurações > Sua marca (opcional), o controle nativo “Exibir minha marca nos vídeos” salva `exibirMarca` sem exigir nome, @ ou logo para desligar. A etapa não bloqueia o progresso. O desligamento não apaga `marca/tokens.json`, as cores nem os arquivos da identidade. Para ligar, deve existir nome/@ configurado. Aplicar uma identidade pela interface liga a exibição após o sucesso. Prévia e produção leem a mesma preferência atual, inclusive para cenas antigas. O modo sem marca oculta a identificação e torna genérico o @ nos títulos de CTA, sem alterar a fala nem remover logos de terceiros que fazem parte do assunto. Carrosséis exibem a marca quando ela está configurada e usam a paleta de fábrica quando ainda não existe identidade local.
 
 Implementação: `src/marca-opcional.mjs` persiste a preferência; `src/video/preparar-spec.mjs` aplica-a à preparação compartilhada; `src/video/engine/marca-opcional.js` é a política comum de identificação do renderizador. Os controles reutilizam `.campo`, `.dica` e os estados de erro da tela, sem novos tokens.

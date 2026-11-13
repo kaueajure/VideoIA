@@ -8,6 +8,7 @@ import path from 'node:path';
 import { chromium } from 'playwright';
 import { abrirNavegador } from '../src/navegador.mjs'; // 0.6.2: Chromium do estúdio ou, sem ele, o Chrome ou o Edge do computador
 import { RAIZ, TOKENS, lerTokens, paletaDe, medirMonograma, gerarIdentidade, fmtContraste, contraste } from '../src/identidade.mjs';
+import { gravarAtomicoAsync } from '../src/video/arquivo.mjs';
 
 /**
  * Troca a marca da página do estúdio em 1 comando.
@@ -136,6 +137,7 @@ Cores: destaque ${p.destaque}, apoio ${p.apoio}, texto sobre o destaque ${p.tint
 `;
 
 const backup = () => {
+  if (!fs.existsSync(TOKENS)) return null;
   const dir = path.join(RAIZ, 'marca/historico');
   fs.mkdirSync(dir, { recursive: true });
   const d = new Date(); const z = (n) => String(n).padStart(2, '0');
@@ -146,7 +148,8 @@ const backup = () => {
 // troca só o bloco "paginas" no texto do arquivo: o JavaScript reordena chaves numéricas (como as de "neutros")
 // e regravar o JSON inteiro mudaria o resto do arquivo sem motivo
 const gravarTokens = (tokens) => {
-  const txt = fs.readFileSync(TOKENS, 'utf8');
+  const txt = fs.existsSync(TOKENS) ? fs.readFileSync(TOKENS, 'utf8') : '';
+  fs.mkdirSync(path.dirname(TOKENS), { recursive: true });
   const ini = txt.indexOf('"paginas"');
   const abre = txt.indexOf('{', ini);
   let nivel = 0, fim = -1, str = false;
@@ -155,9 +158,9 @@ const gravarTokens = (tokens) => {
     if (str) { if (c === '\\') i++; else if (c === '"') str = false; continue; }
     if (c === '"') str = true; else if (c === '{') nivel++; else if (c === '}' && --nivel === 0) { fim = i; break; }
   }
-  if (ini < 0 || fim < 0) return fs.writeFileSync(TOKENS, JSON.stringify(tokens, null, 2));
+  if (ini < 0 || fim < 0) return gravarAtomicoAsync(TOKENS, JSON.stringify(tokens, null, 2) + '\n');
   const bloco = JSON.stringify(tokens.paginas, null, 2).replace(/\n/g, '\n  ');
-  fs.writeFileSync(TOKENS, txt.slice(0, abre) + bloco + txt.slice(fim + 1));
+  return gravarAtomicoAsync(TOKENS, txt.slice(0, abre) + bloco + txt.slice(fim + 1));
 };
 
 /* ---------------- comandos ---------------- */
@@ -171,8 +174,9 @@ if (args.listar) {
 }
 
 if (args.ver) {
-  const p = lerTokens().paginas.curiosidades;
-  console.log(`\nMarca atual: ${p.nome} ${p.handle}\nDestaque ${p.destaque}  apoio ${p.apoio}  tinta ${p.tinta}\nAssinatura: ${p.assinatura}\n`);
+  const p = lerTokens().paginas.curiosidades || {};
+  if (!p.handle || p.handle === '@suapagina') console.log('\nNenhuma marca configurada. O estúdio usa a paleta padrão.\n');
+  else console.log(`\nMarca atual: ${p.nome} ${p.handle}\nDestaque ${p.destaque}  apoio ${p.apoio}  tinta ${p.tinta}\nAssinatura: ${p.assinatura}\n`);
   process.exit(0);
 }
 
@@ -180,11 +184,11 @@ const nav = (await abrirNavegador(chromium)).nav;
 try {
   if (args.ilustrando) {
     const tokens = lerTokens();
-    const antes = backup();
     tokens.paginas.curiosidades = { ...ILUSTRANDO };
-    gravarTokens(tokens);
     await gerarIdentidade({ tokens, pagina: tokens.paginas.curiosidades, saida: path.join(RAIZ, 'marca/saida'), logo: path.join(RAIZ, 'marca/logo'), nav });
-    console.log(`\nMarca de demonstração restaurada (${ILUSTRANDO.handle}). A anterior ficou em ${antes}.\n`);
+    const antes = backup();
+    await gravarTokens(tokens);
+    console.log(`\nMarca de demonstração restaurada (${ILUSTRANDO.handle}).${antes ? ` A anterior ficou em ${antes}.` : ''}\n`);
   } else if (args.presets) {
     const tokens = lerTokens();
     const linhas = [];
@@ -216,9 +220,9 @@ try {
     let antes = null;
     const t2 = structuredClone(tokens);
     t2.paginas.curiosidades = pagina;
-    if (!teste) { antes = backup(); gravarTokens(t2); }
     const arq = await gerarIdentidade({ tokens: t2, pagina, saida, logo: teste ? saida : path.join(RAIZ, 'marca/logo'), nav });
     fs.writeFileSync(path.join(saida, 'perfil.txt'), textoPerfil(pagina, pr?.nicho));
+    if (!teste) { antes = backup(); await gravarTokens(t2); }
     console.log(`\n${teste ? 'PRÉVIA (nada foi trocado)' : 'Marca trocada'}: ${pagina.nome} ${pagina.handle}`);
     console.log(`Destaque ${pagina.destaque} (${fmtContraste(pal.contrastes.destaqueFundo)} sobre o fundo), apoio ${pagina.apoio}, texto sobre o destaque ${pagina.tinta} (${fmtContraste(pal.contrastes.tintaDestaque)}). Símbolo: letra ${pagina.simbolo.letra}.`);
     console.log(`Arquivos em ${path.relative(RAIZ, saida)}: ${arq.join(', ')}, perfil.txt`);
