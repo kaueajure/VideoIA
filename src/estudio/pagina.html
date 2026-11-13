@@ -50,17 +50,21 @@ nav.abas-topo{display:flex;gap:2px;align-items:center;justify-content:center;jus
 nav.abas-topo button{background:none;border:0;color:var(--fraco);padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:600;font-size:13.5px;white-space:nowrap;flex:none}
 nav.abas-topo button[aria-selected=true]{background:var(--sel);color:var(--texto)}
 nav.abas-topo button .pin{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--aviso);margin-left:6px;vertical-align:middle}
-nav.abas-topo button.btn-novo{background:var(--d);color:var(--tinta);padding:9px 16px;margin-right:4px;border-radius:999px;font-size:14px}
-nav.abas-topo button.btn-novo[aria-selected=true]{background:var(--d);color:var(--tinta);box-shadow:0 0 0 1px var(--inset) inset}
+nav.abas-topo button.btn-novo,nav.abas-topo button.btn-3d{background:transparent;color:var(--texto);padding:9px 16px;margin-right:4px;border-radius:10px;font-size:14px;border:1px solid var(--texto)}
+nav.abas-topo button.btn-novo:hover,nav.abas-topo button.btn-3d:hover{background:var(--texto);color:var(--fundo)}
+nav.abas-topo button.btn-novo[aria-selected=true],nav.abas-topo button.btn-3d[aria-selected=true]{background:var(--texto);color:var(--fundo)}
+nav.abas-topo button.btn-3d{background:transparent;color:var(--texto);border:1px solid var(--linha)}
+nav.abas-topo button.btn-3d:hover{background:var(--sel);color:var(--texto)}
+nav.abas-topo button.btn-3d[aria-selected=true]{background:var(--texto);color:var(--fundo);border-color:var(--texto)}
 nav.abas-topo button[data-vista=configuracoes]{color:var(--suave)}
 nav.abas-topo button[data-vista=configuracoes][aria-selected=true]{color:var(--texto)}
 nav.abas-topo .sep-nav{width:1px;height:20px;background:var(--linha);margin:0 6px 0 2px;flex:none}
 nav.abas-topo .abas-scroll{display:flex;gap:2px;align-items:center;min-width:0;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
 nav.abas-topo .abas-scroll::-webkit-scrollbar{display:none;height:0}
-.tema-ctl{justify-self:end;display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--linha);border-radius:999px;background:var(--fundo)}
-.tema-ctl button{display:grid;place-items:center;width:34px;height:34px;border:0;border-radius:999px;background:transparent;color:var(--fraco);cursor:pointer;padding:0}
-.tema-ctl button:hover{color:var(--texto);background:var(--hover)}
-.tema-ctl button[aria-pressed=true]{background:var(--d);color:var(--tinta)}
+.tema-ctl{justify-self:end;display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--linha);border-radius:10px;background:var(--fundo)}
+.tema-ctl button{display:grid;place-items:center;width:34px;height:34px;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--fraco);cursor:pointer;padding:0}
+.tema-ctl button:hover{color:var(--texto);background:var(--sel)}
+.tema-ctl button[aria-pressed=true]{background:transparent;color:var(--texto);border-color:var(--texto)}
 .tema-ctl .ic{width:17px;height:17px;margin:0}
 .estudio-wrap{flex:1;min-height:0;display:grid;place-items:center;padding:16px 0;box-sizing:border-box}
 .estudio{width:95%;height:90%;max-width:95%;max-height:90%;display:flex;flex-direction:column;background:var(--fundo);border:1px solid var(--linha);border-radius:18px;overflow:hidden;box-shadow:0 20px 60px var(--sombra)}
@@ -77,12 +81,12 @@ h2{font-size:22px;letter-spacing:-.02em;font-weight:700;margin-bottom:6px}
 h3{font-size:13px;letter-spacing:.02em;color:var(--fraco);font-weight:600;margin:0 0 10px}
 .ic{width:1.15em;height:1.15em;flex:none;vertical-align:-.2em;pointer-events:none}
 nav.abas-topo button .ic{margin-right:7px;vertical-align:-.22em}
-.btn{display:inline-flex;align-items:center;gap:8px;background:var(--d);color:var(--tinta);border:1px solid transparent;border-radius:999px;padding:12px 22px;font-weight:700;cursor:pointer;transition:transform .16s var(--e),filter .16s;text-decoration:none}
-.btn:hover{filter:brightness(1.08)}.btn:active{transform:scale(.98)}
-.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--texto);border:1px solid var(--texto);border-radius:10px;padding:11px 18px;font-weight:700;cursor:pointer;transition:transform .16s var(--e),background .16s,border-color .16s,color .16s;text-decoration:none}
+.btn:hover{background:var(--texto);color:var(--fundo)}.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.4;cursor:not-allowed;background:transparent;color:var(--texto)}
 .btn.sec{background:transparent;color:var(--texto);border:1px solid var(--linha)}
-.btn.sec:hover{background:var(--hover)}
-.btn.pequeno{padding:8px 14px;font-size:14px}
+.btn.sec:hover{background:var(--sel);color:var(--texto)}
+.btn.pequeno{padding:8px 14px;font-size:14px;border-radius:10px}
 .barra-salvar{position:sticky;bottom:14px;z-index:6;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:26px 0 0;padding:12px 12px 12px 16px;background:var(--sup-blur);border:1px solid var(--linha);border-radius:20px;box-shadow:0 14px 44px var(--sombra-forte);backdrop-filter:blur(10px)}
 .barra-salvar.sujo{border-color:var(--d-borda)}
 .barra-salvar .chips-sel{display:flex;gap:8px;flex-wrap:wrap;min-width:0;flex:1 1 280px}
@@ -243,9 +247,9 @@ li,p,b,span,.caixa-ok,.caixa-erro,.caixa-nota{overflow-wrap:anywhere}
 .escolha-pagina .modelos-obj .ic-box .ic{width:22px;height:22px}
 .escolha-pagina .modelos-obj .opcao[aria-checked=true]{background:var(--d-fundo)}
 
-/* Estilos: galeria com prévia + nome; detalhe do selecionado ao lado em telas largas */
-.estilo-picker{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,300px);gap:18px;align-items:start}
-.estilo-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(156px,1fr));gap:14px;margin:0;max-height:min(62vh,720px);overflow:auto;padding:2px 6px 10px 2px;scrollbar-width:thin;align-content:start}
+/* Estilos: um só scroll (o do painel); grade sem altura fixa; detalhe acompanha sticky */
+.estilo-picker{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,280px);gap:18px;align-items:start}
+.estilo-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px;margin:0;padding:0;align-content:start}
 .estilo-grade .opcao.tem-previa{padding:0;overflow:hidden;display:flex;flex-direction:column;background:var(--sup2);border:1px solid var(--linha);border-radius:14px;cursor:pointer;text-align:left;min-height:0;color:inherit;font:inherit}
 .estilo-grade .opcao.tem-previa:hover{border-color:var(--borda-forte)}
 .estilo-grade .opcao.tem-previa[aria-checked=true]{border-color:var(--d);box-shadow:0 0 0 1px var(--d) inset;background:var(--d-fundo)}
@@ -258,10 +262,10 @@ li,p,b,span,.caixa-ok,.caixa-erro,.caixa-nota{overflow-wrap:anywhere}
 .estilo-grade .opcao.tem-previa .tx span{margin:0;font-size:12px;line-height:1.4;color:var(--suave);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .estilo-grade .opcao.tem-previa .ok{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;background:var(--d);color:var(--tinta);display:none;place-items:center;font-size:14px;font-weight:700}
 .estilo-grade .opcao.tem-previa[aria-checked=true] .ok{display:grid}
-.estilo-detalhe{display:grid;gap:14px;min-width:0;border:1px solid var(--linha);border-radius:16px;background:var(--sup2);padding:18px;position:sticky;top:0}
-.estilo-detalhe .det-topo b{display:block;font-size:19px;letter-spacing:-.02em}
-.estilo-detalhe .det-topo p{margin:8px 0 0;color:var(--suave);font-size:14px;line-height:1.5}
-.estilo-detalhe .det-previa{position:relative;width:100%;aspect-ratio:9/16;max-height:min(48vh,480px);border-radius:12px;overflow:hidden;background:var(--midia);justify-self:center}
+.estilo-detalhe{display:grid;gap:12px;min-width:0;border:1px solid var(--linha);border-radius:16px;background:var(--sup2);padding:16px;position:sticky;top:0;align-self:start}
+.estilo-detalhe .det-topo b{display:block;font-size:18px;letter-spacing:-.02em}
+.estilo-detalhe .det-topo p{margin:8px 0 0;color:var(--suave);font-size:13.5px;line-height:1.45}
+.estilo-detalhe .det-previa{position:relative;width:100%;aspect-ratio:9/16;max-height:min(42vh,420px);border-radius:12px;overflow:hidden;background:var(--midia);justify-self:center}
 .estilo-detalhe .det-previa video{width:100%;height:100%;object-fit:contain;display:block}
 .estilo-detalhe .det-previa .sem{height:100%;display:grid;place-items:center;align-content:center;gap:8px;text-align:center;padding:16px;color:var(--fraco);font-size:13px;background:repeating-linear-gradient(135deg,var(--risca) 0 10px,transparent 10px 20px)}
 .estilo-detalhe .det-previa .sem.auto{color:var(--d)}.estilo-detalhe .det-previa .sem.auto .ic{width:36px;height:36px}.estilo-detalhe .det-previa .sem.auto span{color:var(--suave)}
@@ -270,18 +274,19 @@ li,p,b,span,.caixa-ok,.caixa-erro,.caixa-nota{overflow-wrap:anywhere}
 .escolha-pagina .vazio-filtro{padding:22px 14px;text-align:center;color:var(--fraco);font-size:13.5px;border:1px dashed var(--linha);border-radius:12px;grid-column:1/-1}
 @media (max-width:1100px){
   .estilo-picker{grid-template-columns:1fr}
-  .estilo-detalhe{position:static;display:grid;grid-template-columns:minmax(140px,180px) minmax(0,1fr);align-items:center}
-  .estilo-detalhe .det-previa{max-height:240px;aspect-ratio:9/16}
+  .estilo-detalhe{position:static;display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr);align-items:center;order:-1}
+  .estilo-detalhe .det-previa{max-height:200px;aspect-ratio:9/16}
 }
 @media (max-width:720px){
   .escolha-pagina .modelos-obj{grid-template-columns:1fr}
-  .estilo-grade{grid-template-columns:repeat(auto-fill,minmax(136px,1fr));max-height:min(52vh,520px);gap:12px}
+  .estilo-grade{grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:10px}
   .estilo-detalhe{grid-template-columns:1fr}
 }
 
-.segmento{display:inline-flex;border:1px solid var(--linha);border-radius:999px;padding:3px;gap:2px;flex-wrap:wrap}
-.segmento button{background:none;border:0;border-radius:999px;padding:7px 14px;cursor:pointer;color:var(--suave);font-weight:600}
-.segmento button[aria-pressed=true]{background:var(--d);color:var(--tinta)}
+.segmento{display:inline-flex;border:1px solid var(--linha);border-radius:10px;padding:3px;gap:2px;flex-wrap:wrap}
+.segmento button{background:none;border:1px solid transparent;border-radius:8px;padding:7px 14px;cursor:pointer;color:var(--suave);font-weight:600}
+.segmento button:hover{background:var(--sel);color:var(--texto)}
+.segmento button[aria-pressed=true]{background:transparent;color:var(--texto);border-color:var(--texto)}
 .video-teste{width:240px;aspect-ratio:9/16;border-radius:16px;background:var(--midia);display:block}
 .proximo{margin-top:22px}
 .proximo ol{margin:10px 0 0 20px;display:grid;gap:6px;color:var(--suave)}
@@ -300,7 +305,7 @@ li,p,b,span,.caixa-ok,.caixa-erro,.caixa-nota{overflow-wrap:anywhere}
 .etq.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}.etq.aviso{background:color-mix(in srgb,var(--aviso) 18%,transparent);color:var(--aviso)}
 .vid .bts{display:grid;grid-template-columns:1fr;gap:6px;padding:0 10px 10px;margin-top:auto;min-width:0}
 .vid .bts .btn{justify-content:center;padding:8px 10px;font-size:12.5px;white-space:normal;text-align:center;line-height:1.25;min-height:34px;width:100%;min-width:0;max-width:100%;box-sizing:border-box}
-.vid .bts .btn.sec{background:var(--fundo)}
+.vid .bts .btn.sec{background:transparent}
 .vazio{color:var(--fraco);margin-top:30px;max-width:56ch}
 /* projetos (o painel antigo) */
 .projetos{display:grid;grid-template-columns:340px 1fr;height:100%}
@@ -363,7 +368,14 @@ li,p,b,span,.caixa-ok,.caixa-erro,.caixa-nota{overflow-wrap:anywhere}
 .trilho.indef i{animation:vai 1.4s var(--e) infinite}
 @keyframes vai{0%{transform:translateX(-100%)}100%{transform:translateX(340%)}}
 #log{background:var(--log);border:1px solid var(--linha);border-radius:10px;padding:10px 12px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--suave);max-height:200px;overflow:auto;white-space:pre-wrap;margin-top:10px}
-.mini{background:none;border:0;color:var(--fraco);cursor:pointer;font-size:13px;text-decoration:underline;padding:0}
+.mini{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--texto);border:1px solid var(--linha);border-radius:10px;padding:8px 14px;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;transition:background .16s,border-color .16s,color .16s}
+.mini:hover{background:var(--sel);color:var(--texto)}
+.grade-videos{display:grid;gap:12px}
+.card-video{display:grid;gap:12px;padding:14px 16px;background:var(--sup);border:1px solid var(--linha);border-radius:12px;min-width:0}
+.card-video .meta{display:grid;gap:4px;min-width:0}
+.card-video .meta b{display:block;font-size:14.5px;line-height:1.3;overflow-wrap:anywhere}
+.card-video .meta small{display:block;color:var(--fraco);font-size:12.5px;line-height:1.35;overflow-wrap:anywhere}
+.card-video .acoes{margin-top:0}
 dialog{margin:auto;background:var(--sup);color:var(--texto);border:1px solid var(--linha);border-radius:18px;padding:20px;max-width:min(720px,calc(100vw - 32px));width:100%}
 dialog::backdrop{background:#000c}
 dialog video{width:100%;max-height:72vh;border-radius:12px;background:#000;display:block}
@@ -394,6 +406,8 @@ dialog textarea{min-height:300px;margin-top:12px;font-size:14px;line-height:1.5}
 .refs-campo{margin-top:14px}
 .refs-campo > span{display:block;font-size:12.5px;color:var(--suave);font-weight:600;margin-bottom:6px}
 .refs-campo > span small{font-weight:500;opacity:.85;margin-left:4px}
+.refs-campo .refs-acoes{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.refs-campo .refs-status{font-size:13px;color:var(--fraco)}
 .refs-lista{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .refs-lista .ref-chip{display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid var(--linha);border-radius:10px;background:var(--cartao,transparent);font-size:12px;color:var(--suave);max-width:100%}
 .refs-lista .ref-chip img{width:36px;height:36px;object-fit:cover;border-radius:6px;flex:none}
@@ -426,19 +440,32 @@ dialog textarea{min-height:300px;margin-top:12px;font-size:14px;line-height:1.5}
 .temas button{padding:7px 8px;font-size:12.5px;line-height:1.25}
 #v-novo .bloco-ideias{margin-top:10px;padding-top:8px}
 #v-novo .extras-wrap.bloco-ideias{margin-top:8px;border-top:0;padding-top:0}
-#v-configuracoes .pagina.col > .assist,
-#v-configuracoes .pagina.col > .discreto,
-#v-configuracoes .pagina.col > #pBarra{flex:none}
-#v-configuracoes .assist{display:flex;flex-direction:column;flex:1;min-height:0;margin-top:8px;gap:10px;align-items:stretch}
-#v-configuracoes #pBarra{margin:8px 0 0;position:static;bottom:auto;box-shadow:0 8px 28px var(--sombra-forte)}
-#v-configuracoes #pBarra[hidden]{display:none !important}
+/* Em Configurações o casco .estudio some: só os dois cartões existem como caixas */
+body[data-vista=configuracoes] .estudio-wrap{padding:0;display:block;background:var(--corpo)}
+body[data-vista=configuracoes] .estudio{width:100%;height:100%;max-width:none;max-height:none;border:0;border-radius:0;box-shadow:none;background:transparent}
+#v-configuracoes,
+#v-configuracoes .pagina.col{background:transparent}
+#v-configuracoes .pagina.col{overflow:hidden;gap:20px;padding:16px 24px 18px}
+#v-configuracoes .pagina.col > .cabeca,
+#v-configuracoes .pagina.col > #pBarra,
+#v-configuracoes .pagina.col > .cfg-links{flex:none}
+#v-configuracoes .pagina.col > .cfg-conteudo{flex:1;min-height:0}
+/* Dois cartões irmãos, soltos no fundo do body */
+#v-configuracoes .cfg-box{background:var(--sup);border:1px solid var(--linha);border-radius:16px;box-shadow:0 8px 28px var(--sombra-card)}
+#v-configuracoes .cfg-conteudo.assist{display:flex;flex-direction:column;margin:0;padding:14px;gap:12px;align-items:stretch;min-height:0}
 #v-configuracoes .passos{display:flex;flex-direction:row;flex-wrap:nowrap;gap:6px;overflow-x:auto;overflow-y:hidden;max-height:none;flex:none;padding:0 0 2px;scrollbar-width:thin;align-content:stretch}
 #v-configuracoes .passos li{flex:1 1 0;min-width:96px;list-style:none}
-#v-configuracoes .passos button{width:100%;height:100%;min-height:52px;padding:8px 10px;grid-template-columns:22px minmax(0,1fr);gap:8px;border-radius:12px}
+#v-configuracoes .passos button{width:100%;height:100%;min-height:52px;padding:8px 10px;grid-template-columns:22px minmax(0,1fr);gap:8px;border-radius:12px;background:var(--sup2)}
 #v-configuracoes .passos .n{width:22px;height:22px;font-size:11px}
 #v-configuracoes .passos small{font-size:10.5px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-#v-configuracoes #painelPasso{flex:1;min-height:0;height:auto;overflow:auto;padding:16px}
-#v-configuracoes .cfg-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+#v-configuracoes #painelPasso{flex:1;min-height:0;overflow:auto;padding:0;background:transparent;border:0;border-radius:0;box-shadow:none;scrollbar-width:thin}
+#v-configuracoes #pBarra.cfg-salvar{position:static;bottom:auto;margin:0;padding:12px 16px;backdrop-filter:none;display:flex;align-items:center;justify-content:space-between;gap:12px 16px;flex-wrap:wrap}
+#v-configuracoes #pBarra .chips-sel{flex:1 1 160px;min-width:0;justify-content:center}
+#v-configuracoes #pBarra .lado{display:flex;align-items:center;gap:10px;margin-left:0;flex:none}
+#v-configuracoes #pBarra #pAnterior{flex:none}
+#v-configuracoes #pBarra.sujo{border-color:var(--d-borda);box-shadow:0 0 0 1px var(--d-borda) inset,0 8px 28px var(--sombra-card)}
+#v-configuracoes #pBarra:not(.com-salvar) #pResumo:empty{display:none}
+#v-configuracoes .cfg-links{display:flex;gap:14px;flex-wrap:wrap;margin:0}
 #v-videos .videos{flex:1;min-height:0;overflow:auto;align-content:start;grid-auto-rows:max-content;align-items:start;margin-top:10px}
 .cartao{padding:16px;border-radius:14px}
 .grade-estilos{gap:12px;margin-top:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
@@ -457,7 +484,7 @@ dialog textarea{min-height:300px;margin-top:12px;font-size:14px;line-height:1.5}
 .aviso-anonimo{display:block;margin-top:8px;font-size:13px;color:var(--fraco)}
 .temas{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px;margin-top:6px}
 .temas button{background:var(--fundo);border:1px solid var(--linha);border-radius:10px;padding:8px 10px;cursor:pointer;font-size:13px;color:var(--suave);text-align:left;max-width:none;min-width:0}
-.temas button:hover,.temas button[aria-pressed=true]{color:var(--texto);border-color:var(--d)}
+.temas button:hover,.temas button[aria-pressed=true]{color:var(--texto);border-color:var(--texto)}
 .temas button small{display:block;color:var(--fraco);font-size:11.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media (min-width:901px){.temas button small{display:none}}
 .discreto{margin-top:8px;font-size:12.5px;color:var(--fraco)}
@@ -472,7 +499,7 @@ dialog textarea{min-height:300px;margin-top:12px;font-size:14px;line-height:1.5}
 .slides-p{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:12px}
 .slides-p img{width:100%;border-radius:10px;display:block}
 .exemplos button{background:var(--fundo);border:1px solid var(--linha);border-radius:999px;padding:7px 13px;cursor:pointer;font-size:13.5px;color:var(--suave)}
-.exemplos button:hover,.exemplos button[aria-pressed=true]{color:var(--texto);border-color:var(--d)}
+.exemplos button:hover,.exemplos button[aria-pressed=true]{color:var(--texto);border-color:var(--texto)}
 .etapas-p{list-style:none;display:grid;gap:8px;margin-top:16px}
 .etapas-p li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:10px;align-items:baseline;color:var(--fraco)}
 .etapas-p li.ativo{color:var(--texto);font-weight:600}.etapas-p li.feito{color:var(--suave)}
@@ -489,18 +516,18 @@ dialog textarea{min-height:300px;margin-top:12px;font-size:14px;line-height:1.5}
   .pagina{padding:24px 16px 120px}
 }
 
-/* 0.6.28: próximo passo, abas novas, catálogo de estilos, carrosséis, toque e celular */
+/* 0.6.28: próximo passo, abas novas, catálogo de estilos, toque e celular */
 img,video{max-width:100%}
 .btn{min-height:40px;justify-content:center}
 .btn.pequeno{min-height:36px}
-.mini{min-height:28px}
+.mini{min-height:36px;justify-content:center}
 .agora{margin-top:var(--esp-3);display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--sup);border:1px solid var(--d-borda);border-radius:12px;padding:12px 16px}
 .agora h2{font-size:17px;margin:0 0 2px}
 .agora p{color:var(--suave);max-width:70ch;margin:0;font-size:13.5px}
 .agora .prog{display:flex;gap:4px;margin-top:8px}
 .agora .prog i{width:22px;height:5px;border-radius:99px;background:var(--trilha)}
 .agora .prog i.f{background:var(--ok)}.agora .prog i.a{background:var(--d)}
-.configurando .assist{order:1}.configurando .discreto{order:2}.configurando #pBarra{order:3}
+.configurando .cfg-conteudo{order:1}.configurando #pBarra{order:2}.configurando .cfg-links{order:3}
 .col{display:flex;flex-direction:column;gap:0}
 .col>.tit,.col>.sub,.col>.cabeca{order:0}
 .assist{display:flex;flex-direction:column;gap:10px;margin-top:var(--esp-3);align-items:stretch;min-height:0}
@@ -535,7 +562,7 @@ img,video{max-width:100%}
 .barra-estilos input[type=search]{flex:1 1 240px;width:auto;background:var(--fundo);border:1px solid var(--linha);border-radius:10px;padding:11px 14px;color:var(--texto)}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .chips button{background:var(--fundo);border:1px solid var(--linha);border-radius:999px;padding:8px 14px;cursor:pointer;font-size:13.5px;color:var(--suave);min-height:36px}
-.chips button:hover,.chips button[aria-pressed=true]{color:var(--texto);border-color:var(--d)}
+.chips button:hover,.chips button[aria-pressed=true]{color:var(--texto);border-color:var(--texto)}
 .grade-estilos{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;margin-top:20px}
 .est{background:var(--sup);border:1px solid var(--linha);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
 .est .prev{position:relative;aspect-ratio:9/16;background:var(--midia);width:100%}
@@ -561,7 +588,7 @@ img,video{max-width:100%}
 .car-it small{color:var(--fraco)}
 .car-it .bts{display:grid;gap:6px;padding:0 12px 12px;min-width:0}
 .car-it .bts .btn{width:100%;min-width:0;justify-content:center;white-space:normal;text-align:center;line-height:1.25}
-.car-it .bts .btn.sec{background:var(--fundo)}
+.car-it .bts .btn.sec{background:transparent}
 .grade-slides{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:12px}
 .grade-slides figure{display:grid;gap:6px}
 .grade-slides img{width:100%;border-radius:10px;display:block}
@@ -569,8 +596,7 @@ img,video{max-width:100%}
 .pular:focus{left:12px}
 @media (max-width:900px),(pointer:coarse){
   .btn.pequeno,.mini{min-height:44px}
-  .mini{padding:8px 4px}
-  .dica .mini,.discreto button{min-height:0;padding:10px 2px}
+  .dica .mini,.discreto button{min-height:36px;padding:8px 14px}
   .segmento button,.nichos button,.exemplos button,.temas button,.aba,.chips button{min-height:44px}
   .cores button,.cores input[type=color]{width:44px;height:44px}
   .opcao,.item,.passos button{min-height:48px}
@@ -634,14 +660,13 @@ img,video{max-width:100%}
   <div class="logo"><i></i><div class="logo-txt"><span>Estudio de Videos</span><small>Por Ajure</small></div></div>
   <nav class="abas-topo" role="tablist" aria-label="Seções">
     <button role="tab" class="btn-novo" data-vista="novo" aria-selected="true">Novo</button>
+    <button role="tab" class="btn-3d" data-vista="kit3d" aria-selected="false">3D</button>
     <button role="tab" data-vista="configuracoes" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-ajustes"/></svg>Configurações<span class="pin" id="pinConfig" hidden></span></button>
     <button role="tab" data-vista="chat" aria-selected="false" id="abaChat" hidden><svg class="ic" aria-hidden="true"><use href="#i-conversa"/></svg>Chat</button>
     <span class="sep-nav" aria-hidden="true"></span>
     <div class="abas-scroll">
       <button role="tab" data-vista="como" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-ajuda"/></svg>Como funciona</button>
       <button role="tab" data-vista="videos" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-filme"/></svg>Meus vídeos</button>
-      <button role="tab" data-vista="carrosseis" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-camadas"/></svg>Carrosséis</button>
-      <button role="tab" data-vista="estilos" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-paleta"/></svg>Estilos</button>
       <button role="tab" data-vista="projetos" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-pasta"/></svg>Projetos</button>
       <button role="tab" data-vista="atualizar" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-atualizar"/></svg>Atualizar</button>
     </div>
@@ -652,7 +677,7 @@ img,video{max-width:100%}
   </div>
 </header>
 <div id="pastaRuim" class="pasta-ruim" hidden role="alert"></div>
-<div id="novidade" class="novidade" hidden role="status"><span>Nova versão <b id="novVersao"></b> disponível</span><button class="btn sec pequeno" id="novComo">Como atualizar</button><button class="mini" id="novFechar" aria-label="Esconder o aviso">Agora não</button></div>
+<div id="novidade" class="novidade" hidden role="status"><span>Nova versão <b id="novVersao"></b> disponível</span><button class="btn sec pequeno" id="novComo">Como atualizar</button><button class="btn sec pequeno" id="novFechar" aria-label="Esconder o aviso">Agora não</button></div>
 <div class="estudio-wrap">
 <div class="estudio" id="estudio">
 <div class="estudio-corpo">
@@ -668,6 +693,18 @@ img,video{max-width:100%}
   </div>
 </section>
 
+<!-- + Vídeo 3D: kit Remotion embutido -->
+<section class="vista" id="v-kit3d" role="tabpanel" hidden>
+  <div class="pagina foco">
+    <div class="cabeca">
+      <h1 class="tit">Vídeo 3D</h1>
+      <p class="sub">Mesmo fluxo do Novo, com o kit Remotion (palco, bonecos, cenas 3D). O prompt manda o assistente trabalhar em <b>kit-3d/</b>.</p>
+    </div>
+    <section class="primeiro" id="kit3d" aria-live="polite"></section>
+    <section class="kit3d-lista" id="kit3dLista" style="margin-top:28px" aria-live="polite"></section>
+  </div>
+</section>
+
 <!-- CONFIGURAÇÕES: instalação, voz, marca, objetivo, estilo e Configurar IA -->
 <section class="vista" id="v-configuracoes" role="tabpanel" hidden>
   <div class="pagina col">
@@ -675,15 +712,22 @@ img,video{max-width:100%}
       <h1 class="tit" id="boasVindas">Configurações</h1>
       <p class="sub" id="boasSub">Voz, marca, objetivo, estilo e a IA que escreve. Tudo neste computador.</p>
     </div>
-    <div class="assist">
+    <!-- Container 1: passos + conteúdo (estilos, objetivo…) -->
+    <div class="cartao cfg-box cfg-conteudo assist">
       <ol class="passos" id="passos" role="tablist" aria-label="Passos da configuração"></ol>
-      <div id="painelPasso" class="cartao" aria-live="polite"></div>
+      <div id="painelPasso" aria-live="polite"></div>
+    </div>
+    <!-- Container 2: navegação entre passos (+ salvar quando o passo pede) -->
+    <div class="cartao cfg-box cfg-salvar barra-salvar" id="pBarra">
+      <button class="btn sec" type="button" id="pAnterior">Anterior</button>
+      <div id="pResumo" class="chips-sel" aria-live="polite"></div>
+      <div class="lado">
+        <span class="estado" id="pEstado" role="status" hidden>Tudo salvo</span>
+        <button class="btn" id="pSalvar" type="button" hidden disabled><svg class="ic" aria-hidden="true"><use href="#i-salvar"/></svg> Salvar</button>
+        <button class="btn" type="button" id="pProximo">Próximo</button>
+      </div>
     </div>
     <p class="discreto cfg-links"><button type="button" data-ir="como">Guia completo</button></p>
-    <div class="barra-salvar" id="pBarra" hidden>
-      <div id="pResumo" class="chips-sel" aria-live="polite"></div>
-      <div class="lado"><span class="estado" id="pEstado" role="status">Tudo salvo</span><button class="btn" id="pSalvar" disabled><svg class="ic" aria-hidden="true"><use href="#i-salvar"/></svg> Salvar</button></div>
-    </div>
   </div>
 </section>
 
@@ -695,17 +739,17 @@ img,video{max-width:100%}
 
     <div class="cartao destaque-como">
       <h2><svg class="ic" aria-hidden="true"><use href="#i-conversa"/></svg> A ideia central</h2>
-      <p><b>Quem trabalha é a IA que você conecta:</b> Claude Code, Codex ou Cursor. Ela roda no seu computador, na pasta do estúdio, e escreve o roteiro, narra, monta as cenas e gera o vídeo ou o carrossel.</p>
+      <p><b>Quem trabalha é a IA que você conecta:</b> Claude Code, Codex ou Cursor. Ela roda no seu computador, na pasta do estúdio, e escreve o roteiro, narra, monta as cenas e gera o vídeo.</p>
       <p><b>O estúdio é a vitrine e o painel.</b> Em <b>Configurações &gt; Configurar IA</b> você conecta o assistente; depois usa o <b>Chat</b> desta página (ou o app do Claude/Codex, se preferir). Os vídeos prontos aparecem em Meus vídeos.</p>
     </div>
 
     <h2 class="sec-t">Quem faz o quê</h2>
     <div class="duas">
       <div class="cartao"><h3><svg class="ic" aria-hidden="true"><use href="#i-cerebro"/></svg> A IA (Claude, Codex ou Cursor)</h3>
-        <ul class="lista-como"><li>Escreve o roteiro e confere os fatos</li><li>Gera a narração com a voz que você escolheu</li><li>Monta as cenas, as peças 3D e a legenda</li><li>Renderiza o vídeo (MP4) e os carrosséis (imagens)</li><li>Escreve a legenda do post e responde às suas dúvidas em português</li></ul>
+        <ul class="lista-como"><li>Escreve o roteiro e confere os fatos</li><li>Gera a narração com a voz que você escolheu</li><li>Monta as cenas, as peças 3D e a legenda</li><li>Renderiza o vídeo (MP4)</li><li>Escreve a legenda do post e responde às suas dúvidas em português</li></ul>
         <p class="dica">Com a IA conectada, o pedido vai pelo Chat do estúdio.</p></div>
       <div class="cartao"><h3><svg class="ic" aria-hidden="true"><use href="#i-tela"/></svg> O estúdio (esta tela)</h3>
-        <ul class="lista-como"><li>Conecta a IA e hospeda o chat</li><li>Mostra os vídeos e carrosséis prontos</li><li>Guarda a sua marca, o estilo e o objetivo padrão</li><li>Mostra as prévias de cada estilo</li><li>Guia os primeiros passos e confere o computador</li></ul>
+        <ul class="lista-como"><li>Conecta a IA e hospeda o chat</li><li>Mostra os vídeos prontos</li><li>Guarda a marca, o estilo e o objetivo padrão</li><li>Guia os primeiros passos e confere o computador</li></ul>
         <p class="dica">Deixe a janela preta aberta enquanto o chat trabalha.</p></div>
     </div>
 
@@ -714,7 +758,7 @@ img,video{max-width:100%}
       <li><span><b>Conecte a IA em Configurações.</b> Claude Code, Codex ou Cursor. Pasta do estúdio: <b id="comoPasta" class="pasta-caminho"></b></span></li>
       <li><span><b>Peça em português no Chat.</b> Exemplo: <span class="diga">Faça um vídeo sobre por que o teclado tem um risquinho no F e no J.</span> Para escolher o visual, acrescente o estilo: <i>no estilo [nome]</i>.</span></li>
       <li><span><b>Espere e acompanhe.</b> A IA vai contando o que faz no chat. Um vídeo leva alguns minutos, e você pode continuar usando o computador.</span></li>
-      <li><span><b>Veja o resultado aqui.</b> O vídeo pronto aparece em <b>Meus vídeos</b>, e os carrosséis em <b>Carrosséis</b>. Baixe e poste.</span></li>
+      <li><span><b>Veja o resultado aqui.</b> O vídeo pronto aparece em <b>Meus vídeos</b>. Baixe e poste.</span></li>
     </ol>
     <div class="acoes"><button class="btn" data-ir="chat">Abrir o Chat</button><button class="btn sec" data-copiar="Comece pelos primeiros passos.">Copiar o primeiro pedido</button><div class="copiado" role="status"></div></div>
 
@@ -722,10 +766,8 @@ img,video{max-width:100%}
     <div class="grade-abas">
       <button class="cartao aba-card" data-ir="novo"><b><svg class="ic" aria-hidden="true"><use href="#i-mais"/></svg> + Vídeo</b><span>Criar um vídeo: tema, gancho, título e o pedido para a IA.</span></button>
       <button class="cartao aba-card" data-ir="configuracoes"><b><svg class="ic" aria-hidden="true"><use href="#i-ajustes"/></svg> Configurações</b><span>Instalação, voz e trilha, marca, objetivo, estilo e Configurar IA.</span></button>
-      <button class="cartao aba-card" data-ir="chat"><b><svg class="ic" aria-hidden="true"><use href="#i-conversa"/></svg> Chat</b><span>Conversa com a IA conectada: peça vídeos e carrosséis sem abrir outro app.</span></button>
+      <button class="cartao aba-card" data-ir="chat"><b><svg class="ic" aria-hidden="true"><use href="#i-conversa"/></svg> Chat</b><span>Conversa com a IA conectada: peça vídeos sem abrir outro app.</span></button>
       <button class="cartao aba-card" data-ir="videos"><b><svg class="ic" aria-hidden="true"><use href="#i-filme"/></svg> Meus vídeos</b><span>Seus vídeos prontos para assistir, baixar, copiar a legenda e postar.</span></button>
-      <button class="cartao aba-card" data-ir="carrosseis"><b><svg class="ic" aria-hidden="true"><use href="#i-camadas"/></svg> Carrosséis</b><span>As sequências de imagens prontas para o Instagram, o TikTok e o Facebook.</span></button>
-      <button class="cartao aba-card" data-ir="estilos"><b><svg class="ic" aria-hidden="true"><use href="#i-paleta"/></svg> Estilos</b><span>A vitrine dos estilos, com prévia em movimento e o pedido pronto para copiar.</span></button>
       <button class="cartao aba-card" data-ir="projetos"><b><svg class="ic" aria-hidden="true"><use href="#i-pasta"/></svg> Projetos</b><span>Área avançada: cada vídeo etapa por etapa (roteiro, voz, cenas, qualidade e fontes).</span></button>
       <button class="cartao aba-card" data-ir="atualizar"><b><svg class="ic" aria-hidden="true"><use href="#i-atualizar"/></svg> Atualizar</b><span>Instala a versão nova do método. Seus vídeos, sua marca e suas chaves não são tocados.</span></button>
     </div>
@@ -734,7 +776,7 @@ img,video{max-width:100%}
     <div class="faq">
       <details><summary>Preciso deixar o estúdio aberto para o vídeo sair?</summary><p>Se você usa o <b>Chat</b> desta página, a janela preta do estúdio precisa ficar aberta. Se preferir o app do Claude ou do Codex, o estúdio web é só para ver o resultado.</p></details>
       <details><summary>Onde ficam os meus vídeos?</summary><p>Na pasta do estúdio, dentro de <b>projetos</b>. Em <b>Meus vídeos</b> você os vê sem abrir pastas, e o botão <b>Mostrar na pasta</b> leva até o arquivo.</p></details>
-      <details><summary>Como escolho o estilo (a aparência)?</summary><p>Em <b>Estilos</b>, veja as prévias e peça no Chat (ou copie o pedido). Para usar o mesmo estilo em todos os vídeos, deixe-o como padrão em <b>Configurações &gt; Estilo</b>.</p></details>
+      <details><summary>Como escolho o estilo (a aparência)?</summary><p>Em <b>Configurações &gt; Estilo</b> você escolhe a aparência padrão dos vídeos (com prévia). Cada vídeo ainda pode trocar no Chat, pedindo outro estilo.</p></details>
       <details><summary>O que é o objetivo?</summary><p>É para que serve o vídeo: curiosidade, ensinar algo, vender um produto, divulgar um negócio e outros. O objetivo decide o tamanho do roteiro, o jeito de abrir e o convite final. Cada vídeo pode trocar depois, é só pedir.</p></details>
       <details><summary>Posso fazer vídeo de qualquer assunto, ou só curiosidades?</summary><p>De qualquer assunto. O mesmo método serve para páginas de conteúdo, negócios e perfis pessoais.</p></details>
       <details><summary>Onde ficam a minha marca e as minhas chaves?</summary><p>Só neste computador. A chave da voz e a do Cursor entram pelo painel do estúdio e nunca devem ser coladas no chat.</p></details>
@@ -751,7 +793,7 @@ img,video{max-width:100%}
   <div class="pagina">
     <div class="cabeca">
       <h1 class="tit">Chat</h1>
-      <p class="sub" id="chatSub">Peça um vídeo ou um carrossel em português. A IA grava na pasta do estúdio.</p>
+      <p class="sub" id="chatSub">Peça um vídeo em português. A IA grava na pasta do estúdio.</p>
     </div>
     <div class="cartao chat-box">
       <div class="chat-log" id="chatLog" aria-live="polite"></div>
@@ -791,42 +833,6 @@ img,video{max-width:100%}
   </main>
 </section>
 
-<!-- CARROSSÉIS -->
-<section class="vista" id="v-carrosseis" role="tabpanel" hidden>
-  <div class="pagina">
-    <h1 class="tit">Carrosséis</h1>
-    <p class="sub">Um carrossel é uma sequência de 6 a 10 imagens para deslizar no Instagram, no TikTok e no Facebook. O estúdio faz as imagens prontas (1080 x 1350), com o nome, o @ e a cor da sua página. Não usa voz e não gasta crédito.</p>
-    <div class="dois">
-      <div class="cartao"><h2>Veja um agora</h2><p class="dica">Fica pronto em alguns segundos, com a sua marca. Serve para ver o resultado antes de pedir o seu.</p><div class="acoes"><button class="btn" id="carExemplo">Fazer um carrossel de exemplo</button></div></div>
-      <div class="cartao"><h2>Peça o seu, em 3 passos</h2>
-        <ol class="passos-num"><li><span>Com a IA conectada, abra o <b>Chat</b> (ou o app do Claude/Codex nesta pasta: <b id="carPasta"></b>).</span></li><li><span>Envie um dos pedidos abaixo. Troque o que estiver entre colchetes pelo seu assunto.</span></li><li><span>Espere uns minutos. A IA escreve, confere os fatos e gera as imagens, que aparecem aqui embaixo, em <b>Meus carrosséis</b>.</span></li></ol></div>
-    </div>
-    <div class="cartao" style="margin-top:16px"><h2>Pedidos prontos para copiar</h2><div class="pedidos" id="carPedidos"></div></div>
-    <div class="dois">
-      <div class="cartao"><h2>Trocar o estilo</h2><p class="dica" style="font-size:14px;color:var(--suave)">Cada carrossel tem uma cara só: post de rede social, jornal, conversa, lista, tabela, revista e outras. Para escolher, diga o estilo no pedido, por exemplo <b>no estilo [nome do estilo]</b>. Para mudar um que já existe, peça: <b>Refaça o carrossel [nome] no estilo [nome do estilo]</b>.</p><div class="acoes"><button class="btn sec" id="carVerEstilos">Ver os estilos de carrossel</button></div></div>
-      <div class="cartao"><h2>Sua marca e o @</h2><p class="dica" style="font-size:14px;color:var(--suave)">O nome, o @ e a cor vêm da sua marca e aparecem no rodapé dos slides. Nos vídeos, a identificação é opcional. Mudou a marca? Peça: <b>Gere de novo o carrossel [nome]</b>.</p><div class="acoes"><button class="btn sec" id="carMarca">Ajustar a marca</button></div></div>
-    </div>
-    <h2 style="margin-top:34px">Meus carrosséis</h2>
-    <p class="sub">Para postar, baixe as imagens e suba na ordem (01, 02, 03...). Cada carrossel fica numa pasta com os slides em PNG. A legenda do post você pede ao assistente (Claude Code ou Codex): <b>Escreva a legenda do carrossel [nome]</b>.</p>
-    <div id="carLista" class="lista-car"></div>
-  </div>
-</section>
-
-<!-- ESTILOS -->
-<section class="vista" id="v-estilos" role="tabpanel" hidden>
-  <div class="pagina">
-    <h1 class="tit">Estilos</h1>
-    <p class="sub">Cada vídeo e cada carrossel tem um estilo: a aparência dele. Veja um pouco de cada um, escolha o que combina com o seu assunto e copie o pedido pronto.</p>
-    <div class="cartao" style="margin-top:20px"><h2>Como usar</h2>
-      <ol class="passos-num"><li><span>Escolha um estilo. As prévias andam sozinhas enquanto você olha.</span></li><li><span>Clique em <b>Copiar pedido</b>.</span></li><li><span>Cole no <b>Claude</b> ou no <b>Codex</b>, com esta pasta aberta, e troque <b>[assunto]</b> pelo seu. Exemplo: <b>Faça um vídeo sobre [assunto] no estilo [nome do estilo].</b></span></li></ol>
-      <p class="dica">Quer o mesmo estilo em todos os vídeos? Deixe um padrão em <button class="mini" id="estPadrao">Configurações &gt; Estilo</button>.</p></div>
-    <div class="barra-estilos"><div class="segmento" id="estTipo" role="group" aria-label="Tipo"><button data-t="reels" aria-pressed="true">Vídeos (Reels)</button><button data-t="carrosseis" aria-pressed="false">Carrosséis</button></div>
-      <input type="search" id="estBusca" placeholder="Buscar por assunto ou objetivo" aria-label="Buscar estilo"></div>
-    <div class="chips" id="estChips" role="group" aria-label="Sugestões de busca"></div>
-    <div id="estCorpo" aria-live="polite"></div>
-  </div>
-</section>
-
 <!-- ATUALIZAR -->
 <section class="vista" id="v-atualizar" role="tabpanel" hidden>
   <div class="pagina">
@@ -860,7 +866,7 @@ img,video{max-width:100%}
   <div class="et" id="tEtapa"></div>
   <div class="trilho indef" id="tTrilho"><i></i></div>
   <div id="tResultado"></div>
-  <div class="acoes" style="margin-top:10px"><button class="mini" id="tDetalhes">Ver detalhes</button><button class="mini" id="tFechar" hidden>Fechar</button></div>
+  <div class="acoes" style="margin-top:10px"><button class="btn sec pequeno" id="tDetalhes">Ver detalhes</button><button class="btn sec pequeno" id="tFechar" hidden>Fechar</button></div>
   <pre id="log" hidden></pre>
 </div>
 <dialog id="dlg"><div id="dlgCorpo"></div><div class="acoes"><button class="btn sec pequeno" id="dlgFechar">Fechar</button></div></dialog>
@@ -910,7 +916,7 @@ const caixaTesteChave = (r) => {
   return `<div class="${r.ok === false ? 'caixa-erro' : 'caixa-nota'}" role="alert"><b>${esc(r.titulo)}</b>O que fazer: ${esc(r.acao)}</div>`;
 };
 let conf = null, vista = 'novo';
-const VISTAS = ['novo', 'configuracoes', 'chat', 'como', 'videos', 'carrosseis', 'estilos', 'projetos', 'atualizar'];
+const VISTAS = ['novo', 'kit3d', 'configuracoes', 'chat', 'como', 'videos', 'projetos', 'atualizar'];
 const VISTA_KEY = 'ilu-vista';
 const vistaValida = (v) => VISTAS.includes(v);
 const lembrarVista = (v) => { try { if (vistaValida(v)) localStorage.setItem(VISTA_KEY, v); } catch { /* privado / bloqueado */ } };
@@ -935,15 +941,15 @@ function mostrar(v) {
   if (!vistaValida(v)) v = 'novo';
   vista = v;
   lembrarVista(v);
+  document.body.dataset.vista = v;
   $$('nav.abas-topo button').forEach((b) => { const sel = b.dataset.vista === v; b.setAttribute('aria-selected', sel); if (sel && b.scrollIntoView) { try { b.scrollIntoView({ inline: 'center', block: 'nearest' }); } catch { /* sem rolagem */ } } });
   $$('.vista').forEach((s) => (s.hidden = s.id !== 'v-' + v));
   if (v === 'novo') desenhaPrimeiro();
+  if (v === 'kit3d') desenhaKit3d();
   if (v === 'configuracoes') { desenhaPassos(); if (RENDER[passoAtual]) RENDER[passoAtual](); }
   if (v === 'como') { const c = $('#comoPasta'); if (c) c.textContent = (conf && conf.pasta) || 'a pasta que você escolheu'; }
   if (v === 'chat') prepararChat();
   if (v === 'videos') carregarVideos();
-  if (v === 'carrosseis') carregarCarrosseis();
-  if (v === 'estilos') carregarEstilos();
   if (v === 'projetos') carregaProjetos();
   if (v === 'atualizar') carregarAtualizar();
   atualizarAbaChat();
@@ -988,7 +994,7 @@ async function copiarComAviso(botao, txt, ok = 'Copiado') {
 }
 const I = (n) => `<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 /* ícones nos botões de ação (cobre também os botões criados depois, pela lista de seletores) */
-const ICONES_BOTAO = [['[data-copiar], #legCopiar, [data-diag]', 'copiar'], ['a.btn[download]', 'baixar'], ['[data-pasta], [data-pastacar], #carPastaDlg', 'pasta'], ['[data-leg]', 'copiar'], ['[data-z]:not([data-sim]):not([data-velha]), #upAtu', 'atualizar'], ['#estIrAtu', 'atualizar']];
+const ICONES_BOTAO = [['[data-copiar], #legCopiar, [data-diag]', 'copiar'], ['a.btn[download]', 'baixar'], ['[data-pasta]', 'pasta'], ['[data-leg]', 'copiar'], ['[data-z]:not([data-sim]):not([data-velha]), #upAtu', 'atualizar'], ['#estIrAtu', 'atualizar']];
 let decorando = false;
 function decorarIcones() {
   decorando = false;
@@ -1117,29 +1123,66 @@ function desenhaAgora() {
   const restam = PASSOS.filter((p) => !ok(p.id));
   $('#v-configuracoes .pagina').classList.toggle('configurando', !conf.tudoPronto && restam.length > 0);
 }
-function mostrarBarraPagina(sim) {
-  const b = $('#pBarra');
-  if (!b) return;
-  b.hidden = !sim;
+let aoProximo = null;
+function atualizarBarraPasso({ salvar = false } = {}) {
+  const barra = $('#pBarra');
+  if (!barra) return;
+  const i = PASSOS.findIndex((p) => p.id === passoAtual);
+  aoProximo = null;
+  barra.hidden = false;
+  barra.classList.toggle('com-salvar', !!salvar);
+  if (!salvar) {
+    barra.classList.remove('sujo');
+    const res = $('#pResumo'); if (res) res.innerHTML = '';
+    const est = $('#pEstado'); if (est) { est.hidden = true; est.textContent = 'Tudo salvo'; }
+    const sal = $('#pSalvar'); if (sal) { sal.hidden = true; sal.disabled = true; sal.onclick = null; }
+  } else {
+    const est = $('#pEstado'); if (est) est.hidden = false;
+    const sal = $('#pSalvar'); if (sal) sal.hidden = false;
+  }
+  const ant = $('#pAnterior'), prox = $('#pProximo');
+  if (ant) ant.disabled = i <= 0;
+  if (prox) {
+    const ultimo = i >= PASSOS.length - 1;
+    prox.hidden = ultimo;
+    prox.disabled = ultimo;
+    prox.textContent = 'Próximo';
+  }
 }
 function irPara(id) {
   if (id === 'pagina') id = 'objetivo';
   passoAtual = id;
-  if (id !== 'objetivo' && id !== 'estilo') mostrarBarraPagina(false);
   if (vista !== 'configuracoes') mostrar('configuracoes');
   else { desenhaPassos(); RENDER[id](); }
   $('#painelPasso')?.scrollIntoView({ block: 'nearest' });
 }
-function proximo() { const i = PASSOS.findIndex((p) => p.id === passoAtual); irPara(PASSOS[Math.min(PASSOS.length - 1, i + 1)].id); }
-const rodape = (extra = '') => `<div class="acoes">${extra}<button class="btn sec" data-acao="proximo">Próximo passo</button></div>`;
-const ligarRodape = () => $$('[data-acao=proximo]').forEach((b) => (b.onclick = proximo));
+function anterior() {
+  const i = PASSOS.findIndex((p) => p.id === passoAtual);
+  if (i > 0) irPara(PASSOS[i - 1].id);
+}
+function proximo() {
+  const i = PASSOS.findIndex((p) => p.id === passoAtual);
+  if (i < PASSOS.length - 1) irPara(PASSOS[i + 1].id);
+}
+async function clicarProximo() {
+  if (aoProximo) {
+    const ok = await aoProximo();
+    if (ok === false) return;
+  }
+  proximo();
+}
+function ligarBarraPasso() {
+  const ant = $('#pAnterior'), prox = $('#pProximo');
+  if (ant) ant.onclick = () => anterior();
+  if (prox) prox.onclick = () => clicarProximo();
+}
 function atualizarPin() { $('#pinConfig').hidden = !conf || conf.tudoPronto; }
 
 const RENDER = {
   async instalacao() {
     const P = $('#painelPasso');
-    P.innerHTML = `<h2>O computador está pronto?</h2><p class="sub">O estúdio confere os programas que ele usa por baixo (o motor, o FFmpeg e o navegador interno). Você não precisa instalar nada à mão.</p><div id="diagRes"><p class="dica" style="margin-top:16px">Conferindo… (leva uns segundos)</p></div>${rodape('<button class="btn sec" id="reDiag">Conferir de novo</button>')}`;
-    ligarRodape();
+    atualizarBarraPasso();
+    P.innerHTML = `<h2>O computador está pronto?</h2><p class="sub">O estúdio confere os programas que ele usa por baixo (o motor, o FFmpeg e o navegador interno). Você não precisa instalar nada à mão.</p><div id="diagRes"><p class="dica" style="margin-top:16px">Conferindo… (leva uns segundos)</p></div><div class="acoes"><button class="btn sec" id="reDiag">Conferir de novo</button></div>`;
     $('#reDiag').onclick = async () => { $('#diagRes').innerHTML = '<p class="dica" style="margin-top:16px">Conferindo…</p>'; diag = null; await carregaDiag(); };
     await carregaDiag();
   },
@@ -1152,10 +1195,10 @@ const RENDER = {
       { id: 'mock', b: 'Voz de teste', s: 'Sem som. Só para conferir que tudo funciona; dá para ligar a ElevenLabs depois.', selo: 'sem som', cls: 'gratis' },
     ];
     let sel = pre || (v.escolhida ? v.atual : 'elevenlabs');
+    atualizarBarraPasso();
     P.innerHTML = `<h2>Ligue a voz do estúdio</h2><p class="sub">Quem narra os seus vídeos é a ElevenLabs. Você usa sempre a mesma voz: o público reconhece a página por ela. A chave fica guardada só neste computador e nunca aparece de novo, nem aqui, nem na conversa com o assistente (Claude Code ou Codex).</p>
       <div class="opcoes" role="radiogroup" aria-label="Voz">${OP.map((o) => `<button class="opcao" role="radio" data-v="${o.id}" aria-checked="${o.id === sel}"><span class="selo ${o.cls}">${o.selo}</span><b>${o.b}</b><span>${o.s}</span></button>`).join('')}</div>
-      <div id="vozDet"></div><div id="resVoz"></div><div id="trilhaFontes"></div>${rodape()}`;
-    ligarRodape();
+      <div id="vozDet"></div><div id="resVoz"></div><div id="trilhaFontes"></div>`;
     const det = () => {
       const d = $('#vozDet'); $q('#resVoz').innerHTML = '';
       if (!sel) { d.innerHTML = ''; return; }
@@ -1205,14 +1248,14 @@ const RENDER = {
       const extra = r.voz === 'mock' ? 'Os vídeos saem sem som até você escolher uma voz de verdade.' : (r.voz === 'elevenlabs' ? 'A chave fica só neste computador. Para ter certeza de que a ElevenLabs liberou a conta, clique em Testar minha chave.' : 'A chave fica só neste computador. Ela é conferida no primeiro vídeo com voz.');
       return { ok: r.ok, html: r.ok ? `<div class="caixa-ok">Voz salva: ${esc(nome)}. ${extra}</div>` : caixaErro({ causa: `Salvei, mas ainda falta ${r.falta.join(' e ')}.`, acao: 'Cole no campo e clique em Salvar de novo.' }, { leve: true }) };
     }
-    // "Próximo passo" com uma voz marcada e não salva: salva antes de seguir
-    $$('[data-acao=proximo]').forEach((b) => (b.onclick = async () => {
+    // Próximo com uma voz marcada e não salva: salva antes de seguir
+    aoProximo = async () => {
       const salva = v.escolhida ? v.atual : null;
-      if (!sel || sel === salva) return proximo();
+      if (!sel || sel === salva) return true;
       const r = await salvar(corpoAtual());
-      if (!r.ok) { RENDER.voz(sel); $q('#resVoz').innerHTML = r.html; return; }
-      proximo();
-    }));
+      if (!r.ok) { RENDER.voz(sel); $q('#resVoz').innerHTML = r.html; return false; }
+      return true;
+    };
     // 0.6.4: "Usar esta" preenche o Voice ID de uma das vozes do Brasil prontas
     let ouvindo = null;
     $('#vozDet').addEventListener('click', (ev) => { const o = ev.target.closest('[data-ouvir]'); if (o) { const parar = ouvindo; if (ouvindo) { ouvindo.audio.pause(); ouvindo.botao.innerHTML = '&#9654; Ouvir'; ouvindo = null; } if (!parar || parar.botao !== o) { const audio = new Audio('/vozes/' + o.dataset.ouvir + '.mp3'); o.innerHTML = '&#9632; Parar'; audio.onended = () => { o.innerHTML = '&#9654; Ouvir'; ouvindo = null; }; audio.onerror = () => { o.innerHTML = '&#9654; Ouvir'; ouvindo = null; }; ouvindo = { audio, botao: o }; audio.play().catch(() => { o.innerHTML = '&#9654; Ouvir'; ouvindo = null; }); } return; } const b = ev.target.closest('[data-vozid]'); if (b && $('#vId')) { $('#vId').value = b.dataset.vozid; $('#vId').focus(); } });
@@ -1252,8 +1295,8 @@ const RENDER = {
         <div id="resMarca"></div>
       </div>
       <div><div class="celular" id="cel"><div class="topo"><i id="celAv"></i><span id="celH"></span></div><div class="meio">Por que o teclado tem um <em id="celEm">risquinho</em>?</div><div class="leg">o <b>F</b> e o J têm um relevo</div></div><div class="avatar" id="mAv"></div></div></div>
-      <div id="imgsMarca"></div>${rodape()}`;
-    ligarRodape();
+      <div id="imgsMarca"></div>`;
+    atualizarBarraPasso();
     const prev = () => {
       const nome = $('#mNome').value.trim() || 'Sua Página', h = ($('#mHandle').value.trim() || '@suapagina').replace(/^@*/, '@').toLowerCase();
       $('#cel .topo').style.display = mostrarMarca ? '' : 'none'; $('#mAv').style.display = mostrarMarca ? '' : 'none';
@@ -1303,7 +1346,7 @@ const RENDER = {
           }
         }
         const avisos = (j.linhas || []).filter((l) => /^\s+- /.test(l)).map((l) => l.trim().slice(2));
-        $q('#resMarca').innerHTML = (testar ? '<div class="caixa-ok">Prévia pronta. Gostou? Clique em "Aplicar na minha página".</div>' : '<div class="caixa-ok">Marca aplicada. Os próximos vídeos e carrosséis já saem com ela.</div>') + (avisos.length ? `<div class="caixa-erro"><b>Atenção</b>${avisos.map(esc).join('<br>')}</div>` : '');
+        $q('#resMarca').innerHTML = (testar ? '<div class="caixa-ok">Prévia pronta. Gostou? Clique em "Aplicar na minha página".</div>' : '<div class="caixa-ok">Marca aplicada. Os próximos vídeos já saem com ela.</div>') + (avisos.length ? `<div class="caixa-erro"><b>Atenção</b>${avisos.map(esc).join('<br>')}</div>` : '');
         imgs(testar ? 'teste' : 'saida'); desenhaPassos();
       });
     };
@@ -1328,7 +1371,7 @@ const RENDER = {
     const nomeDe = (lista, id) => (lista.find((x) => x.id === id) || {}).nome;
     const chip = (ic, rot, val) => `<span class="chip-sel"><i class="ic-box">${I(ic)}</i><span><small>${rot}</small><b>${esc(val)}</b></span></span>`;
 
-    mostrarBarraPagina(true);
+    atualizarBarraPasso({ salvar: true });
     P.innerHTML = `<div class="escolha-pagina">
       <h2>Objetivo</h2>
       <p class="sub">Define o tamanho do roteiro, a abertura, a voz e o convite final. Cada vídeo ainda pode trocar depois, no pedido.</p>
@@ -1346,7 +1389,7 @@ const RENDER = {
         </div>
       </section>
 
-      <div id="resPag"></div>${rodape()}
+      <div id="resPag"></div>
     </div>`;
 
     const base = () => JSON.stringify([objetivo, pol, int]);
@@ -1364,7 +1407,6 @@ const RENDER = {
       atualizarInt();
     };
 
-    ligarRodape();
     $$('[data-o]').forEach((b) => (b.onclick = () => { objetivo = b.dataset.o; $$('[data-o]').forEach((x) => x.setAttribute('aria-checked', x === b)); resumo(); }));
     $$('#sPol button').forEach((b) => (b.onclick = () => { pol = b.dataset.x; $$('#sPol button').forEach((x) => x.setAttribute('aria-pressed', x === b)); resumo(); }));
     $$('#sInt button').forEach((b) => (b.onclick = () => { int = b.dataset.x; $$('#sInt button').forEach((x) => x.setAttribute('aria-pressed', x === b)); resumo(); }));
@@ -1396,7 +1438,7 @@ const RENDER = {
       return `<button type="button" class="opcao tem-previa" role="radio" data-e="${esc(id)}" aria-checked="${id === estilo}" title="${esc(desc || nome)}"><div class="pv">${midia}<span class="ok" aria-hidden="true">&#10003;</span></div><div class="tx"><b>${esc(nome)}</b><span>${esc(desc)}</span></div></button>`;
     };
 
-    mostrarBarraPagina(true);
+    atualizarBarraPasso({ salvar: true });
     P.innerHTML = `<div class="escolha-pagina">
       <h2>Estilo</h2>
       <p class="sub">A aparência padrão dos vídeos. Clique num cartão para selecionar; a prévia maior fica à direita. Cada vídeo ainda pode trocar depois, no pedido.</p>
@@ -1410,7 +1452,7 @@ const RENDER = {
         </div>
       </section>
 
-      <div id="resPag"></div>${rodape()}
+      <div id="resPag"></div>
     </div>`;
 
     const base = () => JSON.stringify([estilo]);
@@ -1441,7 +1483,7 @@ const RENDER = {
           const v = e.target;
           if (e.isIntersecting) { if (!v.getAttribute('src')) v.src = v.dataset.src; if (!reduz) v.play().catch(() => {}); }
           else v.pause();
-        }), { root: $('#pEstGrade'), rootMargin: '100px', threshold: 0.15 });
+        }), { root: $('#painelPasso'), rootMargin: '100px', threshold: 0.15 });
         vs.forEach((v) => { obsVideo.observe(v); v.onerror = () => { v.parentElement.insertAdjacentHTML('afterbegin', '<div class="sem">Sem prévia</div>'); v.remove(); }; });
       } else vs.forEach((v) => { v.src = v.dataset.src; });
     };
@@ -1468,7 +1510,6 @@ const RENDER = {
       if (sel) sel.scrollIntoView({ block: 'nearest' });
     };
 
-    ligarRodape();
     $('#pEstBusca').oninput = (e) => { buscaEst = e.target.value; desenhaEstilosPagina(); };
     $('#pEstLimpar').onclick = () => { buscaEst = ''; $('#pEstBusca').value = ''; desenhaEstilosPagina(); $('#pEstBusca').focus(); };
     desenhaEstilosPagina();
@@ -1530,6 +1571,7 @@ const RENDER = {
       });
     };
 
+    atualizarBarraPasso();
     P.innerHTML = `<h2>Configurar IA</h2>
       <div class="ia-procurando" id="iaProcurando"><span class="ia-spin" aria-hidden="true"></span><span>Procurando…</span></div>
       <div id="iaGrade" class="grade-ia" hidden></div>
@@ -1664,9 +1706,9 @@ function rotuloContextoChat(contexto) {
 }
 function prepararChat() {
   const nome = conf?.ia?.nome || 'IA';
-  $('#chatSub').textContent = `Conectada: ${nome}. Peça um vídeo ou um carrossel em português. A IA grava na pasta do estúdio.`;
+  $('#chatSub').textContent = `Conectada: ${nome}. Peça um vídeo em português. A IA grava na pasta do estúdio.`;
   if (!$('#chatLog').children.length) {
-    $('#chatLog').innerHTML = `<div class="chat-bolha ia">Olá. Diga o tema do vídeo ou do carrossel. Ex.: "Comece pelos primeiros passos" ou "Quero um vídeo sobre …".</div>`;
+    $('#chatLog').innerHTML = `<div class="chat-bolha ia">Olá. Diga o tema do vídeo. Ex.: "Comece pelos primeiros passos" ou "Quero um vídeo sobre …".</div>`;
   }
 }
 function appendChat(papel, texto) {
@@ -1895,15 +1937,17 @@ async function desenhaPrimeiro() {
         </details>
         <div class="refs-campo">
           <span>Imagens de referência<small>Opcional · a IA lê e encaixa no trecho certo, sem repetir</small></span>
-          <input type="file" id="pvRefs" accept="image/jpeg,image/png,image/webp,image/gif,.jpg,.jpeg,.png,.webp,.gif" multiple aria-label="Imagens de referência">
+          <div class="refs-acoes">
+            <label class="btn sec pequeno" for="pvRefs">Escolher arquivos</label>
+            <input type="file" id="pvRefs" accept="image/jpeg,image/png,image/webp,image/gif,.jpg,.jpeg,.png,.webp,.gif" multiple hidden aria-label="Imagens de referência">
+            <span class="refs-status" id="pvRefsStatus">Nenhum arquivo escolhido</span>
+          </div>
           <div class="refs-lista" id="pvRefsLista"></div>
         </div>
         ${temasP.length ? `<div class="bloco-ideias"><h3>Temas com fatos conferidos</h3><div class="temas">${temasP.map((x) => `<button data-tp="${esc(x.id)}" aria-pressed="${x.id === pv.temaPronto}" title="${esc(x.gancho || '')}">${esc(x.titulo)}<small>${esc(x.gancho || '')}</small></button>`).join('')}</div></div>` : ''}
         ${exemplosP.length ? `<details class="extras-wrap bloco-ideias"><summary><span>Exemplos sem o assistente<small>O estúdio faz tudo sozinho</small></span></summary><div class="exemplos">${exemplosP.map((x) => `<button data-ex="${esc(x.id)}" aria-pressed="${x.id === pv.exemplo}">${esc(x.titulo)}</button>`).join('')}</div></details>` : ''}
         <p class="ajuda-curta">Com o seu tema, o assistente escreve o roteiro; o estúdio produz. Com um exemplo, o estúdio faz tudo sozinho.</p>
-        ${pv.aviso ? caixaErro({ causa: pv.aviso, acao: '' }, { leve: true }) : ''}
-        <p class="discreto">Prefere carrossel? <button id="pvCarrossel">Fazer um carrossel</button></p>`;
-      const car = $('#pvCarrossel'); if (car) car.onclick = () => primeiroCarrossel();
+        ${pv.aviso ? caixaErro({ causa: pv.aviso, acao: '' }, { leve: true }) : ''}`;
       const limparPronto = () => { if (pv.temaPronto) { pv.temaPronto = null; $$('[data-tp]').forEach((b) => b.setAttribute('aria-pressed', 'false')); } if (pv.exemplo) { pv.exemplo = null; $$('[data-ex]').forEach((b) => b.setAttribute('aria-pressed', 'false')); } $('#pvIdioma').disabled = false; $('#pvExtras').hidden = false; };
       $$('[data-tp]').forEach((b) => (b.onclick = () => { const t = temasP.find((x) => x.id === b.dataset.tp); const liga = pv.temaPronto !== t.id; pv.temaPronto = liga ? t.id : null; pv.exemplo = null; $$('[data-ex]').forEach((x) => x.setAttribute('aria-pressed', 'false')); $$('[data-tp]').forEach((x) => x.setAttribute('aria-pressed', x.dataset.tp === pv.temaPronto)); $('#pvTema').value = liga ? (t.tema || '') : ''; $('#pvGancho').value = liga ? (t.gancho || '') : ''; $('#pvTitulo').value = liga ? (t.titulo || '') : ''; $('#pvVirada').value = liga ? (t.virada || '') : ''; $('#pvPergunta').value = liga ? '' : $('#pvPergunta').value; $('#pvExtras').hidden = false; if (liga && (t.gancho || t.titulo || t.virada)) $('#pvExtras').open = true; $('#pvIdioma').disabled = false; }));
       if (pv.idioma) $('#pvIdioma').value = pv.idioma;
@@ -1916,7 +1960,7 @@ async function desenhaPrimeiro() {
       ligarRefsForm();
       return;
     }
-    if (pv.fase === 'pergunta') { A.innerHTML = `<h2>Antes de começar</h2>${pv.pergunta}<div class="acoes"><button class="mini" id="pvVoltar">Voltar</button></div>`; $('#pvVoltar').onclick = () => resetPrimeiro(); pv.ligar?.(); return; }
+    if (pv.fase === 'pergunta') { A.innerHTML = `<h2>Antes de começar</h2>${pv.pergunta}<div class="acoes"><button class="btn sec pequeno" id="pvVoltar">Voltar</button></div>`; $('#pvVoltar').onclick = () => resetPrimeiro(); pv.ligar?.(); return; }
     if (pv.fase === 'rodando' || pv.fase === 'esperando') {
       const pr = pv.job && !pv.job.fim ? lerProgresso(pv.job) : null;
       const mostraBarra = pv.fase === 'rodando' || pv.preparando;
@@ -1927,7 +1971,7 @@ async function desenhaPrimeiro() {
         ${listaEtapas()}
         ${mostraBarra && pr ? `<p class="dica" style="margin-top:12px">${esc(pr.etapa)}</p><div class="trilho ${pr.pct == null ? 'indef' : ''}"><i style="width:${pr.pct == null ? 30 : Math.max(3, Math.round(pr.pct * 100))}%"></i></div>` : ''}
         ${pv.fase === 'esperando' && !pv.preparando ? `<p class="dica" style="margin-top:12px">${esc(pv.nota || 'Esperando o roteiro do assistente (Claude Code ou Codex)…')}</p>${blocoOndeVigia()}` : ''}
-        <div class="acoes"><button class="mini" id="pvDet">${pv.det ? 'Esconder detalhes' : 'Ver detalhes'}</button>${pv.fase === 'esperando' ? '<button class="mini" id="pvDiagPrimeiro">Não está andando? Copiar diagnóstico do primeiro vídeo</button><button class="mini" id="pvCancelar">Desistir deste tema</button>' : ''}</div>
+        <div class="acoes"><button class="btn sec pequeno" id="pvDet">${pv.det ? 'Esconder detalhes' : 'Ver detalhes'}</button>${pv.fase === 'esperando' ? '<button class="btn sec pequeno" id="pvDiagPrimeiro">Não está andando? Copiar diagnóstico</button><button class="btn sec pequeno" id="pvCancelar">Desistir deste tema</button>' : ''}</div>
         ${pv.det ? `<pre id="pvLog" style="background:var(--log);border:1px solid var(--linha);border-radius:10px;padding:10px 12px;font:12px/1.5 ui-monospace,Menlo,monospace;color:var(--suave);max-height:200px;overflow:auto;white-space:pre-wrap;margin-top:10px">${esc((pv.job?.linhas || []).join('\n'))}</pre>` : ''}`;
       const l = $('#pvLog'); if (l) l.scrollTop = 1e9;
       $('#pvDet').onclick = () => { pv.det = !pv.det; desenhaPrimeiro(); };
@@ -1942,7 +1986,7 @@ async function desenhaPrimeiro() {
       A.innerHTML = `<h2>Seu primeiro vídeo está pronto</h2>
         ${pv.qa ? '<div class="caixa-erro"><b>Ficou pronto, mas o controle de qualidade apontou detalhes.</b>Assista antes de postar. Para corrigir, peça ao assistente (Claude Code ou Codex): "corrija o vídeo ' + esc(nome) + '". Os detalhes estão em Projetos, na aba Controle de qualidade.</div>' : `<div class="caixa-ok">${mudo ? 'O vídeo saiu sem narração porque a voz salva é a voz de teste. Escolha uma voz de verdade no passo Voz e faça de novo.' : `Narrado com ${esc(NOME_VOZ[pv.voz] || pv.voz || 'a sua voz')}. Dê o play para assistir com som.`}</div>`}
         <video controls playsinline preload="metadata" src="/midia/${esc(nome)}/video?t=${Date.now()}"></video>
-        <div class="acoes"><a class="btn" href="/baixar/${esc(nome)}" download>Baixar o vídeo</a><button class="btn sec" id="pvPasta">Mostrar na pasta</button><button class="btn sec" id="pvVideos">Ver em Meus vídeos</button><button class="mini" id="pvOutro">Fazer outro</button></div>
+        <div class="acoes"><a class="btn" href="/baixar/${esc(nome)}" download>Baixar o vídeo</a><button class="btn sec" id="pvPasta">Mostrar na pasta</button><button class="btn sec" id="pvVideos">Ver em Meus vídeos</button><button class="btn sec" id="pvOutro">Fazer outro</button></div>
         <p class="dica" style="margin-top:12px">Antes de postar, confira os números nas fontes. Para a legenda do post, peça ao assistente (Claude Code ou Codex): "Escreva a legenda do vídeo ${esc(nome)}".</p>`;
       const v = $('#primeiro video'); if (v) v.onerror = () => { v.replaceWith(Object.assign(document.createElement('div'), { className: 'caixa-erro', innerHTML: '<b>O vídeo ficou pronto, mas o navegador não conseguiu tocar aqui.</b>Clique em "Mostrar na pasta" e abra o arquivo, ou em "Baixar o vídeo".' })); };
       $('#pvPasta').onclick = () => postSeguro('/api/mostrar', { nome });
@@ -1954,7 +1998,7 @@ async function desenhaPrimeiro() {
     const e = msgErro(pv.erro);
     const ir = pv.irPara === 'voz' ? `<button class="btn sec pequeno" id="pvIr">Ir para o passo Voz</button>` : '';
     A.innerHTML = `<h2>O primeiro vídeo parou</h2>${pv.etapaFalhou ? `<p class="dica">Parou na etapa: ${esc(pv.etapaFalhou)}.</p>` : ''}${caixaErro(e, { botoes: false })}
-      <div class="acoes"><button class="btn" id="pvDeNovo">Tentar de novo</button>${ir}${botaoDiag}<button class="mini" id="pvVoltar">Mudar o tema</button></div>
+      <div class="acoes"><button class="btn" id="pvDeNovo">Tentar de novo</button>${ir}${botaoDiag}<button class="btn sec" id="pvVoltar">Mudar o tema</button></div>
       <p class="dica" style="margin-top:10px">"Copiar diagnóstico" copia um texto curto para colar no direct do Instagram @kaueajure (versão, sistema, o que faltou e as últimas linhas do erro). Não vai chave, e-mail nem o nome do seu computador.</p>`;
     $('#pvDeNovo').onclick = () => comecarPrimeiro({ repetir: true });
     $('#pvVoltar').onclick = () => resetPrimeiro();
@@ -1964,24 +2008,6 @@ async function desenhaPrimeiro() {
   }
 }
 function resetPrimeiro() { clearTimeout(pv.timer); const { tema, idioma, temaPronto, gancho, titulo, virada, pergunta, refs } = pv; pv = { fase: 'form', exemplo: null, tema, idioma, temaPronto, gancho, titulo, virada, pergunta, refs: refs || [] }; desenhaPrimeiro(); }
-/* 0.6.4: primeiro carrossel (opção discreta): um exemplo pronto com a marca da pessoa, em segundos, sem voz e sem render de vídeo */
-async function primeiroCarrossel() {
-  const ex = await apiSeguro('/api/carrossel/exemplos');
-  if (ex.erro || !ex.length) { abrirDlg(`<h2>Primeiro carrossel</h2>${caixaErro(ex.erro || { causa: 'Os carrosséis de exemplo não estão nesta pasta.', acao: 'Peça um carrossel ao assistente (Claude Code ou Codex): "Faça um carrossel sobre por que o céu é azul".' })}`); return; }
-  abrirDlg(`<h2>Seu primeiro carrossel</h2><p class="sub">Escolha um tema. O estúdio faz os slides com a sua marca em alguns segundos, sem voz.</p><div class="exemplos">${ex.map((x) => `<button data-car="${esc(x.id)}">${esc(x.titulo)}</button>`).join('')}</div><div id="carRes"></div>`);
-  $$('[data-car]').forEach((b) => (b.onclick = async () => {
-    $$('[data-car]').forEach((x) => (x.disabled = true));
-    $('#carRes').innerHTML = '<p class="dica" style="margin-top:12px">Fazendo os slides… (uns segundos)</p>';
-    const r = await postSeguro('/api/carrossel/primeiro', { exemplo: b.dataset.car });
-    if (r.erro) { $('#carRes').innerHTML = caixaErro(r.erro); $$('[data-car]').forEach((x) => (x.disabled = false)); return; }
-    acompanhar(async (j) => {
-      if (j.codigo !== 0) { $('#carRes').innerHTML = caixaErro(j.erro); $$('[data-car]').forEach((x) => (x.disabled = false)); return; }
-      const sl = await apiSeguro('/api/carrossel/slides/' + r.nome);
-      if (vista === 'carrosseis') carregarCarrosseis();
-      $('#carRes').innerHTML = Array.isArray(sl) && sl.length ? `<div class="caixa-ok">Pronto: ${sl.length} slides com a sua marca.</div><div class="slides-p">${sl.map((x) => `<img loading="lazy" alt="slide ${esc(x)}" src="/carrossel/${esc(r.nome)}/${esc(x)}?t=${Date.now()}">`).join('')}</div><p class="dica" style="margin-top:10px">Os arquivos ficam na pasta carrosseis/${esc(r.nome)}/slides. Para um carrossel do seu tema, peça ao assistente (Claude Code ou Codex).</p>` : caixaErro({ causa: 'O carrossel terminou, mas não achei os slides.', acao: 'Tente de novo.' });
-    });
-  }));
-}
 function perguntar(html, ligar) { pv.fase = 'pergunta'; pv.pergunta = html; pv.ligar = ligar; desenhaPrimeiro(); }
 
 function renderRefsLista(el, files, { comRemover = true } = {}) {
@@ -2000,8 +2026,15 @@ function renderRefsLista(el, files, { comRemover = true } = {}) {
       if (morta?._url) URL.revokeObjectURL(morta._url);
       pv.refs = next;
       renderRefsLista(el, pv.refs);
+      atualizarRefsStatus();
     };
   });
+}
+function atualizarRefsStatus() {
+  const st = $('#pvRefsStatus');
+  if (!st) return;
+  const n = (pv.refs || []).length;
+  st.textContent = n === 0 ? 'Nenhum arquivo escolhido' : n === 1 ? '1 arquivo escolhido' : `${n} arquivos escolhidos`;
 }
 function ligarRefsForm() {
   const inp = $('#pvRefs');
@@ -2009,6 +2042,7 @@ function ligarRefsForm() {
   if (!inp) return;
   if (!Array.isArray(pv.refs)) pv.refs = [];
   renderRefsLista(lista, pv.refs);
+  atualizarRefsStatus();
   inp.onchange = () => {
     (pv.refs || []).forEach((f) => { if (f._url) URL.revokeObjectURL(f._url); });
     pv.refs = Array.from(inp.files || []).slice(0, 8).map((f) => {
@@ -2016,6 +2050,7 @@ function ligarRefsForm() {
       return f;
     });
     renderRefsLista(lista, pv.refs);
+    atualizarRefsStatus();
     inp.value = '';
   };
 }
@@ -2129,6 +2164,278 @@ async function retomarPrimeiro() {
   if (vista === 'novo') desenhaPrimeiro();
 }
 
+/* ---------------- VÍDEO 3D (kit-3d embutido) ---------------- */
+const lembrar3d = {
+  key: 'ilu-kit3d',
+  gravar(o) { try { if (o) localStorage.setItem(this.key, JSON.stringify(o)); else localStorage.removeItem(this.key); } catch { /* ok */ } },
+  ler() { try { return JSON.parse(localStorage.getItem(this.key) || 'null'); } catch { return null; } },
+};
+let k3 = { fase: 'form', tema: '', idioma: '', gancho: '', titulo: '', virada: '', pergunta: '' };
+const ETAPAS_3D = [
+  { id: 'prep', t: 'Preparar o kit', re: /preparando|sincronizando|instalando|conferindo o computador/i },
+  { id: 'roteiro', t: 'Roteiro e cenas 3D', so: 'tema' },
+  { id: 'voz', t: 'Voz', re: /voz 3D|gerando a voz/i },
+  { id: 'render', t: 'Render Remotion', re: /renderizando/i },
+];
+function resetKit3d() {
+  clearTimeout(k3.timer);
+  const { tema, idioma, gancho, titulo, virada, pergunta } = k3;
+  k3 = { fase: 'form', tema, idioma, gancho, titulo, virada, pergunta };
+  desenhaKit3d();
+}
+function listaEtapas3d() {
+  const ids = ETAPAS_3D.filter((e) => !e.so || e.so === 'tema').map((e) => e.id);
+  let atual = null;
+  if (k3.fase === 'esperando' && !k3.preparando) atual = 'roteiro';
+  else if (k3.job && !k3.job.fim) {
+    const e = ETAPAS_3D.find((x) => x.re && x.re.test(k3.job.etapa || ''));
+    atual = e ? e.id : null;
+  }
+  if (atual) k3.ate = Math.max(k3.ate ?? -1, ids.indexOf(atual));
+  return `<ul class="etapas-p">${ETAPAS_3D.filter((e) => ids.includes(e.id)).map((e) => {
+    const i = ids.indexOf(e.id);
+    const est = k3.fase === 'pronto' || i < (k3.ate ?? -1) ? 'feito' : e.id === atual ? 'ativo' : '';
+    return `<li class="${est}"><span class="dot ${est === 'feito' ? 'ok' : est === 'ativo' ? 'ativo' : ''}"></span><span>${esc(e.t)}</span></li>`;
+  }).join('')}</ul>`;
+}
+async function carregarLista3d() {
+  const el = $('#kit3dLista');
+  if (!el) return;
+  const r = await apiSeguro('/api/kit3d');
+  if (r.erro) { el.innerHTML = caixaErro(r.erro); return; }
+  if (!r.presente) {
+    el.innerHTML = `<div class="caixa-erro"><b>Pasta kit-3d ausente.</b>Ela deveria estar na raiz do estúdio.</div>`;
+    return;
+  }
+  const vs = r.videos || [];
+  if (!vs.length) {
+    el.innerHTML = `<div class="vazio-bonito"><h2>Nenhum vídeo 3D ainda</h2><p>Os vídeos do kit Remotion aparecem aqui depois do render.</p></div>`;
+    return;
+  }
+  el.innerHTML = `<h2 style="font-size:16px;margin:0 0 10px">Seus vídeos 3D</h2><div class="grade-videos">${vs.map((v) => {
+    const pronto = v.pronto;
+    return `<article class="card-video"><div class="meta"><b>${esc(v.titulo || v.slug)}</b><small>${esc(v.slug)}${pronto ? ` · ${esc(String(v.video.mb))} MB` : v.videoJson ? ' · roteiro' : ' · pedido'}</small></div><div class="acoes">${pronto ? `<a class="btn sec pequeno" href="/kit3d/baixar/${esc(v.slug)}" download>Baixar</a><button class="btn sec pequeno" data-k3-ver="${esc(v.slug)}">Assistir</button>` : v.cenas || v.videoJson ? `<button class="btn pequeno" data-k3-prod="${esc(v.slug)}">Produzir</button>` : ''}<button class="btn sec pequeno" data-k3-pasta="${esc(v.slug)}">Pasta</button></div></article>`;
+  }).join('')}</div>`;
+  $$('[data-k3-pasta]').forEach((b) => (b.onclick = () => postSeguro('/api/kit3d/mostrar', { nome: b.dataset.k3Pasta })));
+  $$('[data-k3-prod]').forEach((b) => (b.onclick = async () => {
+    b.disabled = true;
+    const r2 = await postSeguro('/api/kit3d/produzir', { nome: b.dataset.k3Prod });
+    if (r2.erro) { abrirDlg(`<h2>Produzir 3D</h2>${caixaErro(r2.erro)}`); b.disabled = false; return; }
+    k3 = { ...k3, fase: 'rodando', nome: r2.nome, voz: r2.voz, job: null, ate: -1 };
+    desenhaKit3d();
+    seguirKit3d();
+  }));
+  $$('[data-k3-ver]').forEach((b) => (b.onclick = () => {
+    abrirDlg(`<h2>${esc(b.dataset.k3Ver)}</h2><video controls playsinline style="width:100%;max-height:70vh" src="/kit3d/midia/${esc(b.dataset.k3Ver)}/video?t=${Date.now()}"></video>`);
+  }));
+}
+async function desenhaKit3d() {
+  const A = $('#kit3d');
+  if (!A) return;
+  try {
+    if (k3.fase === 'form') {
+      const extrasAbertos = !!(k3.gancho || k3.titulo || k3.virada || k3.pergunta);
+      A.innerHTML = `<div class="campo-tema"><label class="campo" for="k3Tema"><span>Tema</span></label>
+        <div class="linha-tema"><input type="text" id="k3Tema" placeholder="Ex.: por que a bola faz curva na trivela" value="${esc(k3.tema || '')}" aria-label="Tema do vídeo 3D">
+        <select id="k3Idioma" aria-label="Idioma"><option value="">Português</option><option value="en">English</option><option value="es">Español</option></select>
+        <button class="btn" id="k3Fazer">Gerar 3D</button></div></div>
+        <details class="extras-wrap" id="k3Extras"${extrasAbertos ? ' open' : ''}>
+          <summary><span>Gancho, título e fecho<small>Opcional · o assistente usa o texto como você escrever</small></span></summary>
+          <div class="extras-tema">
+          <label class="campo"><span>Gancho (primeira frase)</span><input type="text" id="k3Gancho" value="${esc(k3.gancho || '')}"></label>
+          <label class="campo"><span>Título do vídeo (capa)</span><input type="text" id="k3Titulo" value="${esc(k3.titulo || '')}"></label>
+          <label class="campo"><span>Virada</span><input type="text" id="k3Virada" value="${esc(k3.virada || '')}"></label>
+          <label class="campo"><span>Pergunta / CTA final</span><input type="text" id="k3Pergunta" value="${esc(k3.pergunta || '')}"></label>
+          </div>
+        </details>
+        <p class="ajuda-curta">O pedido manda o assistente trabalhar em <b>kit-3d/</b> (Remotion + R3F): video.json, voz, cenas.tsx e render. Não usa o motor de cena.json do VideoIA.</p>
+        ${k3.aviso ? caixaErro({ causa: k3.aviso, acao: '' }, { leve: true }) : ''}`;
+      if (k3.idioma) $('#k3Idioma').value = k3.idioma;
+      $('#k3Tema').onkeydown = (e) => { if (e.key === 'Enter') comecarKit3d(); };
+      $('#k3Fazer').onclick = () => comecarKit3d();
+      carregarLista3d();
+      return;
+    }
+    if (k3.fase === 'pergunta') {
+      A.innerHTML = `<h2>Antes de começar</h2>${k3.perguntaHtml}<div class="acoes"><button class="btn sec pequeno" id="k3Voltar">Voltar</button></div>`;
+      $('#k3Voltar').onclick = () => resetKit3d();
+      k3.ligar?.();
+      return;
+    }
+    if (k3.fase === 'rodando' || k3.fase === 'esperando') {
+      const pr = k3.job && !k3.job.fim ? lerProgresso(k3.job) : null;
+      const mostraBarra = k3.fase === 'rodando' || k3.preparando;
+      A.innerHTML = `<h2>${k3.fase === 'esperando' ? 'Vídeo 3D: falta o assistente' : 'Fazendo o vídeo 3D'}</h2>
+        <p class="sub">${k3.fase === 'esperando' ? 'Cole o pedido no Chat (ou Claude/Codex/Cursor com esta pasta aberta). O assistente deve trabalhar em kit-3d/. Quando o MP4 existir, esta tela atualiza sozinha.' : 'Render Remotion pode demorar. Pode deixar rodando.'}</p>
+        ${k3.fase === 'esperando' ? `<div class="pedido" id="k3Pedido">${esc(k3.pedido || '')}</div><div class="acoes">${conf.pronto?.ia ? `<button class="btn" id="k3EnviarChat">Enviar no Chat</button>` : ''}<button class="btn${conf.pronto?.ia ? ' sec' : ''}" id="k3Copiar">Copiar o pedido</button><span class="ok-txt" id="k3Copiado">${k3.copiado ? 'Pedido copiado.' : ''}</span></div>` : ''}
+        ${listaEtapas3d()}
+        ${mostraBarra && pr ? `<p class="dica" style="margin-top:12px">${esc(pr.etapa)}</p><div class="trilho ${pr.pct == null ? 'indef' : ''}"><i style="width:${pr.pct == null ? 30 : Math.max(3, Math.round(pr.pct * 100))}%"></i></div>` : ''}
+        ${k3.fase === 'esperando' && !k3.preparando ? `<p class="dica" style="margin-top:12px">${esc(k3.nota || 'Esperando o assistente no kit-3d…')}</p>` : ''}
+        <div class="acoes"><button class="btn sec pequeno" id="k3Det">${k3.det ? 'Esconder detalhes' : 'Ver detalhes'}</button>${k3.fase === 'esperando' ? '<button class="btn sec pequeno" id="k3Cancelar">Desistir</button>' : ''}</div>
+        ${k3.det ? `<pre style="background:var(--log);border:1px solid var(--linha);border-radius:10px;padding:10px 12px;font:12px/1.5 ui-monospace,Menlo,monospace;color:var(--suave);max-height:200px;overflow:auto;white-space:pre-wrap;margin-top:10px">${esc((k3.job?.linhas || []).join('\n'))}</pre>` : ''}`;
+      $('#k3Det').onclick = () => { k3.det = !k3.det; desenhaKit3d(); };
+      const cp = $('#k3Copiar'); if (cp) cp.onclick = async () => { k3.copiado = await copiarTexto(k3.pedido); $('#k3Copiado').textContent = k3.copiado ? 'Pedido copiado.' : 'Selecione e copie com Ctrl+C.'; };
+      const ec = $('#k3EnviarChat'); if (ec) ec.onclick = () => enviarChat(k3.pedido || '');
+      const cc = $('#k3Cancelar'); if (cc) cc.onclick = () => { lembrar3d.gravar(null); resetKit3d(); };
+      return;
+    }
+    if (k3.fase === 'pronto') {
+      const nome = k3.nome;
+      A.innerHTML = `<h2>Vídeo 3D pronto</h2>
+        <div class="caixa-ok">Render Remotion concluído em kit-3d/videos/${esc(nome)}/saida/.</div>
+        <video controls playsinline preload="metadata" src="/kit3d/midia/${esc(nome)}/video?t=${Date.now()}"></video>
+        <div class="acoes"><a class="btn" href="/kit3d/baixar/${esc(nome)}" download>Baixar</a><button class="btn sec" id="k3Pasta">Mostrar na pasta</button><button class="btn sec" id="k3Outro">Fazer outro</button></div>`;
+      $('#k3Pasta').onclick = () => postSeguro('/api/kit3d/mostrar', { nome });
+      $('#k3Outro').onclick = () => resetKit3d();
+      carregarLista3d();
+      return;
+    }
+    const e = msgErro(k3.erro);
+    A.innerHTML = `<h2>O vídeo 3D parou</h2>${caixaErro(e, { botoes: false })}
+      <div class="acoes"><button class="btn" id="k3DeNovo">Tentar de novo</button><button class="btn sec" id="k3Voltar">Mudar o tema</button></div>`;
+    $('#k3DeNovo').onclick = () => comecarKit3d({ repetir: true });
+    $('#k3Voltar').onclick = () => resetKit3d();
+  } catch {
+    A.innerHTML = `<h2>Vídeo 3D</h2>${caixaErro({ causa: 'Esta parte da página não carregou.', acao: 'Recarregue a página.' })}`;
+  }
+}
+function perguntar3d(html, ligar) {
+  k3.fase = 'pergunta';
+  k3.perguntaHtml = html;
+  k3.ligar = ligar;
+  desenhaKit3d();
+}
+async function comecarKit3d(opc = {}) {
+  if (!opc.repetir) {
+    k3.tema = ($('#k3Tema')?.value || '').trim();
+    k3.idioma = $('#k3Idioma')?.value || '';
+    k3.gancho = ($('#k3Gancho')?.value || '').trim();
+    k3.titulo = ($('#k3Titulo')?.value || '').trim();
+    k3.virada = ($('#k3Virada')?.value || '').trim();
+    k3.pergunta = ($('#k3Pergunta')?.value || '').trim();
+    k3.aviso = null;
+    if (k3.tema.length < 3) {
+      k3.aviso = 'Escreva o tema do vídeo 3D.';
+      return desenhaKit3d();
+    }
+  }
+  const c = await apiSeguro('/api/configuracao');
+  if (c.erro) { k3.fase = 'erro'; k3.erro = c.erro; return desenhaKit3d(); }
+  conf = c;
+  const v = conf.voz;
+  if (!v.pronta && !(opc.semVoz && v.atual === 'mock')) {
+    return perguntar3d(`<div class="caixa-erro"><b>Falta ligar a voz da ElevenLabs.</b>Configure em Configurações &gt; Voz e trilha.</div><div class="acoes"><button class="btn" id="q3Voz">Abrir o guia da voz</button></div>`, () => {
+      $('#q3Voz').onclick = () => { resetKit3d(); irPara('voz'); };
+    });
+  }
+  if (!opc.semVoz && v.escolhida && v.atual === 'mock') {
+    return perguntar3d(`<p class="sub">A voz salva é a <b>voz de teste</b>.</p><div class="acoes"><button class="btn" id="q3Voz">Escolher voz</button><button class="btn sec" id="q3Seguir">Seguir sem narração</button></div>`, () => {
+      $('#q3Voz').onclick = () => { resetKit3d(); irPara('voz'); };
+      $('#q3Seguir').onclick = () => comecarKit3d({ ...opc, repetir: true, semVoz: true });
+    });
+  }
+  const r = await postSeguro('/api/kit3d', {
+    tema: k3.tema,
+    idioma: k3.idioma,
+    nome: k3.nome || undefined,
+    gancho: k3.gancho || undefined,
+    titulo: k3.titulo || undefined,
+    virada: k3.virada || undefined,
+    pergunta: k3.pergunta || undefined,
+  });
+  if (r.erro) { k3.fase = 'erro'; k3.erro = r.erro; k3.irPara = r.irPara || null; return desenhaKit3d(); }
+  Object.assign(k3, {
+    nome: r.nome, modo: r.modo, voz: r.voz, pedido: r.pedido || null,
+    ate: -1, job: null, erro: null, irPara: null, preparando: true, copiado: false, fase: 'esperando',
+  });
+  lembrar3d.gravar({
+    nome: r.nome, pedido: r.pedido, voz: r.voz,
+    tema: k3.tema, gancho: k3.gancho, titulo: k3.titulo, virada: k3.virada, pergunta: k3.pergunta,
+  });
+  k3.copiado = await copiarTexto(r.pedido);
+  desenhaKit3d();
+  seguirKit3d();
+}
+async function seguirKit3d() {
+  clearTimeout(k3.timer);
+  if (!['rodando', 'esperando'].includes(k3.fase)) return;
+  const j = await apiSeguro('/api/job');
+  if (j && j.erro) {
+    if (j.temporario) { k3.timer = setTimeout(seguirKit3d, 2500); return; }
+    k3.falhasRede = (k3.falhasRede || 0) + 1;
+    if (k3.falhasRede >= 5) { k3.fase = 'erro'; k3.erro = j.erro; return desenhaKit3d(); }
+    k3.timer = setTimeout(seguirKit3d, 3000);
+    return;
+  }
+  k3.falhasRede = 0;
+  const meu = j && ['kit3d', 'preparar-3d'].includes(j.tipo) && j.nome === k3.nome ? j : null;
+  if (meu) k3.job = meu;
+  if (meu && !meu.fim) { desenhaKit3d(); k3.timer = setTimeout(seguirKit3d, 1500); return; }
+  if (meu && meu.fim && !k3.visto?.has(meu.id)) {
+    (k3.visto ||= new Set()).add(meu.id);
+    if (meu.codigo !== 0 && meu.codigo !== 2) {
+      k3.fase = 'erro'; k3.erro = meu.erro; k3.etapaFalhou = meu.etapaFalhou;
+      return desenhaKit3d();
+    }
+    if (meu.tipo === 'preparar-3d') {
+      k3.preparando = false;
+      const c = await apiSeguro('/api/configuracao');
+      if (!c.erro) conf = c;
+    } else {
+      k3.fase = 'pronto';
+      lembrar3d.gravar(null);
+      desenhaKit3d();
+      return;
+    }
+  }
+  if (k3.fase === 'esperando' && !k3.preparando) {
+    const e = await apiSeguro('/api/kit3d/estado/' + encodeURIComponent(k3.nome));
+    if (!e.erro) {
+      if (e.pronto && !e.produzindo) {
+        k3.fase = 'pronto';
+        lembrar3d.gravar(null);
+        return desenhaKit3d();
+      }
+      k3.nota = e.produzindo
+        ? 'Produção 3D em andamento…'
+        : e.cenas
+          ? 'Cenas prontas. Você pode clicar em Produzir na lista ou pedir ao assistente para renderizar.'
+          : e.videoJson
+            ? 'Roteiro no video.json. O assistente deve seguir com voz e cenas…'
+            : 'Esperando o assistente criar kit-3d/videos/' + k3.nome + '/…';
+      if (e.cenas && e.voz && !e.pronto && !e.produzindo) {
+        const r = await postSeguro('/api/kit3d/produzir', { nome: k3.nome });
+        if (!r.erro) {
+          k3.fase = 'rodando';
+          k3.voz = r.voz;
+          desenhaKit3d();
+          k3.timer = setTimeout(seguirKit3d, 1200);
+          return;
+        }
+      }
+    }
+  }
+  desenhaKit3d();
+  k3.timer = setTimeout(seguirKit3d, k3.fase === 'esperando' ? 3000 : 1500);
+}
+async function retomarKit3d() {
+  const j = await apiSeguro('/api/job');
+  const salvo = lembrar3d.ler();
+  if (j && !j.erro && !j.fim && ['kit3d', 'preparar-3d'].includes(j.tipo)) {
+    Object.assign(k3, {
+      nome: j.nome, voz: j.voz, pedido: salvo?.nome === j.nome ? salvo.pedido : null,
+      tema: salvo?.tema, fase: j.tipo === 'preparar-3d' ? 'esperando' : 'rodando',
+      preparando: j.tipo === 'preparar-3d', ate: -1,
+    });
+    return seguirKit3d();
+  }
+  if (salvo?.nome) {
+    Object.assign(k3, { ...salvo, fase: 'esperando', preparando: false, ate: -1 });
+    return seguirKit3d();
+  }
+  if (vista === 'kit3d') desenhaKit3d();
+}
+
 /* ---------------- MEUS VÍDEOS ---------------- */
 function seloPublicacao(v) {
   if (v.teste) return `<span class="etq aviso">${I('aviso')} sem voz (teste)</span>`;
@@ -2141,33 +2448,42 @@ async function carregarVideos() {
   const vs = await api('/api/videos');
   const alvo = $('#videos');
   // 0.5.3: tema livre em + Vídeo (um só lugar para criar; aqui só a lista)
-  const novo = `<section class="cta-novo"><div><h2>Vídeo</h2><p class="sub">Tema, gancho e fecho ficam em <b>+ Vídeo</b>. O assistente escreve o roteiro; o estúdio produz.</p></div><button class="btn" id="ctaIrNovo">+ Vídeo</button></section>`;
-  const ligaNovo = () => { const b = $('#ctaIrNovo'); if (!b) return; b.onclick = () => { mostrar('novo'); requestAnimationFrame(() => $('#pvTema')?.focus({ preventScroll: true })); }; };
-  if (!vs.length) { alvo.innerHTML = novo + '<div class="vazio-bonito" style="grid-column:1/-1"><h2>Você ainda não tem vídeos prontos</h2><p>Os vídeos que o estúdio fizer aparecem aqui, com os botões de assistir, baixar e copiar a legenda. O jeito mais rápido de ver o primeiro é fazer o vídeo de teste.</p><div class="acoes"><button class="btn" id="vazioTeste">Fazer o vídeo de teste</button></div></div>'; ligaNovo(); $('#vazioTeste').onclick = () => mostrar('novo'); return; }
+  const novo = `<section class="cta-novo"><div><h2>Vídeo</h2><p class="sub">Tema, gancho e fecho ficam em <b>+ Vídeo</b> ou na aba <b>3D</b>. O assistente escreve o roteiro; o estúdio produz.</p></div><div class="acoes" style="gap:8px"><button class="btn" id="ctaIrNovo">+ Vídeo</button><button class="btn sec" id="ctaIr3d">+ 3D</button></div></section>`;
+  const ligaNovo = () => {
+    const b = $('#ctaIrNovo'); if (b) b.onclick = () => { mostrar('novo'); requestAnimationFrame(() => $('#pvTema')?.focus({ preventScroll: true })); };
+    const b3 = $('#ctaIr3d'); if (b3) b3.onclick = () => { mostrar('kit3d'); requestAnimationFrame(() => $('#k3Tema')?.focus({ preventScroll: true })); };
+  };
+  if (!vs.length) { alvo.innerHTML = novo + '<div class="vazio-bonito" style="grid-column:1/-1"><h2>Você ainda não tem vídeos prontos</h2><p>Os vídeos que o estúdio fizer (incluindo 3D) aparecem aqui, com os botões de assistir, baixar e copiar a legenda. O jeito mais rápido de ver o primeiro é fazer o vídeo de teste.</p><div class="acoes"><button class="btn" id="vazioTeste">Fazer o vídeo de teste</button></div></div>'; ligaNovo(); $('#vazioTeste').onclick = () => mostrar('novo'); return; }
   const chatConectado = !!conf?.pronto?.ia;
   const ajustar = (projeto, tipo, sugestao) => {
     const video = vs.find(item => item.nome === projeto);
     if (video) definirContextoChat({ projeto, titulo: video.titulo, alvo: tipo }, sugestao);
   };
+  const midiaCapa = (v) => v.kit ? `/kit3d/midia/${v.nome}/capa?t=${Date.now()}` : `/midia/${v.nome}/capa.jpg`;
+  const midiaVideo = (v) => v.kit ? `/kit3d/midia/${v.nome}/video?t=${Date.now()}` : `/midia/${v.nome}/video?t=${Date.now()}`;
+  const hrefBaixar = (v) => v.kit ? `/kit3d/baixar/${v.nome}` : `/baixar/${v.nome}`;
   alvo.innerHTML = novo + vs.map((v) => `<article class="vid">
-    <button class="capa" data-ver="${v.nome}" aria-label="Assistir ${esc(v.titulo)}" style="${v.capa ? `background-image:url(/midia/${v.nome}/capa.jpg)` : ''}"></button>
+    <button class="capa" data-ver="${v.nome}" aria-label="Assistir ${esc(v.titulo)}" style="${v.capa ? `background-image:url(${midiaCapa(v)})` : ''}"></button>
     <div class="corpo-v"><b>${esc(v.titulo)}</b><small>${new Date(v.data).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })} · ${v.mb} MB</small>
-      <div class="marcas">${seloPublicacao(v)}${v.rapido ? '<span class="etq">prévia rápida</span>' : ''}</div></div>
+      <div class="marcas">${seloPublicacao(v)}${v.kit ? '<span class="etq">3D</span>' : ''}${v.rapido ? '<span class="etq">prévia rápida</span>' : ''}</div></div>
     ${!v.publicavel && !v.teste ? `<p class="dica" style="padding:0 16px">${esc(v.proximo || 'Revise a entrega antes de publicar.')}</p>` : ''}
-    <div class="bts"><button class="btn sec" type="button" data-cenas-editar="${esc(v.nome)}">Corrigir cenas</button><a class="btn sec" href="/baixar/${v.nome}" download>Baixar</a><button class="btn sec" data-pasta="${v.nome}">Mostrar na pasta</button>
+    <div class="bts">${v.kit ? '' : `<button class="btn sec" type="button" data-cenas-editar="${esc(v.nome)}">Corrigir cenas</button>`}<a class="btn sec" href="${hrefBaixar(v)}" download>Baixar</a><button class="btn sec" data-pasta="${v.nome}" ${v.kit ? 'data-kit="1"' : ''}>Mostrar na pasta</button>
       <button class="btn sec" data-leg="${v.nome}" ${v.legenda ? '' : 'title="Peça ao assistente (Claude Code ou Codex): escreva a legenda deste vídeo"'}>${v.legenda ? 'Copiar legenda' : 'Pedir a legenda'}</button>
       <button class="btn sec" type="button" data-yt-enviar="${v.nome}">Enviar ao YouTube</button>
       <button class="btn sec" type="button" data-tk-enviar="${v.nome}">Enviar ao TikTok</button>
       <button class="btn sec" data-yt="${v.nome}" ${v.youtube ? '' : 'title="Peça ao assistente (Claude Code ou Codex): escreva o pacote YouTube deste vídeo"'}>${v.youtube ? 'Textos YouTube' : 'Pedir textos YouTube'}</button>
-      ${chatConectado ? `<button class="btn sec" type="button" data-ajustar-video="${esc(v.nome)}">Pedir ajuste</button>` : ''}</div>
+      ${!v.kit && chatConectado ? `<button class="btn sec" type="button" data-ajustar-video="${esc(v.nome)}">Pedir ajuste</button>` : ''}</div>
   </article>`).join('');
   ligaNovo();
   $$('#videos [data-cenas-editar]').forEach(b => { b.onclick = async () => { aba = 'cenas'; mostrar('projetos'); await abre(b.dataset.cenasEditar); }; });
   $$('#videos [data-ajustar-video]').forEach(b => {
     b.onclick = () => ajustar(b.dataset.ajustarVideo, 'video');
   });
-  $$('[data-ver]').forEach((b) => (b.onclick = () => abrirDlg(`<h2>${esc(vs.find((x) => x.nome === b.dataset.ver).titulo)}</h2><video controls autoplay playsinline src="/midia/${b.dataset.ver}/video?t=${Date.now()}" style="margin-top:12px"></video>`)));
-  $$('[data-pasta]').forEach((b) => (b.onclick = () => post('/api/mostrar', { nome: b.dataset.pasta })));
+  $$('#videos [data-ver]').forEach((b) => (b.onclick = () => {
+    const item = vs.find((x) => x.nome === b.dataset.ver);
+    abrirDlg(`<h2>${esc(item.titulo)}</h2><video controls autoplay playsinline src="${midiaVideo(item)}" style="margin-top:12px"></video>`);
+  }));
+  $$('#videos [data-pasta]').forEach((b) => (b.onclick = () => post(b.dataset.kit ? '/api/kit3d/mostrar' : '/api/mostrar', { nome: b.dataset.pasta })));
   $$('[data-leg]').forEach((b) => (b.onclick = async () => {
     const r = await api('/api/legenda/' + b.dataset.leg);
     if (r.erro) { abrirDlg(`<h2>Sem legenda ainda</h2><p class="sub">Peça ao assistente (Claude Code ou Codex), na conversa:</p><div class="diga">Escreva a legenda do vídeo ${esc(b.dataset.leg)} para Instagram e TikTok.</div>`); return; }
@@ -2211,100 +2527,8 @@ function abrirDlg(html) { $('#dlgCorpo').innerHTML = html; $('#dlg').showModal()
 $('#dlgFechar').onclick = () => { $$('#dlg video').forEach((v) => v.pause()); $('#dlg').close(); };
 $('#dlg').addEventListener('close', () => $$('#dlg video').forEach((v) => v.pause()));
 
-/* ---------------- ESTILOS (catálogo com prévias em loop) e CARROSSÉIS ---------------- */
-// 0.6.28: o catálogo vem de /api/catalogo ({ reels, carrosseis }, cada item com id, nome, resumo, quandoUsar, pedido, previa).
-// Sem catálogo na pasta, os estilos de vídeo aparecem pela lista do estúdio (sem prévia) e os de carrossel mostram um aviso útil.
 const reduzMovimento = () => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch { return false; } };
-const SUGESTOES_BUSCA = ['notícia', 'história', 'dinheiro', 'tecnologia', 'ciência', 'fé', 'produto', 'lista'];
-let est = { tipo: 'reels', busca: '', dados: null, completo: false }, obsPrevia = null;
 const semAcento = (t) => String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
-async function carregarEstilos() {
-  const c = await apiSeguro('/api/catalogo');
-  if (c && !c.erro && !c.vazio) est.dados = { reels: c.reels || [], carrosseis: c.carrosseis || [] }, est.completo = true;
-  else {
-    const lista = await apiSeguro('/api/estilos');
-    est.dados = { reels: (Array.isArray(lista) ? lista : []).map((x) => ({ id: x.id, nome: x.nome, resumo: x.paraQuem || '', quandoUsar: '', pedido: `Faça um vídeo sobre [assunto] no estilo ${x.nome}.`, previa: '' })), carrosseis: [] };
-    est.completo = false;
-  }
-  desenhaEstilos();
-}
-function desenhaEstilos() {
-  const D = est.dados || { reels: [], carrosseis: [] }, A = $('#estCorpo');
-  $$('#estTipo button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.t === est.tipo));
-  $('#estTipo [data-t=reels]').textContent = `Vídeos (Reels) · ${D.reels.length}`;
-  $('#estTipo [data-t=carrosseis]').textContent = `Carrosséis · ${D.carrosseis.length}`;
-  $('#estChips').innerHTML = SUGESTOES_BUSCA.map((x) => `<button type="button" data-q="${esc(x)}" aria-pressed="${semAcento(est.busca) === semAcento(x)}">${esc(x)}</button>`).join('');
-  $$('#estChips button').forEach((b) => (b.onclick = () => { est.busca = semAcento(est.busca) === semAcento(b.dataset.q) ? '' : b.dataset.q; $('#estBusca').value = est.busca; desenhaEstilos(); }));
-  const todos = D[est.tipo], q = semAcento(est.busca).trim();
-  const itens = todos.filter((x) => !q || semAcento([x.nome, x.resumo, x.quandoUsar].join(' ')).includes(q));
-  if (obsPrevia) { obsPrevia.disconnect(); obsPrevia = null; }
-  if (!todos.length) {
-    A.innerHTML = est.tipo === 'carrosseis'
-      ? '<div class="vazio-bonito"><h2>Os estilos de carrossel ainda não chegaram a esta cópia</h2><p>Você já pode pedir carrosséis: o assistente (Claude Code ou Codex) escolhe o estilo que combina com o assunto. Para ter as prévias aqui, veja se há versão nova em Atualizar.</p><div class="acoes"><button class="btn" id="estIrCar">Ver como pedir um carrossel</button><button class="btn sec" id="estIrAtu">Ir para Atualizar</button></div></div>'
-      : '<div class="vazio-bonito"><h2>Nenhum estilo encontrado</h2><p>Peça ao assistente (Claude Code ou Codex): <b>Quais estilos de vídeo existem?</b> Ou veja se há versão nova em Atualizar.</p><div class="acoes"><button class="btn sec" id="estIrAtu">Ir para Atualizar</button></div></div>';
-    const a = $('#estIrCar'); if (a) a.onclick = () => mostrar('carrosseis');
-    const b = $('#estIrAtu'); if (b) b.onclick = () => mostrar('atualizar');
-    return;
-  }
-  const avisoSem = est.tipo === 'reels' && !est.completo ? '<div class="caixa-nota"><b>As prévias em vídeo ainda não estão nesta cópia.</b>Os nomes e os pedidos já funcionam. Para ver cada estilo em movimento, veja se há versão nova em Atualizar.</div>' : '';
-  if (!itens.length) { A.innerHTML = avisoSem + `<div class="vazio-bonito"><h2>Nada com "${esc(est.busca)}"</h2><p>Tente outra palavra, como um assunto ou um objetivo.</p><div class="acoes"><button class="btn sec" id="estLimpar">Mostrar todos</button></div></div>`; $('#estLimpar').onclick = () => { est.busca = ''; $('#estBusca').value = ''; desenhaEstilos(); }; return; }
-  const reduz = reduzMovimento();
-  const midia = (x) => {
-    if (!x.previa) return '<div class="sem">Sem prévia nesta cópia</div>';
-    const url = '/catalogo/previas/' + encodeURIComponent(x.previa);
-    if (/\.mp4$/i.test(x.previa)) return `<video muted loop playsinline ${reduz ? '' : 'autoplay'} preload="none" data-src="${esc(url)}${reduz ? '#t=0.2' : ''}" aria-label="Prévia do estilo ${esc(x.nome)}"></video><button class="pp" type="button" data-pp aria-label="${reduz ? 'Tocar' : 'Pausar'} a prévia de ${esc(x.nome)}">${reduz ? '&#9654;' : '&#10074;&#10074;'}</button>`;
-    return `<img loading="lazy" src="${esc(url)}" alt="Prévia do estilo ${esc(x.nome)}">`;
-  };
-  A.innerHTML = avisoSem + `<div class="grade-estilos">${itens.map((x, i) => `<article class="est ${est.tipo === 'carrosseis' ? 'car' : ''}"><div class="prev">${midia(x)}</div><div class="txt"><b>${esc(x.nome)}</b>${x.resumo ? `<p>${esc(x.resumo)}</p>` : ''}${x.quandoUsar ? `<div class="quando"><b>Quando usar:</b> ${esc(x.quandoUsar)}</div>` : ''}${x.pedido ? `<div class="pedido-mini">Cole no Claude ou no Codex: <b>${esc(x.pedido)}</b></div>` : ''}</div><div class="bt">${x.pedido ? `<button class="btn" type="button" data-copiar="${esc(x.pedido)}">Copiar pedido</button>` : ''}${est.tipo === 'reels' ? (conf?.escolha?.estilo === x.id ? `<button class="btn sec" type="button" disabled>${I('estrela')} É o seu padrão</button>` : `<button class="btn sec" type="button" data-padrao="${esc(x.id)}">${I('estrela')} Usar como padrão</button>`) : ''}<div class="copiado" role="status"></div></div></article>`).join('')}</div>`;
-  $$('#estCorpo [data-padrao]').forEach((b) => (b.onclick = async () => {
-    b.disabled = true;
-    const r = await post('/api/estilo-objetivo', { objetivo: conf?.escolha?.objetivo || conf?.modelo?.padrao || 'curiosidade', estilo: b.dataset.padrao });
-    if (r && !r.erro) { conf = await api('/api/configuracao'); desenhaPassos(); atualizarPin(); desenhaEstilos(); }
-    else { b.disabled = false; const av = b.closest('.est').querySelector('.copiado'); if (av) av.textContent = 'Não consegui salvar agora. Tente em Configurações > Estilo.'; }
-  }));
-  // prévia só toca quando está à vista e pausa ao sair da tela; o arquivo só começa a baixar perto de aparecer
-  const vs = $$('#estCorpo video[data-src]');
-  if (vs.length && 'IntersectionObserver' in window) {
-    obsPrevia = new IntersectionObserver((es) => es.forEach((e) => {
-      const v = e.target, pp = v.parentElement.querySelector('[data-pp]');
-      if (e.isIntersecting) { if (!v.getAttribute('src')) v.src = v.dataset.src; if (!reduz && !v.dataset.manual) v.play().catch(() => {}); }
-      else v.pause();
-      if (pp) pp.innerHTML = v.paused ? '&#9654;' : '&#10074;&#10074;';
-    }), { rootMargin: '150px', threshold: 0.25 });
-    vs.forEach((v) => { obsPrevia.observe(v); v.addEventListener('play', () => { const pp = v.parentElement.querySelector('[data-pp]'); if (pp) pp.innerHTML = '&#10074;&#10074;'; }); v.addEventListener('pause', () => { const pp = v.parentElement.querySelector('[data-pp]'); if (pp) pp.innerHTML = '&#9654;'; }); v.onerror = () => { v.parentElement.innerHTML = '<div class="sem">A prévia não carregou. O pedido abaixo funciona do mesmo jeito.</div>'; }; });
-  } else vs.forEach((v) => { v.src = v.dataset.src; });
-  $$('#estCorpo [data-pp]').forEach((b) => (b.onclick = () => { const v = b.parentElement.querySelector('video'); if (!v.getAttribute('src')) v.src = v.dataset.src; if (v.paused) { v.dataset.manual = ''; v.play().catch(() => {}); } else { v.dataset.manual = '1'; v.pause(); } }));
-}
-$$('#estTipo button').forEach((b) => (b.onclick = () => { est.tipo = b.dataset.t; desenhaEstilos(); }));
-$('#estBusca').oninput = (e) => { est.busca = e.target.value; desenhaEstilos(); };
-$('#estPadrao').onclick = () => irPara('estilo');
-
-const PEDIDOS_CARROSSEL = [
-  ['Faça um carrossel sobre [assunto].', 'O básico: o assistente (Claude Code ou Codex) escolhe o estilo que combina com o assunto.'],
-  ['Faça um carrossel de mito ou verdade sobre [assunto].', 'Bom para crenças populares.'],
-  ['Faça um carrossel de passo a passo sobre [assunto].', 'Tutorial, receita ou dica em sequência.'],
-  ['Faça um carrossel de ranking sobre [assunto], com fotos.', 'Lista de melhores, maiores ou mais curiosos.'],
-  ['Faça um carrossel de notícia sobre [assunto], com os fatos atribuídos à fonte.', 'Para um caso do noticiário.'],
-  ['Faça um carrossel sobre [assunto] no estilo [nome do estilo].', 'Escolha o estilo em Estilos > Carrosséis.'],
-];
-async function carregarCarrosseis() {
-  $('#carPedidos').innerHTML = PEDIDOS_CARROSSEL.map(([t, d]) => `<div class="pedido-linha"><div><q>${esc(t)}</q><small>${esc(d)}</small></div><div><button class="btn sec pequeno" type="button" data-copiar="${esc(t)}">Copiar pedido</button><div class="copiado" role="status"></div></div></div>`).join('');
-  const L = await apiSeguro('/api/carrosseis'), A = $('#carLista');
-  if (!Array.isArray(L)) { A.innerHTML = caixaErro(L.erro || NAO_RESPONDE, { botoes: false }); return; }
-  if (!L.length) { A.innerHTML = '<div class="vazio-bonito" style="grid-column:1/-1"><h2>Você ainda não tem carrosséis</h2><p>Faça o carrossel de exemplo no topo desta página, ou copie um pedido e cole no Claude ou no Codex. Os carrosséis prontos aparecem aqui.</p></div>'; return; }
-  A.innerHTML = L.map((c) => `<article class="car-it"><img class="cap" loading="lazy" alt="Capa do carrossel ${esc(c.titulo)}" src="/carrossel/${esc(c.nome)}/01.png" data-abrir="${esc(c.nome)}"><div class="c"><b>${esc(c.titulo)}</b><small>${c.slides} slides</small></div><div class="bts"><button class="btn sec pequeno" data-abrir="${esc(c.nome)}">Ver e baixar</button><button class="btn sec pequeno" data-pastacar="${esc(c.nome)}">Mostrar na pasta</button></div></article>`).join('');
-  $$('#carLista [data-abrir]').forEach((b) => (b.onclick = () => abrirCarrossel(b.dataset.abrir)));
-  $$('#carLista [data-pastacar]').forEach((b) => (b.onclick = () => postSeguro('/api/mostrar', { carrossel: b.dataset.pastacar })));
-}
-async function abrirCarrossel(nome) {
-  const sl = await apiSeguro('/api/carrossel/slides/' + encodeURIComponent(nome));
-  if (!Array.isArray(sl) || !sl.length) { abrirDlg(`<h2>Carrossel</h2>${caixaErro({ causa: 'Não achei os slides deste carrossel.', acao: 'Peça ao assistente (Claude Code ou Codex): "Gere de novo o carrossel ' + nome + '".' })}`); return; }
-  abrirDlg(`<h2>${esc(nome.replace(/-/g, ' '))}</h2><p class="dica">${sl.length} slides. Clique em Baixar em cada um, ou use Mostrar na pasta para pegar todos de uma vez. Poste na ordem.</p><div class="grade-slides">${sl.map((x) => `<figure><img loading="lazy" alt="Slide ${esc(x.slice(0, 2))}" src="/carrossel/${esc(nome)}/${esc(x)}?t=${Date.now()}"><a class="btn sec pequeno" href="/carrossel/${esc(nome)}/${esc(x)}" download="${esc(nome)}-${esc(x)}">Baixar ${esc(x.slice(0, 2))}</a></figure>`).join('')}</div><div class="acoes"><button class="btn sec pequeno" id="carPastaDlg">Mostrar na pasta</button></div>`);
-  $('#carPastaDlg').onclick = () => postSeguro('/api/mostrar', { carrossel: nome });
-}
-$('#carExemplo').onclick = () => primeiroCarrossel();
-$('#carVerEstilos').onclick = () => { est.tipo = 'carrosseis'; mostrar('estilos'); };
-$('#carMarca').onclick = () => irPara('marca');
 
 /* ---------------- ATUALIZAR ---------------- */
 async function carregarAtualizar() {
@@ -2438,7 +2662,7 @@ async function abre(nome) {
   <div class="corpo">
     <div class="midia">${d.video ? `<video controls playsinline preload="metadata" poster="${d.capa ? `/midia/${nome}/capa.jpg` : ''}" src="/midia/${nome}/video?t=${Date.now()}"></video>` : '<div class="nada">O vídeo aparece aqui depois de produzido.</div>'}</div>
     <div>
-      <div class="abas" role="tablist">${['roteiro', 'cenas', 'versoes', 'fontes', 'qa', 'carrossel'].map((a) => `<button class="aba" role="tab" data-aba="${a}" aria-selected="${a === aba}">${{ roteiro: 'Roteiro', cenas: 'Corrigir cenas', versoes: 'Comparar versões', fontes: 'Fontes e pendências', qa: 'Controle de qualidade', carrossel: 'Carrossel' }[a]}</button>`).join('')}</div>
+      <div class="abas" role="tablist">${['roteiro', 'cenas', 'versoes', 'fontes', 'qa'].map((a) => `<button class="aba" role="tab" data-aba="${a}" aria-selected="${a === aba}">${{ roteiro: 'Roteiro', cenas: 'Corrigir cenas', versoes: 'Comparar versões', fontes: 'Fontes e pendências', qa: 'Controle de qualidade' }[a]}</button>`).join('')}</div>
       <div id="painel"></div>
     </div>
   </div>`;
@@ -2520,14 +2744,13 @@ function painel(d) {
   const fotoNome = (d.relatorio?.avisos || []).find((a) => a.tipo === 'foto-de-nome');
   const blocoRel = (r) => (fotoNome ? `<div class="caixa-nota"><b>O vídeo saiu, mas faltou a foto de quem foi citado</b>${esc(fotoNome.msg)}</div>` : fotosFalhas.length ? `<div class="caixa-nota"><b>O vídeo saiu, mas uma foto ficou de fora</b>${fotosFalhas.map((a) => esc(a.msg.replace(/^foto: /, ''))).join('<br>')}</div>` : '') + htmlRelevancia(r);
   if (aba === 'qa') { const j = d.relatorio; p.innerHTML = j ? htmlFactual(d.factual) + blocoRel(d.relevancia) + `<div class="bloco"><h3>Falhas</h3>${j.falhas.length ? `<ul class="pend">${j.falhas.map((f) => `<li>${esc(f.beat || '')} ${esc(f.msg)}</li>`).join('')}</ul>` : '<p class="ok-txt">Nenhuma falha.</p>'}</div><div class="bloco"><h3>Avisos</h3>${j.avisos.length ? `<ul class="pend">${j.avisos.map((f) => `<li>${esc(f.beat || '')} ${esc(f.msg)}</li>`).join('')}</ul>` : '<p>Nenhum aviso.</p>'}</div>${d.folha ? `<div class="bloco"><h3>Folha de contato</h3><img src="/midia/${d.nome}/folha.jpg" style="width:100%;max-width:720px;border-radius:12px"></div>` : ''}${d.capaGrid ? `<div class="bloco"><h3>Capa no grid do perfil (3:4)</h3><img src="/midia/${d.nome}/capa-grid.jpg" style="width:240px;border-radius:12px"></div>` : ''}` : '<p>Produza o vídeo para gerar o relatório.</p>'; }
-  if (aba === 'carrossel') p.innerHTML = d.slides.length ? `<div class="bloco"><h3>${d.slides.length} slides</h3><div class="slides">${d.slides.map((s) => `<img loading="lazy" src="/carrossel/${d.nome}/${s}">`).join('')}</div></div>` : '<p>Este tema ainda não tem carrossel. Peça ao assistente (Claude Code ou Codex): "Gere o carrossel de ' + esc(d.nome) + '".</p>';
 }
 $('#busca').oninput = desenhaLista;
 $('#pvIrVideos').onclick = () => mostrar('videos');
 
 /* ---------------- configurações ---------------- */
 function ligarConfig() {
-  /* relatório de erro saiu da tela; a telemetria continua pelo que já estava no config */
+  ligarBarraPasso();
 }
 
 /* ---------------- início ---------------- */
@@ -2599,7 +2822,6 @@ window.addEventListener('error', (ev) => { if (ev && ev.target && ev.target !== 
   if (c0.erro) { $('#painelPasso').innerHTML = caixaErro(c0.erro, { botoes: false }) + `<div class="acoes"><button class="btn" onclick="location.reload()">Recarregar</button>${botaoDiag}</div>`; $('#primeiro').hidden = true; return; }
   conf = c0;
   if (conf.marca && !conf.marca.neutra) aplicarCor(conf.marca.destaque); // marca neutra (ainda sem a da pessoa) fica na laranja do estúdio
-  $('#carPasta').textContent = conf.pasta || '';
   atualizarPin();
   ligarConfig();
   if (conf.tudoPronto) { $('#boasVindas').textContent = 'Configurações'; $('#boasSub').textContent = 'Voz, marca, objetivo, estilo e Configurar IA.'; }
@@ -2619,6 +2841,7 @@ window.addEventListener('error', (ev) => { if (ev && ev.target && ev.target !== 
   verNovidade();
   verPasta();
   retomarPrimeiro();
+  retomarKit3d();
 })();
 </script>
 <script src="/cenas-ui.js"></script>

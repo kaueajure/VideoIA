@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { ehVideo3d, caminhoMp4_3d, pastaSlug, pacoteYoutube3d } from './kit3d.mjs';
 
 const SCOPES = ['https://www.googleapis.com/auth/youtube.upload', 'https://www.googleapis.com/auth/youtube.readonly'];
 const NOME = /^[a-z0-9][a-z0-9-]{0,60}$/;
@@ -183,8 +184,39 @@ export function criarYoutube({ raiz, fetchImpl = globalThis.fetch, agora = Date.
       return { desconectado: true, revogado };
     } finally { mutando = false; }
   }
+  function hashArquivoSync(arquivo) {
+    const hash = crypto.createHash('sha256');
+    const fd = fs.openSync(arquivo, 'r');
+    try {
+      const buf = Buffer.alloc(1024 * 1024);
+      let n;
+      while ((n = fs.readSync(fd, buf, 0, buf.length, null)) > 0) hash.update(n === buf.length ? buf : buf.subarray(0, n));
+    } finally { fs.closeSync(fd); }
+    return hash.digest('hex');
+  }
+  function dadosProjetoKit(nome) {
+    const pasta = pastaSlug(raiz, nome);
+    const destino = caminhoMp4_3d(raiz, nome);
+    if (!destino || !fs.existsSync(destino)) recusar('O MP4 final não está disponível. Gere o vídeo novamente.');
+    const arquivo = path.basename(destino);
+    if (!/\.mp4$/i.test(arquivo) || /previa/i.test(arquivo)) recusar('A entrega não identifica um MP4 final. Gere o vídeo final antes de enviar.');
+    let meta = null;
+    try { meta = JSON.parse(fs.readFileSync(path.join(pasta, 'video.json'), 'utf8')); } catch { meta = null; }
+    if (!Array.isArray(meta?.fontes) || !meta.fontes.length) recusar('Confirme as fontes do vídeo antes de enviar.');
+    try {
+      const base = fs.realpathSync(path.join(raiz, 'kit-3d', 'videos'));
+      const real = fs.realpathSync(destino);
+      const relativo = path.relative(base, real);
+      const saida = path.dirname(destino);
+      if (relativo.startsWith('..') || path.isAbsolute(relativo) || fs.lstatSync(pasta).isSymbolicLink() || fs.lstatSync(saida).isSymbolicLink() || fs.lstatSync(destino).isSymbolicLink()) recusar('O arquivo de vídeo precisa estar dentro do projeto.');
+      const stat = fs.statSync(destino);
+      if (!stat.isFile() || stat.size === 0) recusar('O arquivo final está vazio ou inválido.');
+      return { destino, arquivo, tamanho: stat.size, mtimeMs: stat.mtimeMs, hashEntrega: hashArquivoSync(destino), kit: true };
+    } catch (e) { if (e instanceof ErroYoutube) throw e; recusar('O MP4 final não está disponível. Gere o vídeo novamente.'); }
+  }
   function dadosProjeto(nome) {
     nomeValido(nome);
+    if (ehVideo3d(raiz, nome)) return dadosProjetoKit(nome);
     const projeto = path.join(raiz, 'projetos', nome), saida = path.join(projeto, 'saida');
     const entrega = ler(path.join(saida, 'entrega.json'));
     const arquivo = entrega?.arquivos?.video?.arquivo;
@@ -211,7 +243,9 @@ export function criarYoutube({ raiz, fetchImpl = globalThis.fetch, agora = Date.
     const registro = ler(registroArq(nome));
     let arquivo = null, bloqueio = null;
     try { const dados = dadosProjeto(nome); arquivo = { nome: dados.arquivo, tamanho: dados.tamanho, sha256: dados.hashEntrega }; } catch (e) { bloqueio = e.message; }
-    const pacote = ler(path.join(raiz, 'projetos', nome, 'youtube.json')) || {};
+    const pacote = ler(path.join(raiz, 'projetos', nome, 'youtube.json'))
+      || (ehVideo3d(raiz, nome) ? (ler(path.join(pastaSlug(raiz, nome), 'youtube.json')) || pacoteYoutube3d(raiz, nome)) : null)
+      || {};
     return { ...estado(), arquivo, bloqueio, pacote, envio: publico(registro), metadados: registro?.metadados || null };
   }
   async function hashArquivo(arquivo) {

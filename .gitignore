@@ -23,6 +23,14 @@ node_modules/
 /biblioteca/pecas/
 /saida/
 
+# Kit 3D embutido (dependências e saídas geradas)
+/kit-3d/node_modules/
+/kit-3d/.env
+/kit-3d/saida/
+/kit-3d/videos/*/saida/
+/kit-3d/videos/*/audio/
+/kit-3d/.tmp/
+
 # Testes
 /test/
 /coverage/

@@ -1,0 +1,163 @@
+{
+  "titulo": "Raphinha passou do ponto ao falar dos minutos na Seleção",
+  "roteiroAprovado": true,
+  "resumo": "Depois de renovar com o Barcelona, Raphinha disse que, se Ancelotti realmente conta com ele, precisa gerir seus minutos: estava se recuperando de lesão muscular na Austrália e não cem por cento. A frase caiu mal. Em Singapura, ao explicar, travou por 24 segundos; disse que nunca abriu mão da Seleção e que quer jogar todos os jogos e a maioria dos minutos possíveis. Ancelotti reforçou: prioridade é a saúde do jogador e a comissão controla a minutagem.",
+  "fontes": [
+    {
+      "titulo": "UOL — Entenda polêmica que originou a 'pane' de Raphinha em fala na seleção (13/11/2026)",
+      "url": "https://www.uol.com.br/esporte/futebol/ultimas-noticias/2026/11/13/raphinha-polemica-fala-que-levou-a-pane-selecao.ghtm"
+    },
+    {
+      "titulo": "ge — Raphinha se explica: “Quero jogar todos os minutos possíveis” (13/11/2026)",
+      "url": "https://ge.globo.com/futebol/selecao-brasileira/noticia/2026/11/13/raphinha-se-explica-apos-polemica-na-selecao-quero-jogar-todos-os-minutos-possiveis.ghtml"
+    },
+    {
+      "titulo": "Lance! — Após polêmica, Raphinha faz silêncio de 24 segundos em resposta na Seleção",
+      "url": "https://www.lance.com.br/selecao-brasileira/apos-polemica-raphinha-faz-silencio-de-24-segundos-em-resposta-na-selecao.html"
+    },
+    {
+      "titulo": "Lance! — Roger Flores critica declaração de Raphinha sobre Ancelotti: 'Não dá'",
+      "url": "https://www.lance.com.br/fora-de-campo/roger-flores-critica-declaracao-de-raphinha-sobre-ancelotti-nao-da.html"
+    },
+    {
+      "titulo": "FutebolRS — Raphinha rebate polêmica sobre minutos; Ancelotti fala em saúde do atleta",
+      "url": "https://www.futebolrs.com.br/noticia/raphinha-rebate-polemica-sobre-minutos-na-selecao-enquanto-ancelotti-fecha-escalacao-contra-o-japao"
+    },
+    {
+      "titulo": "M5PORTS — Raphinha rebate: “Nunca abri mão da Seleção” (13/11/2026)",
+      "url": "https://www.m5ports.com/2026/11/13/raphinha-rebate-polemica-sobre-minutagem-nunca-abri-mao-da-selecao/"
+    }
+  ],
+  "voz": {
+    "perfil": "expressiva"
+  },
+  "capa": {
+    "cena": "pane",
+    "momento": 0.7,
+    "titulo": "Raphinha passou do ponto?",
+    "destaque": "passou do ponto"
+  },
+  "post": {
+    "texto": "Raphinha disse que, se Ancelotti realmente conta com ele, precisa gerir os minutos. A frase explodiu. Em Singapura, ele travou 24 segundos para se explicar.",
+    "chamada": "Mande para quem acompanha a Seleção e briga no grupo da família.",
+    "hashtags": ["raphinha", "selecao", "ancelotti", "brasil", "futebol", "barcelona", "copa"]
+  },
+  "cenas": [
+    {
+      "id": "gancho",
+      "narracao": "Quando Raphinha disse \"se realmente conta comigo\", ele passou do ponto com Ancelotti?",
+      "visual": "Boneco com camisa amarela da Seleção e microfone; interrogação grande; técnico de terno ao fundo; título com a frase em destaque.",
+      "emocao": "curious",
+      "pausaDepois": 0.4
+    },
+    {
+      "id": "renovacao",
+      "narracao": "Tudo começou em Barcelona. Depois de renovar o contrato, perguntaram sobre os minutos dele na Seleção.",
+      "visual": "Boneco com camisa blaugrana no pedestal; microfone e câmeras; rótulo RENOVAÇÃO.",
+      "emocao": "curious"
+    },
+    {
+      "id": "fala",
+      "narracao": "A resposta foi direta: se o técnico realmente conta comigo, sabe que precisa gerir os meus minutos.",
+      "visual": "Raphinha falando no microfone; balão com a frase; Ancelotti aparece à direita; rótulo GERIR OS MINUTOS.",
+      "emocao": "curious",
+      "pausaDepois": 0.35
+    },
+    {
+      "id": "porcento",
+      "narracao": "Ele completou: estou bem, mas não cem por cento. Uma lesão também seria difícil para a seleção.",
+      "visual": "Medidor de condição física sobe até cerca de setenta e para; rótulo NÃO CEM POR CENTO.",
+      "emocao": "curious"
+    },
+    {
+      "id": "australia",
+      "narracao": "Na última convocação, ele se machucou no segundo amistoso contra a Austrália e virou desfalque no Barcelona.",
+      "visual": "Campo; Raphinha segura a perna; X vermelho na coxa; camisa do Barcelona some do banco.",
+      "emocao": "thoughtful"
+    },
+    {
+      "id": "tres-lesoes",
+      "narracao": "Nas últimas três convocações, foram três lesões quase na mesma região da perna.",
+      "visual": "Três marcas vermelhas na mesma perna em sequência; número 3; rótulo MESMA REGIÃO.",
+      "emocao": "thoughtful",
+      "pausaDepois": 0.3
+    },
+    {
+      "id": "reacao",
+      "narracao": "A frase não caiu bem. Muita gente leu como jogador ditando carga ao técnico da Seleção.",
+      "visual": "Torcida e microfones apontando; seta do jogador para o técnico; título PASSOU DO PONTO.",
+      "emocao": "surprised"
+    },
+    {
+      "id": "roger",
+      "narracao": "O comentarista Roger Flores foi seco: esse tipo de declaração, não dá.",
+      "visual": "Boneco comentarista no estúdio; carimbo NÃO DÁ em vermelho.",
+      "emocao": "surprised",
+      "pausaDepois": 0.35
+    },
+    {
+      "id": "singapura",
+      "narracao": "Em Singapura, já na Seleção, a cobrança voltou na coletiva.",
+      "visual": "Mesa de coletiva com microfones; fundo amarelo-verde; Raphinha sentado; rótulo SINGAPURA.",
+      "emocao": "thoughtful"
+    },
+    {
+      "id": "pane",
+      "narracao": "Ele começou a responder, travou, e ficou em silêncio por vinte e quatro segundos.",
+      "visual": "Raphinha congelado no microfone; relógio conta até 24; sala em silêncio; título 24 SEGUNDOS.",
+      "emocao": "surprised",
+      "pausaDepois": 0.5
+    },
+    {
+      "id": "honra",
+      "narracao": "Depois explicou: desde a primeira vez, nunca abri mão da Seleção. Sempre foi uma honra e um privilégio.",
+      "visual": "Camisa amarela sobe no pedestal; Raphinha de mão no peito; rótulo NUNCA ABRI MÃO.",
+      "emocao": "thoughtful"
+    },
+    {
+      "id": "intencao",
+      "narracao": "A intenção, segundo ele, não era escolher jogo. Era cuidar do corpo para não se machucar de novo.",
+      "visual": "Balança: de um lado escolha de jogo riscada; do outro, cuidado físico com visto.",
+      "emocao": "thoughtful"
+    },
+    {
+      "id": "disponivel",
+      "narracao": "Se eu estiver bem fisicamente, vou estar sempre disponível para representar o Brasil.",
+      "visual": "Raphinha de amarelo pronto para entrar; bola e campo; rótulo DISPONÍVEL.",
+      "emocao": "excited"
+    },
+    {
+      "id": "quer-jogar",
+      "narracao": "Quero jogar todos os jogos possíveis e a maioria dos minutos possíveis. Isso não vai mudar.",
+      "visual": "Placar de minutos sobe; Raphinha em pose de ataque; título TODOS OS JOGOS.",
+      "emocao": "excited",
+      "pausaDepois": 0.3
+    },
+    {
+      "id": "ancelotti",
+      "narracao": "Ancelotti fechou o tema: a prioridade é a saúde do jogador. Se estiver cem por cento, treina e joga.",
+      "visual": "Técnico de terno explicando; escudo de saúde; Raphinha ao lado em condição cheia.",
+      "emocao": "thoughtful"
+    },
+    {
+      "id": "clubes",
+      "narracao": "A comissão controla a minutagem no treino e no jogo. Os clubes podem ficar tranquilos.",
+      "visual": "Relógio de minutagem; escudos da Seleção e do Barcelona lado a lado; rótulo TRANQUILOS.",
+      "emocao": "thoughtful"
+    },
+    {
+      "id": "ponto",
+      "narracao": "O que pesou não foi só falar de minutos. Foi o \"se realmente conta comigo\". Aí passou do ponto.",
+      "visual": "Frase em destaque; a palavra REALMENTE pisca em vermelho; volta ao gancho com interrogação virando ponto final.",
+      "emocao": "surprised",
+      "pausaDepois": 0.45
+    },
+    {
+      "id": "cta",
+      "narracao": "Comenta aí: ele passou do ponto, ou a frase só saiu torta e a intenção era outra?",
+      "visual": "Dois botões COMENTA: PASSOU e SAIU TORTA; VinhetaPergunta nos últimos segundos.",
+      "emocao": "curious",
+      "pausaDepois": 0.6
+    }
+  ]
+}

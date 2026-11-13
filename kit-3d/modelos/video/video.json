@@ -1,0 +1,34 @@
+{
+  "titulo": "{{TITULO}}",
+  "roteiroAprovado": false,
+  "resumo": "",
+  "fontes": [],
+  "voz": {"perfil": "expressiva"},
+  "capa": {
+    "cena": "gancho",
+    "momento": 0.6,
+    "titulo": "{{TITULO}}"
+  },
+  "post": {
+    "texto": "",
+    "chamada": "Mande para quem [público ligado ao tema].",
+    "hashtags": ["curiosidades"]
+  },
+  "cenas": [
+    {
+      "id": "gancho",
+      "narracao": "Frase que prende a atenção nos dois primeiros segundos.",
+      "visual": "O que aparece na tela enquanto essa frase é dita."
+    },
+    {
+      "id": "explicacao",
+      "narracao": "Uma ideia por cena, em frases curtas e faladas.",
+      "visual": "Objeto ou boneco que ilustra a ideia."
+    },
+    {
+      "id": "fechamento",
+      "narracao": "Um fecho que surpreenda ou faça a pessoa assistir de novo.",
+      "visual": "Imagem final marcante."
+    }
+  ]
+}

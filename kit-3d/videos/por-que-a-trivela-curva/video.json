@@ -1,0 +1,147 @@
+{
+  "titulo": "Por que a trivela faz a bola curvar?",
+  "roteiroAprovado": true,
+  "resumo": "A trivela é o chute com a parte externa do pé. O giro lateral cria o efeito Magnus: diferença de pressão no ar empurra a bola de lado. A curva fica mais forte quando a bola desacelera. Roberto Carlos, em mil novecentos e noventa e sete, marcou de cerca de trinta e sete metros com essa física.",
+  "fontes": [
+    {
+      "titulo": "Physics Today — Aerodynamics in the beautiful game (trivela e efeito Magnus)",
+      "url": "https://doi.org/10.1063/pt.6.1.20221121a"
+    },
+    {
+      "titulo": "Brasil Escola — Como a bola de futebol faz curva? (efeito Magnus)",
+      "url": "https://brasilescola.uol.com.br/fisica/como-bola-futebol-faz-curva.htm"
+    },
+    {
+      "titulo": "CREF / UFRGS — Força de Magnus na bola de futebol",
+      "url": "https://cref.if.ufrgs.br/?contact-pergunta=curva-surpreendente-de-uma-bola-de-futebol"
+    },
+    {
+      "titulo": "Metrópoles — Efeito Magnus e o chute com trivela",
+      "url": "https://www.metropoles.com/ciencia/efeito-magnus-fisica-chute-indefensavel"
+    }
+  ],
+  "voz": {
+    "perfil": "expressiva"
+  },
+  "capa": {
+    "cena": "curva",
+    "momento": 0.7,
+    "titulo": "Por que a trivela curva?",
+    "destaque": "curva"
+  },
+  "post": {
+    "texto": "Por que a bola faz aquela curva maluca na trivela? Não é mágica: é física no ar.",
+    "chamada": "Mande para quem joga bola e acha que trivela é só talento.",
+    "hashtags": ["futebol", "trivela", "curiosidades", "fisica", "magnus", "pedetrivela"]
+  },
+  "cenas": [
+    {
+      "id": "gancho",
+      "narracao": "Por que, quando você chuta com a parte de fora do pé, a bola faz aquela curva que engana o goleiro?",
+      "visual": "Boneco no gramado com bola aos pés; interrogação surge; bola começa a girar.",
+      "emocao": "curious",
+      "pausaDepois": 0.4
+    },
+    {
+      "id": "nome",
+      "narracao": "Esse chute tem nome: trivela. Também chamado de três dedos.",
+      "visual": "Título TRIVELA; pé low-poly batendo na bola pela parte externa; rótulo três dedos.",
+      "emocao": "excited"
+    },
+    {
+      "id": "peito",
+      "narracao": "No chute de curva clássico, o jogador bate com o peito do pé e a bola gira pra um lado.",
+      "visual": "Boneco chuta com a parte interna do pé; seta mostra o giro da bola.",
+      "emocao": "excited"
+    },
+    {
+      "id": "externa",
+      "narracao": "Na trivela, ele usa a parte de fora. O giro fica ao contrário. Por isso a curva vai pro outro lado.",
+      "visual": "Mesmo boneco agora bate com a externa; seta de giro inverte; bola curva para o outro lado.",
+      "emocao": "excited",
+      "pausaDepois": 0.35
+    },
+    {
+      "id": "giro",
+      "narracao": "O segredo não é só a força do chute. É o giro que a bola leva no ar.",
+      "visual": "Bola em close girando; linhas de ar começam a aparecer ao redor.",
+      "emocao": "thoughtful"
+    },
+    {
+      "id": "ar",
+      "narracao": "Enquanto ela voa girando, o ar passa diferente em cada lado.",
+      "visual": "Bola atravessando o ar; fluxo rápido de um lado e lento do outro.",
+      "emocao": "thoughtful"
+    },
+    {
+      "id": "pressao",
+      "narracao": "De um lado o ar corre mais rápido e a pressão cai. Do outro, o ar vai mais lento e a pressão sobe.",
+      "visual": "Diagrama com setas de pressão alta e baixa; força lateral empurra a bola.",
+      "emocao": "thoughtful"
+    },
+    {
+      "id": "magnus",
+      "narracao": "Essa empurrada de lado se chama efeito Magnus. É a mesma física que curva bola de tênis e de golfe.",
+      "visual": "Pedestal com nome EFEITO MAGNUS; bola de futebol, tênis e golfe pequenas ao lado.",
+      "emocao": "thoughtful",
+      "pausaDepois": 0.3
+    },
+    {
+      "id": "curva",
+      "narracao": "Resultado: a bola muda de caminho no ar, sem ninguém tocar nela de novo.",
+      "visual": "Trajetória reta fantasma versus trajetória curva real até o gol.",
+      "emocao": "surprised"
+    },
+    {
+      "id": "desacelera",
+      "narracao": "E tem um detalhe: a curva fica mais forte quando a bola começa a perder velocidade.",
+      "visual": "Bola voando; no fim do voo a curva se acentua; goleiro surpreso.",
+      "emocao": "surprised",
+      "pausaDepois": 0.35
+    },
+    {
+      "id": "roberto",
+      "narracao": "Foi assim no gol famoso do Roberto Carlos, em mil novecentos e noventa e sete.",
+      "visual": "Boneco à esquerda, barreira, goleiro e gol; bola partindo de longe.",
+      "emocao": "excited"
+    },
+    {
+      "id": "trinta-sete",
+      "narracao": "Ele bateu de cerca de trinta e sete metros, com a parte de fora do pé esquerdo.",
+      "visual": "Número 37 m no ar; seta marcando a distância até o gol; pé externo em destaque.",
+      "emocao": "excited",
+      "pausaDepois": 0.4
+    },
+    {
+      "id": "parede",
+      "narracao": "A bola parecia que ia embora. Depois do muro, o efeito Magnus puxou e ela entrou no canto.",
+      "visual": "Trajetória que vai para fora e depois curva para dentro da trave; goleiro parado.",
+      "emocao": "excited"
+    },
+    {
+      "id": "dificil",
+      "narracao": "A trivela é mais difícil de controlar porque a área de contato do pé com a bola é menor.",
+      "visual": "Comparação: peito do pé com contato largo versus externa com contato estreito.",
+      "emocao": "thoughtful"
+    },
+    {
+      "id": "gramado",
+      "narracao": "Em campo seco o giro pega melhor. Chuva e bola molhada atrapalham a rotação.",
+      "visual": "Duas bolas: uma seca girando forte; outra molhada com menos giro e gotas.",
+      "emocao": "thoughtful"
+    },
+    {
+      "id": "volta",
+      "narracao": "Então aquela curva maluca da trivela não é mágica. É ar empurrando uma bola que gira.",
+      "visual": "Bola girando com setas do efeito Magnus; título curto CURVA = FÍSICA.",
+      "emocao": "surprised"
+    },
+    {
+      "id": "cta",
+      "narracao": "Comenta aí: você já tentou a trivela no campinho? Deu curva ou foi só pra arquibancada?",
+      "visual": "Boneco convidando; vinheta Comenta aí; bola girando no fundo.",
+      "emocao": "excited",
+      "pausaDepois": 0.5
+    }
+  ]
+}

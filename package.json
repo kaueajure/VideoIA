@@ -16,6 +16,7 @@
     "test": "node --test \"test/*.test.mjs\"",
     "previa": "node src/video/previa.mjs",
     "estudio": "node src/estudio/servidor.mjs",
+    "kit-3d": "node scripts/kit-3d-run.mjs",
     "status": "node src/video/cli.mjs --status",
     "doctor": "node src/video/cli.mjs --doctor",
     "galeria": "node src/video/cli.mjs --galeria",

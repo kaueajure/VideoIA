@@ -1,0 +1,118 @@
+{
+  "titulo": "Por que o céu é azul?",
+  "roteiroAprovado": true,
+  "resumo": "A luz branca do Sol se espalha nas moléculas do ar; o azul, de onda curta, se espalha muito mais. No pôr do sol a luz atravessa mais ar e sobra o laranja. Em Marte, o pôr do sol é azul.",
+  "fontes": [
+    {
+      "titulo": "Royal Museums Greenwich — Why is the sky blue?",
+      "url": "https://www.rmg.co.uk/stories/space-astronomy/why-sky-blue"
+    },
+    {
+      "titulo": "NASA — Curiosity Sees Blue Sunset on Mars",
+      "url": "https://svs.gsfc.nasa.gov/11875"
+    }
+  ],
+  "voz": {},
+  "capa": {
+    "cena": "gancho",
+    "momento": 0.75,
+    "titulo": "Por que o céu é azul?",
+    "destaque": "azul"
+  },
+  "post": {
+    "texto": "Se a luz do Sol é branca, de onde vem o azul do céu? E por que em Marte o pôr do sol é azul?",
+    "chamada": "Mande para quem não perde um pôr do sol.",
+    "hashtags": ["curiosidades", "ciencia", "fisica", "ceuazul", "pordosol", "curiosidadeagora"]
+  },
+  "carrossel": {
+    "laminas": [
+      {"cena": "luz-branca", "texto": "A luz do Sol parece branca, mas é a *mistura de todas as cores* do arco-íris."},
+      {"cena": "ondas", "texto": "Cada cor é uma onda: o vermelho tem ondas *longas*; o azul, ondas *curtas*.", "momento": 0.32},
+      {"cena": "espalhamento", "texto": "No ar, as ondas curtas batem nas moléculas e ricocheteiam. O azul se espalha *5 vezes mais* que o vermelho."},
+      {"cena": "ceu-azul", "texto": "Por isso, para onde você olha, chega *luz azul* vinda de todas as direções."},
+      {"cena": "olhos", "texto": "E por que não roxo? O Sol emite pouco violeta, e nossos olhos enxergam *muito melhor o azul*."},
+      {"cena": "laranja", "texto": "No fim da tarde, a luz cruza muito mais ar: o azul se perde no caminho e *sobra o laranja*."},
+      {"cena": "marte", "texto": "Em Marte é o contrário: o céu é cor de caramelo e o *pôr do sol é azul*."}
+    ],
+    "chamada": "Mande para quem não perde um *pôr do sol*"
+  },
+  "cenas": [
+    {
+      "id": "gancho",
+      "narracao": "Se a luz do Sol é branca, por que o céu é azul? E por que no fim da tarde ele fica laranja?",
+      "visual": "Boneco olhando para cima no palco escuro; Sol pequeno surge no alto; um ponto de interrogação gigante gira ao lado."
+    },
+    {
+      "id": "luz-branca",
+      "narracao": "A luz do Sol parece branca, mas é uma mistura de todas as cores do arco-íris.",
+      "visual": "Sol à esquerda solta um raio branco; o raio se divide em seis feixes coloridos quando ele fala das cores."
+    },
+    {
+      "id": "prisma",
+      "narracao": "Isaac Newton provou isso há mais de trezentos anos, com um raio de sol e um prisma de vidro.",
+      "visual": "Raio branco entra num prisma de vidro e sai em leque de cores; boneco cientista aponta."
+    },
+    {
+      "id": "ondas",
+      "narracao": "Cada cor é uma onda de tamanho diferente. O vermelho tem ondas longas. O azul, ondas curtas.",
+      "visual": "Onda vermelha longa e onda azul curta desenhadas lado a lado, com rótulos."
+    },
+    {
+      "id": "atmosfera",
+      "narracao": "Depois de viajar cento e cinquenta milhões de quilômetros, essa luz entra na atmosfera, cheia de moléculas de nitrogênio e oxigênio.",
+      "visual": "Terra no espaço; raio de sol chega; a câmera mergulha na atmosfera e aparecem as moléculas."
+    },
+    {
+      "id": "espalhamento",
+      "narracao": "As ondas curtas batem nessas moléculas minúsculas e ricocheteiam para todos os lados. O azul se espalha cerca de cinco vezes mais que o vermelho.",
+      "visual": "Raio branco atinge uma nuvem de moléculas; feixes azuis saem para todos os lados; o vermelho segue reto; número 5x."
+    },
+    {
+      "id": "rayleigh",
+      "narracao": "Esse efeito se chama espalhamento de Rayleigh, em homenagem ao físico que o explicou no século dezenove.",
+      "visual": "Pedestal com moléculas brilhando e o nome do efeito em destaque."
+    },
+    {
+      "id": "ceu-azul",
+      "narracao": "Por isso, pra onde quer que você olhe, chega luz azul vinda de todas as direções.",
+      "visual": "O fundo vira céu azul; setas azuis chegam de várias direções até o boneco."
+    },
+    {
+      "id": "violeta",
+      "narracao": "Mas se o violeta tem ondas ainda mais curtas, por que o céu não é roxo?",
+      "pausaDepois": 0.35,
+      "visual": "Onda violeta ainda mais curta; boneco pensando com interrogação roxa."
+    },
+    {
+      "id": "olhos",
+      "narracao": "Porque o Sol emite menos violeta, parte dele é absorvida no alto da atmosfera, e nossos olhos enxergam muito melhor o azul.",
+      "visual": "Três motivos aparecendo um a um como rótulos; boneco explicando."
+    },
+    {
+      "id": "por-do-sol",
+      "narracao": "No fim da tarde, o Sol está baixo, e a luz atravessa muito mais ar até chegar em você.",
+      "visual": "Céu escurecendo para laranja; Sol baixo no horizonte; raio longo atravessando muito ar até o boneco."
+    },
+    {
+      "id": "laranja",
+      "narracao": "No caminho, quase todo o azul se espalha e se perde. Sobram o amarelo, o laranja e o vermelho.",
+      "visual": "Pedaços azuis escapam do raio ao longo do caminho; o raio chega alaranjado; silhuetas contra o pôr do sol."
+    },
+    {
+      "id": "espaco",
+      "narracao": "No espaço, sem ar para espalhar a luz, o céu é preto, mesmo com o Sol brilhando.",
+      "visual": "Espaço estrelado e preto com o Sol brilhando e a Terra ao fundo."
+    },
+    {
+      "id": "marte",
+      "narracao": "Já em Marte é o contrário: o céu do dia é cor de caramelo, e o pôr do sol é azul.",
+      "pausaDepois": 0.7,
+      "visual": "Chão vermelho de Marte com pedras; céu caramelo; Sol com halo azul; boneco surpreso."
+    },
+    {
+      "id": "fechamento",
+      "narracao": "Da próxima vez que olhar pro céu, lembra: esse azul é luz do Sol ricocheteando no ar.",
+      "visual": "De volta ao céu azul; boneco acenando; partículas azuis brilhando; câmera se afasta."
+    }
+  ]
+}

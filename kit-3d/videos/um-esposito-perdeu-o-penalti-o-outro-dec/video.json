@@ -1,0 +1,183 @@
+{
+  "titulo": "um Esposito perdeu o pênalti. O outro decidiu contra a França",
+  "roteiroAprovado": true,
+  "resumo": "Itália 3 x 1 França, Liga das Nações, San Siro, 12 de novembro de 2026. Com o jogo 1 a 1, Sebastiano Esposito bateu o pênalti que era do irmão Pio e chutou para fora. Aos 75 minutos, Pio cobrou o segundo pênalti, o primeiro desde o erro na disputa contra a Bósnia que tirou a Itália da Copa, fez 3 a 1 e foi abraçar o irmão.",
+  "fontes": [
+    {
+      "titulo": "FIGC — Pio Esposito and Frattesi steer Italy past France (12/11/2026)",
+      "url": "https://www.figc.it/en/national-teams/news/pio-esposito-and-frattesi-steer-italy-past-france-n6xs7kce"
+    },
+    {
+      "titulo": "AP — Pio Esposito shrugs off penalty ghosts (12/11/2026)",
+      "url": "https://apnews.com/article/pio-esposito-italy-france-nations-league-e5fb993f4047efa9be3826f301c1364d"
+    },
+    {
+      "titulo": "AFP — Italy fight back to deal Zidane first loss as France coach",
+      "url": "https://www.afp.com/en/italy-fight-back-deal-zidane-first-loss-france-coach"
+    },
+    {
+      "titulo": "Corriere della Sera — Pio Esposito: «Soffrivo per mio fratello Sebastiano»",
+      "url": "https://www.corriere.it/sport/calcio/nations-league/26_novembre_12/pio-esposito-rigore-sebastiano-italia-francia-d2aeb1d6-59df-4b68-a1d6-0326aa619xlk.shtml"
+    },
+    {
+      "titulo": "Calciomercato.com — Mancini: «La prossima volta i fratelli Esposito non si confondono più»",
+      "url": "https://www.calciomercato.com/notizie/italia-cosa-e-successo-sul-rigore-contro-la-francia-sbagliato-da-sebastiano-esposito-mancini-doveva-tirarlo-pio-esposito-la-prossima-volta-non-si-confonderanno/bltb88a8bd7417d5750"
+    },
+    {
+      "titulo": "TuttoMercatoWeb — L'abbraccio tra Pio e Sebastiano Esposito dopo il rigore del 3-1",
+      "url": "https://www.tuttomercatoweb.com/serie-a/rigore-due-pio-esposito-andato-abbracciare-fratello-rigore-3-1-2293494"
+    },
+    {
+      "titulo": "Sport Mediaset — Italia-Francia 3-1: tabellino e cronaca",
+      "url": "https://www.sportmediaset.mediaset.it/nationsleague/nations-league-italia-francia-3-1-doppietta-di-pio-esposito-e-frattesi-azzurri-primi-nel-girone_118915207-202602k.shtml"
+    },
+    {
+      "titulo": "UEFA — Bosnia and Herzegovina 1-1 Italy (4-1 nos pênaltis), final da repescagem da Copa (31/03/2026)",
+      "url": "https://www.uefa.com/european-qualifiers/news/02a3-2047c06e29c6-0a8f1c84272a-1000--bosnia-and-herzegovina-1-1-italy-highlights-4-1-on-pens-host/"
+    },
+    {
+      "titulo": "BBC Sport — Italy miss World Cup for third time in a row",
+      "url": "https://www.bbc.com/sport/football/live/c208ge6p142t"
+    }
+  ],
+  "voz": {
+    "perfil": "expressiva"
+  },
+  "capa": {
+    "cena": "abraco",
+    "momento": 0.75,
+    "titulo": "Um perdeu. O outro decidiu.",
+    "destaque": "decidiu"
+  },
+  "post": {
+    "texto": "Itália 3 x 1 França. Com o jogo empatado, Sebastiano Esposito bateu o pênalti que era do irmão e mandou para fora. Quinze minutos depois, o Pio pegou a bola, fez o terceiro e correu para abraçar o irmão.",
+    "chamada": "Mande para quem divide tudo com o irmão, até a bola.",
+    "hashtags": ["futebol", "italia", "franca", "ligadasnacoes", "pioesposito", "penalti", "irmaos"]
+  },
+  "cenas": [
+    {
+      "id": "gancho",
+      "narracao": "Um irmão perdeu. O outro decidiu. Os dois de azul, no mesmo jogo, contra a França.",
+      "visual": "Dois bonecos de azul da Itália lado a lado na marca do pênalti, uma bola entre eles e o gol ao fundo; rótulos PERDEU e DECIDIU acendem sobre cada um.",
+      "emocao": "excited",
+      "pausaDepois": 0.3
+    },
+    {
+      "id": "irmaos",
+      "narracao": "São os Esposito. Sebastiano, o mais velho, joga no Sassuolo. Pio, de vinte e um anos, é centroavante da Inter.",
+      "visual": "Os dois irmãos, o mais velho à esquerda e o mais novo à direita; rótulos com nome e clube entram em cada palavra.",
+      "emocao": "excited"
+    },
+    {
+      "id": "san-siro",
+      "narracao": "Doze de novembro, San Siro, Milão. Itália e França pela Liga das Nações, diante de cerca de setenta mil pessoas.",
+      "visual": "Campo visto do alto com arquibancada cheia em volta; times de azul claro e azul-marinho entrando; número 70 mil.",
+      "emocao": "excited"
+    },
+    {
+      "id": "olise",
+      "narracao": "Aos dez minutos, o Donnarumma erra a saída de bola e o Olise abre o placar.",
+      "visual": "Goleiro italiano passa a bola errado; atacante francês rouba e chuta para o gol; placar 0 x 1.",
+      "emocao": "excited"
+    },
+    {
+      "id": "empate",
+      "narracao": "Aos vinte e seis, o Pio chega antes do zagueiro e empata.",
+      "visual": "Bola rasteira cruzando a área; Pio chega antes do zagueiro francês e empurra para o gol; placar 1 x 1.",
+      "emocao": "excited",
+      "pausaDepois": 0.3
+    },
+    {
+      "id": "penalti",
+      "narracao": "No segundo tempo, pênalti para a Itália, com o jogo empatado.",
+      "visual": "Atacante italiano cai na área; bola vai para a marca do pênalti; título PÊNALTI.",
+      "emocao": "surprised"
+    },
+    {
+      "id": "troca",
+      "narracao": "O batedor escolhido era o Pio. Mas ele entrega a bola ao irmão. E o técnico Mancini não gosta nada.",
+      "visual": "Pio segura a bola, passa para Sebastiano; técnico na lateral com a mão na cabeça.",
+      "emocao": "surprised"
+    },
+    {
+      "id": "erro",
+      "narracao": "O Sebastiano bate forte, com a parte de fora do pé, e manda para fora.",
+      "visual": "Câmera atrás do batedor; bola sai ao lado da trave; goleiro francês parado; X vermelho.",
+      "emocao": "surprised",
+      "pausaDepois": 0.5
+    },
+    {
+      "id": "substituido",
+      "narracao": "Minutos depois, ele é substituído, com o peso do erro nas costas.",
+      "visual": "Sebastiano andando para fora do campo, cabeça baixa; placa de substituição.",
+      "emocao": "surprised"
+    },
+    {
+      "id": "frattesi",
+      "narracao": "Mas a Itália não desmonta. Três minutos depois, o Frattesi vira o jogo. Dois a um.",
+      "visual": "Cruzamento, Frattesi chuta de primeira; bola na rede; placar 2 x 1.",
+      "emocao": "excited",
+      "pausaDepois": 0.3
+    },
+    {
+      "id": "outro-penalti",
+      "narracao": "Aos setenta e cinco, outro pênalti. Dessa vez, quem pega a bola é o Pio.",
+      "visual": "Pio coloca a bola na marca; o irmão fora do campo, no banco, olhando.",
+      "emocao": "excited"
+    },
+    {
+      "id": "bosnia",
+      "narracao": "E esse chute pesava. Era o primeiro pênalti dele desde março, quando errou na disputa contra a Bósnia.",
+      "visual": "Flash de memória: Pio chuta e a bola vai por cima do travessão; rótulo MARÇO · BÓSNIA.",
+      "emocao": "thoughtful",
+      "transicao": "flash"
+    },
+    {
+      "id": "copa",
+      "narracao": "Aquela derrota tirou a Itália da Copa do Mundo. Pela terceira vez seguida.",
+      "visual": "Três troféus apagados em fila, um por Copa perdida; número 3.",
+      "emocao": "thoughtful",
+      "pausaDepois": 0.5
+    },
+    {
+      "id": "gol",
+      "narracao": "O Pio bate no canto e o goleiro cai do outro lado. Três a um.",
+      "visual": "Câmera atrás do Pio; bola entra no canto, goleiro pula para o outro lado; placar 3 x 1.",
+      "emocao": "excited",
+      "transicao": "flash",
+      "pausaDepois": 0.3
+    },
+    {
+      "id": "abraco",
+      "narracao": "E a primeira coisa que ele faz é correr para abraçar o irmão. Depois, os dois mostram o muque juntos.",
+      "visual": "Pio corre até Sebastiano; os dois se abraçam e depois fazem juntos o gesto do muque.",
+      "emocao": "excited"
+    },
+    {
+      "id": "apagar",
+      "narracao": "Ele disse que bateu também para apagar o erro do Sebastiano.",
+      "visual": "Os dois irmãos lado a lado; o X do erro some e vira um visto.",
+      "emocao": "excited"
+    },
+    {
+      "id": "historia",
+      "narracao": "Primeira vitória da Itália sobre a França em casa em sessenta e quatro anos. E primeira derrota do Zidane no comando francês.",
+      "visual": "Placar final 3 x 1 em destaque; número 64 anos; técnico francês de cabeça baixa.",
+      "emocao": "excited"
+    },
+    {
+      "id": "mancini",
+      "narracao": "E o Mancini resumiu: da próxima vez, os irmãos Esposito não se confundem mais.",
+      "visual": "Técnico explicando; os dois irmãos lado a lado atrás dele com a bola no meio.",
+      "emocao": "excited",
+      "pausaDepois": 0.5
+    },
+    {
+      "id": "cta",
+      "narracao": "Manda esse vídeo para aquele seu irmão que nunca te passa a bola.",
+      "visual": "Os dois irmãos com a bola; rótulo MANDA PRO SEU IRMÃO nos últimos segundos.",
+      "emocao": "excited",
+      "pausaDepois": 0.6
+    }
+  ]
+}

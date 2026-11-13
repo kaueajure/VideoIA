@@ -1,0 +1,10 @@
+node_modules/
+.env
+out/
+build/
+# renders e prévias (regeráveis com `npm run render` / `npm run previa`)
+videos/*/saida/
+# arquivos temporários da geração de voz
+.tmp/
+# prévias do estilo (npm run estilo)
+saida/

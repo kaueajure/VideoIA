@@ -1,0 +1,7 @@
+{
+  "sobre": "Catálogo de trilhas. O Claude escolhe pelo clima do vídeo; use em video.json: \"trilha\": {\"arquivo\": \"<arquivo>\"}. Sem \"trilha\", vale AUDIO.trilhaPadrao (src/config.ts).",
+  "trilhas": [
+    {"arquivo":"holizna-blue-skies.mp3","clima":"lofi","descricao":"lo-fi leve e otimista (padrão do kit)","autor":"HoliznaCC0","titulo":"Blue Skies","licenca":"CC0","url":"https://opengameart.org/content/happy-lo-fi-lofi-collection"},
+    {"arquivo":"holizna-clouds.mp3","clima":"calmo","descricao":"lo-fi calmo, contemplativo","autor":"HoliznaCC0","titulo":"Clouds","licenca":"CC0","url":"https://opengameart.org/content/happy-lo-fi-lofi-collection"}
+  ]
+}

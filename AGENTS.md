@@ -32,6 +32,7 @@ Todo vídeo tem um **estilo** (a aparência; `npm run estilos`) e um **objetivo*
 ## Skills (nesta ordem)
 Primeira vez: `comece`. Trocar nome, @ ou cor: `marca`.
 `pauta` -> `roteiro` -> `video` (que usa `cena` e `critico`) -> `publicar` (que usa `youtube` para o pacote). Para carrossel: `pauta` -> `carrossel` -> `publicar`. Para imitar o jeito de um conteúdo que deu certo: `referencia`.
+**Vídeo 3D (aba 3D do estúdio, pasta `kit-3d/`):** skill `video-3d`. Trabalhe só em `kit-3d/` (Remotion); não misture com `cena.json` / `projetos/` neste pedido. Atalho: `node scripts/kit-3d-run.mjs <script> -- <args>`.
 
 ## Skills sociais
 Leia `docs/skills-sociais.md` na etapa: hooks/roteiro (`viral-hooks`, `viral-short-form`), ideias (`viral-short-form-ideas`), legendas (`social-captions`, `viral-captions-and-ctas`), rede pedida (`viral-tiktok-content`, `viral-instagram-reels`, `viral-youtube-shorts`) e planejamento (`social-content`). Idioma e fatos da página prevalecem. Preparar textos não autoriza envio.
@@ -105,6 +106,7 @@ As skills são as mesmas do Claude Code, copiadas para `.agents/skills/` (a font
 | `social-captions` | `$social-captions` | Escreve legendas por plataforma no Metodo-Video. |
 | `social-content` | `$social-content` | Planeja formatos e calendário social no Metodo-Video. |
 | `video` | `$video` | Produz o vídeo do Estudio de videos de ponta a ponta, sem paradas de aprovação, a partir de um roteiro.md. |
+| `video-3d` | `$video-3d` | Produz um vídeo 3D com o kit Remotion embutido em kit-3d/ (palco, bonecos, cenas React Three Fiber). |
 | `viral-captions-and-ctas` | `$viral-captions-and-ctas` | Refina legendas, CTAs e comentários no Metodo-Video. |
 | `viral-hooks` | `$viral-hooks` | Escreve e critica o gancho (1 a 3 s) no Metodo-Video. |
 | `viral-instagram-reels` | `$viral-instagram-reels` | Ajusta roteiro e legenda para Instagram Reels no Metodo-Video. |

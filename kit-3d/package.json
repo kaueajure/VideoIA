@@ -1,0 +1,52 @@
+{
+  "name": "kit-3d-embutido",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kit 3D embutido no Estudio de Videos (Remotion + R3F).",
+  "scripts": {
+    "studio": "remotion studio",
+    "novo": "tsx scripts/novo.ts",
+    "roteiros": "tsx scripts/roteiros.ts",
+    "voz": "tsx scripts/voz.ts",
+    "vozes": "tsx scripts/vozes.ts",
+    "estilo": "tsx scripts/estilo.ts",
+    "previa": "tsx scripts/previa.ts",
+    "render": "tsx scripts/render.ts",
+    "carrossel": "tsx scripts/carrossel.ts",
+    "status": "tsx scripts/status.ts",
+    "arquivar": "tsx scripts/arquivar.ts",
+    "checar": "tsc --noEmit && tsx scripts/checar.ts",
+    "postinstall": "remotion browser ensure",
+    "flicker": "tsx scripts/flicker.ts",
+    "fechos": "tsx scripts/fechos.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@react-three/fiber": "9.8.1",
+    "@remotion/bundler": "4.0.535",
+    "@remotion/cli": "4.0.535",
+    "@remotion/google-fonts": "4.0.535",
+    "@remotion/media": "4.0.535",
+    "@remotion/noise": "4.0.535",
+    "@remotion/renderer": "4.0.535",
+    "@remotion/three": "4.0.535",
+    "mediabunny": "1.61.3",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "remotion": "4.0.535",
+    "three": "0.186.1",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/pngjs": "6.0.5",
+    "@types/react": "19.3.0",
+    "@types/three": "0.186.0",
+    "@types/webpack-env": "1.18.8",
+    "pngjs": "7.0.0",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  }
+}
